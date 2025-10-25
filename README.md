@@ -18,17 +18,17 @@ Translated or written by Jeambo.
 
 ## Finished 已完成
 
-**The Ethical Slut (Finished on Jan 2025)**
+***The Ethical Slut*** **(Finished on Jan 2025)**
 
-**A World Beyond Monogamy (Finished on Oct 2025)** 
+***A World Beyond Monogamy*** **(Finished on Oct 2025)** 
 
-epub and printable PDF on [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) and [Anna's Archive](https://annas-archive.org/search?q=jeambo)
+epub and printable PDF on [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) and [LibGen](https://libgen.li/index.php?req=jeambo)
 
 **《道德浪女》简体中文译本 （2025年1月完成）**
 
 **《超越单偶制的世界》（2025年10月完成）**
 
-epub 和 可直接打印的PDF版本 ，已发布在 [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) 和 [Anna's Archive](https://annas-archive.org/search?q=jeambo) 
+epub 和 可直接打印的PDF版本 ，已发布在 [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) 和 [LibGen](https://libgen.li/index.php?req=jeambo)
 
 
 
