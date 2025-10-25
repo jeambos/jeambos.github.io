@@ -36,9 +36,9 @@ epub 和 可直接打印的PDF版本 ，已发布在 [Z-lib](https://z-library.s
 
 ## In progress 进行中
 
-More Than Two (Second Edition) 
+***More Than Two (Second Edition) ***
 
-不止于二 第二版 
+**不止于二 第二版 **
 
 ## On Waitlist 尚未开始
 
