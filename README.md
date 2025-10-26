@@ -18,44 +18,46 @@ Translated or written by Jeambo.
 
 ## Finished 已完成
 
-***The Ethical Slut*** **(Finished on Jan 2025)**
+### ***The Ethical Slut*** **(Finished on Jan 2025)**
 
 **《道德浪女》简体中文译本 （2025年1月完成）**
 
+![cover_thumb](https://raw.githubusercontent.com/jeambos/the_ethical_slut_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "道德浪女中译本封面")
+
 ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for ePub and printable PDF files](https://github.com/jeambos/the_ethical_slut_zh-CN)
-
-![cover](https://raw.githubusercontent.com/jeambos/the_ethical_slut_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "道德浪女简体中文译本封面")
-
-
-
-***A World Beyond Monogamy*** **(Finished on Oct 2025)** 
-
-**《超越单偶制的世界》（2025年10月完成）**
-
-ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for ePub and printable PDF files](https://github.com/jeambos/awbm_zh-CN)
-
-![cover_thumb](https://raw.githubusercontent.com/jeambos/awbm_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "超越单偶制的世界中译本封面")
-
 
  
 
+### ***A World Beyond Monogamy*** **(Finished on Oct 2025)** 
 
-Also uploaded to [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) and [LibGen](https://libgen.li/index.php?req=jeambo)
+**《超越单偶制的世界》（2025年10月完成）**
 
-以上书籍亦上传到了 [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) 和 [LibGen](https://libgen.li/index.php?req=jeambo)
+![cover_thumb](https://raw.githubusercontent.com/jeambos/awbm_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "超越单偶制的世界中译本封面")
+
+ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for ePub and printable PDF files](https://github.com/jeambos/awbm_zh-CN)
+
+ 
+
+> Also uploaded to [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) and [LibGen](https://libgen.li/index.php?req=jeambo)
+
+> 以上书籍亦上传到了 [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) 和 [LibGen](https://libgen.li/index.php?req=jeambo)
 
 
 ## In progress 进行中
 
-***More Than Two \(Second Edition\) ***
+### ***More Than Two*** *Second Edition*
 
-** 《不止于二） 第二版 **
+**《不止于二》第二版**
 
 ## On Waitlist 尚未开始
 
-The Polyamorists Next Door
+### ***The Polyamorists Next Door***
 
-邻家的多边关系者
+**拟定译名：《邻家的多边关系者》**
+
+### 更多……
+
+> 欢迎提出 issue 推荐更多有关非单偶制的书籍
 
 # About Jeambo 
 
