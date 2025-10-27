@@ -50,7 +50,7 @@ ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for e
 
 **《不止于二》第二版**
 
-![cover_thumb](https://raw.githubusercontent.com/jeambos/awbm_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "不止于二_临时封面")
+![cover_thumb](https://raw.githubusercontent.com/jeambos/more_than_two_2e_zh-CN/refs/heads/main/cover_art/temp_coverpsd_240h.jpg "不止于二_临时封面")
 
 ***
 
