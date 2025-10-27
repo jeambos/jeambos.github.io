@@ -42,6 +42,7 @@ ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for e
 
 > 以上书籍亦上传到了 [Z-lib](https://z-library.sk/booklist/2800822/52f478/jeambos.html) 和 [LibGen](https://libgen.li/index.php?req=jeambo)
 
+***
 
 ## In progress 进行中
 
@@ -49,11 +50,17 @@ ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for e
 
 **《不止于二》第二版**
 
+![cover_thumb](https://raw.githubusercontent.com/jeambos/awbm_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "不止于二_临时封面")
+
+***
+
 ## On Waitlist 尚未开始
 
 - ### ***The Polyamorists Next Door***
 
 **拟定译名：《邻家的多边关系者》**
+
+***
 
 - ### 更多……
 
