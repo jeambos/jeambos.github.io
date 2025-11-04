@@ -18,9 +18,9 @@ Translated or written by Jeambo.
 
 ## Finished 已完成
 
-- ### ***The Ethical Slut*** **(Finished on Jan 2025)**
+- ### [***The Ethical Slut*** **(Finished on Jan 2025)**](https://github.com/jeambos/the_ethical_slut_zh-CN)
 
-**《道德浪女》简体中文译本 （2025年1月完成）**
+[**《道德浪女》简体中文译本 （2025年1月完成）**](https://github.com/jeambos/the_ethical_slut_zh-CN)
 
 ![cover_thumb](https://raw.githubusercontent.com/jeambos/the_ethical_slut_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "道德浪女中译本封面")
 
@@ -28,9 +28,9 @@ ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for e
 
  
 
-- ### ***A World Beyond Monogamy*** **(Finished on Oct 2025)** 
+- ### [***A World Beyond Monogamy*** **(Finished on Oct 2025)** ](https://github.com/jeambos/awbm_zh-CN)
 
-**《超越单偶制的世界》（2025年10月完成）**
+**[《超越单偶制的世界》（2025年10月完成）**](https://github.com/jeambos/awbm_zh-CN)
 
 ![cover_thumb](https://raw.githubusercontent.com/jeambos/awbm_zh-CN/refs/heads/main/cover_art/thumb_mini.jpg "超越单偶制的世界中译本封面")
 
@@ -46,9 +46,9 @@ ePub 和 可直接打印的PDF版本已发布，点此查看：[Check here for e
 
 ## In progress 进行中
 
-- ### ***More Than Two*** *Second Edition*
+- ### [ ***More Than Two*** *Second Edition*](https://github.com/jeambos/more_than_two_2e_zh-CN)
 
-**《不止于二》第二版**
+[**《不止于二》第二版**](https://github.com/jeambos/more_than_two_2e_zh-CN)
 
 ![cover_thumb](https://raw.githubusercontent.com/jeambos/more_than_two_2e_zh-CN/refs/heads/main/cover_art/temp_coverpsd_240h.jpg "不止于二_临时封面")
 
