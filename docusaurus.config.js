@@ -25,7 +25,6 @@ const config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
   trailingSlash: false, // Whether to add a trailing slash to URLs. Set to false for GitHub pages.
-  DEPLOYMENT_BRANCH: 'main', // The branch where the site is deployed, usually 'main' or 'master'.
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
