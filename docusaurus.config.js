@@ -17,7 +17,7 @@ const config = {
   title: 'Jeambos',
   tagline: '🐝❤️be loving. 🐝🪂be free.',
   clientModules: [require.resolve('./src/modules/footnoteTooltip.js')],
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.ico?v=2',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
