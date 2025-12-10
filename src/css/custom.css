@@ -64,3 +64,57 @@
 article header .row.margin-top--md.margin-bottom--sm {
   display: none !important;
 }
+
+/* ====================================================== */
+/* Docusaurus Docs 电子书阅读模式             */
+/* ====================================================== */
+
+/* 1. 针对 Docs 正文的排版优化 */
+.theme-doc-markdown {
+  /* 字体：优先使用宋体/衬线体，营造书卷气 */
+  font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", "Georgia", serif;
+  
+  /* 字号：稍微调大，更适合沉浸阅读 */
+  font-size: 24px;
+  
+  /* 行高：宽松的行间距 */
+  line-height: 1.8;
+  
+  /* 颜色：使用深灰而非纯黑，护眼 */
+  color: #2c3e50;
+}
+
+/* 2. 增加段落间距 */
+.theme-doc-markdown p {
+  margin-bottom: 1.5rem; /* 段落之间留出更多呼吸感 */
+  text-align: justify;   /* 两端对齐（可选，会让方块字更整齐） */
+}
+
+/* 3. 优化标题样式（保持黑体，形成对比） */
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3 {
+  /* 标题保持无衬线体（黑体），显得现代 */
+  font-family: var(--ifm-font-family-base); 
+  font-weight: 700;
+  margin-top: 2em; /* 标题上方留白更多 */
+  color: #1a1a1a;
+}
+
+/* 4. 引用块（Blockquote）样式优化 */
+.theme-doc-markdown blockquote {
+  border-left: 4px solid #d1d5db; /* 浅灰色竖线 */
+  background-color: #f3f4f6;      /* 极浅的灰色背景 */
+  color: #555;
+  font-style: italic;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* 给文档正文加一个米色背景容器 */
+article .theme-doc-markdown {
+  background-color: #faf9f6; /* 米色/羊皮纸色 */
+  padding: 40px;             /* 内边距 */
+  border-radius: 8px;        /* 圆角 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影，像一张纸 */
+}

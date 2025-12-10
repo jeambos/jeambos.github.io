@@ -192,3 +192,33 @@
     margin-bottom: 4px;
   }
 }
+
+/* 模拟电子书阅读体验 */
+
+body {
+  background-color: #faf7f0; /* 这里的颜色像旧书页 */
+  color: #3e3e3e; /* 柔和的深灰色 */
+}
+
+.post-container {
+  max-width: 720px; /* 黄金阅读宽度 */
+  margin: 0 auto;   /* 居中 */
+  padding: 40px 20px;
+}
+
+.post-content p {
+  font-family: "Noto Serif SC", "Songti SC", serif; /* 宋体 */
+  font-size: 18px;      /* 字大一点，看着不累 */
+  line-height: 1.8;     /* 宽松的行高 */
+  margin-bottom: 24px;  /* 段落间距 */
+  text-align: justify;  /* 两端对齐，边缘更整齐（可选） */
+}
+
+/* 让图片不要撑破版面，最好加上圆角和阴影 */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+  margin: 30px 0;
+}
