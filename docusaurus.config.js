@@ -14,7 +14,7 @@ import rehypeKatex from 'rehype-katex';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Jeambos',
+  title: '中文非单偶制资源站 by Jeambo',
   tagline: '🐝❤️be loving. 🐝🪂be free.',
   clientModules: [require.resolve('./src/modules/footnoteTooltip.js')],
   favicon: 'img/favicon.ico?v=2',
@@ -51,9 +51,6 @@ const config = {
           // 2. 在 Docs 里启用数学插件
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
-          // 如果不需要“编辑此页”按钮，可以把下面这行删掉
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
@@ -64,9 +61,6 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // 如果不需要“编辑此页”按钮，可以把下面这行删掉
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -82,6 +76,20 @@ const config = {
     './plugins/recent-blog-posts.js',
     'docusaurus-plugin-image-zoom',   // 【新增】图片缩放插件
   ],
+
+  // 2. 粘贴下面的 themes 配置
+  themes: [
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        language: ["en", "zh"],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
 
   // 4. 引入 KaTeX 的样式表（必须加这个，否则公式会显示乱码）
   stylesheets: [
@@ -104,6 +112,13 @@ const config = {
       },
       
 
+    docs: {
+      sidebar: {
+        hideable: true, // 允许用户隐藏整个侧边栏（进入沉浸式阅读）
+        autoCollapseCategories: true, // 【关键】点开一个分类，其他的自动合上
+  },
+},
+
       // 【新增】图片缩放配置
       zoom: {
         selector: '.markdown img',  // 仅对 Markdown 正文里的图片生效
@@ -122,7 +137,7 @@ const config = {
       },
       
       navbar: {
-        title: 'Jeambos', // 导航栏左上角的文字
+        title: 'be loving. be free.', // 导航栏左上角的文字
         logo: {
           alt: 'Jeambos Logo',
           src: 'img/logo.svg',
@@ -160,12 +175,7 @@ const config = {
             label: '走向开放', 
             position: 'left'
           },
-          // GitHub 链接保留在右侧
-          {
-            href: 'https://github.com/jeambos/jeambos.github.io',
-            label: 'GitHub',
-            position: 'right',
-          },
+
         ],
       },
       footer: {

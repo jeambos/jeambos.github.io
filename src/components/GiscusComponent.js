@@ -19,7 +19,7 @@ export default function GiscusComponent() {
         fontSize: '0.9rem',
         color: 'var(--ifm-color-emphasis-700)'
       }}>
-        💬 <b>想参与讨论？</b>
+        💬 <b>需要评论区吗？</b>
         <br/>
         下方的 Giscus 评论系统，登录 Github 账号即可使用。
         <br/>
