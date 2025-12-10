@@ -173,7 +173,7 @@
   color: var(--ifm-color-primary-dark);
 }
 
-/* 移动端适配 */
+/* 移动端适配。 */
 @media (max-width: 996px) {
   /* 在平板/手机上，让标签恢复横向排列，不占用太多垂直空间 */
 
