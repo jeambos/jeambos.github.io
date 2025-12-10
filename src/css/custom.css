@@ -28,3 +28,39 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* --- 博客样式优化：隐藏作者信息，只保留日期 --- */
+
+/* 1. 隐藏头像 */
+.avatar__photo {
+  display: none !important;
+}
+
+/* 2. 隐藏作者名字 */
+.avatar__name {
+  display: none !important;
+}
+
+/* 3. 【核心修复】清除文字容器的左边距，并垂直居中 */
+.avatar__intro {
+  margin-left: 0 !important; /* 这一行解决了空白问题 */
+  display: flex;             /* 确保布局灵活 */
+  flex-direction: column;    /* 垂直排列内容 */
+  justify-content: center;   /* 垂直居中 */
+}
+
+/* 4. 调整日期文字样式 */
+.avatar__subtitle {
+  margin-top: 0 !important;   /* 去掉多余的顶部间距 */
+  font-size: 0.9rem;          /* 字体稍微调小，更精致 */
+  color: var(--ifm-color-emphasis-600); /* 使用次级灰色 */
+}
+
+/* --- 博客头部终极清理 --- */
+
+/* 针对那个只有作者信息（现在为空）的容器 
+   既然日期不在里面，直接隐藏它，彻底消除它占用的高度
+*/
+article header .row.margin-top--md.margin-bottom--sm {
+  display: none !important;
+}

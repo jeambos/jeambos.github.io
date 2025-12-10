@@ -42,21 +42,32 @@ module.exports = async function recentBlogPostsPlugin(context, options) {
           }
         }
 
-        // --- 链接获取逻辑 ---
-        // 如果没有 slug，则把文件名里的日期前缀去掉，作为链接
-        let link = data.slug ? `/blog/${data.slug}` : `/blog/${file.replace(/\.mdx?$/, '')}`;
-        if (!data.slug) {
-            // 匹配 YYYY-MM-DD-标题
-            const nameMatch = file.match(/^(\d{4}-\d{2}-\d{2}-)?(.+)$/);
-            if (nameMatch) {
-                // 如果是 2025-01-01-title.md，我们希望链接是 /blog/title
-                // 或者是 /blog/2025/01/01/title，取决于你的 Docusaurus 配置
-                // 这里为了保险，保留原逻辑，通常 Docusaurus 会自动处理掉日期
-                // 我们直接去掉文件名后缀即可
-                link = `/blog/${file.replace(/\.mdx?$/, '')}`; 
-            }
-        }
 
+
+        let link;
+          // 1. 尝试匹配 "YYYY-MM-DD-标题" 格式
+          // ^(\d{4})   -> 年 (group 1)
+          // -(\d{2})   -> 月 (group 2)
+          // -(\d{2})   -> 日 (group 3)
+          // -(.+?)     -> 标题部分 (group 4)
+          // (?:\.mdx?)?$ -> 忽略文件后缀 (md 或 mdx)
+          const dateMatch = file.match(/^(\d{4})-(\d{2})-(\d{2})-(.+?)(?:\.mdx?)?$/);
+
+        if (data.slug) {
+            // 如果 Frontmatter 里指定了 slug，优先用它
+            link = `/blog/${data.slug}`;
+        } 
+        else if (dateMatch) {
+            // 如果文件名符合日期格式，拆解并组装成 /blog/年/月/日/标题
+            const [_, year, month, day, slugName] = dateMatch;
+            link = `/blog/${year}/${month}/${day}/${slugName}`;
+        } 
+        else {
+            // 如果没有日期，就直接使用去后缀的文件名
+            link = `/blog/${file.replace(/\.mdx?$/, '')}`;
+        }
+        
+        
         return {
           title: data.title || file.replace('.md', ''),
           date: dateObj,

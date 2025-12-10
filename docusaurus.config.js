@@ -25,7 +25,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://jeambos.github.io',
+  url: 'https://jeambo.com',
   baseUrl: '/',
   trailingSlash: false, 
 
@@ -146,41 +146,44 @@ const config = {
           alt: 'Jeambos Logo',
           src: 'img/logo.svg',
         },
-        // 【需求1】导航栏配置：首页，博客，书籍1-4
+        // 导航栏配置：首页，博客，书籍1-4
         items: [
-          {
-            to: '/', 
-            label: '首页', 
-            position: 'left'
-          },
-          {
-            to: '/blog', 
-            label: '博客', 
-            position: 'left'
-          },
-          // 下面的链接目前是空的，点击会404，你需要去 docs 文件夹创建对应文档
-          {
-            to: '/docs/ethical_slut/intro', 
-            label: '道德浪女', 
-            position: 'left'
-          },
-          {
-            to: '/docs/beyond_monogamy/intro', 
-            label: '超越单偶', 
-            position: 'left'
-          },
-          {
-            to: '/docs/more_than_two/intro', 
-            label: '不止于二', 
-            position: 'left'
-          },
-          {
-            to: '/docs/opening_up/intro', 
-            label: '走向开放', 
-            position: 'left'
-          },
 
-        ],
+       // 【博客】放在第一个
+        {
+          to: '/blog', 
+          label: '博客', 
+          position: 'left' // 放在左侧
+        },
+        // --- 书籍入口 ---
+        {
+          type: 'docSidebar',  // 使用 docSidebar 类型
+          sidebarId: 'ethicalSidebar', // 对应 sidebars.js 里的名字
+          position: 'left',
+          label: '道德浪女',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'beyondSidebar',
+          position: 'left',
+          label: '超越单偶制',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'moreSidebar',
+          position: 'left',
+          label: '不止于二',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'openingSidebar',
+          position: 'left',
+          label: '走向开放',
+        },
+
+
+      ],
+
       },
       footer: {
         style: 'dark',
