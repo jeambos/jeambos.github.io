@@ -80,6 +80,7 @@ const config = {
 
   plugins: [
     './plugins/recent-blog-posts.js',
+    'docusaurus-plugin-image-zoom',   // 【新增】图片缩放插件
   ],
 
   // 4. 引入 KaTeX 的样式表（必须加这个，否则公式会显示乱码）
@@ -101,6 +102,25 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+      
+
+      // 【新增】图片缩放配置
+      zoom: {
+        selector: '.markdown img',  // 仅对 Markdown 正文里的图片生效
+        background: {
+          light: 'rgb(255, 255, 255)', // 浅色模式下的背景色（纯白）
+          dark: 'rgb(50, 50, 50)'      // 深色模式下的背景色（深灰）
+        },
+        config: {
+          // 这里的选项参考 medium-zoom 的文档
+          margin: 24, // 图片放大后离屏幕边缘留多少空隙
+          background: '#BADA55', // 这里的背景优先级更高，通常不需要设
+          scrollOffset: 0,
+          container: null,
+          template: null,
+        }
+      },
+      
       navbar: {
         title: 'Jeambos', // 导航栏左上角的文字
         logo: {
