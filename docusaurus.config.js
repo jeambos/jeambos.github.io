@@ -6,12 +6,17 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+// 1. 引入数学插件
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Jeambos',
-  tagline: 'blog and books',
+  tagline: '🐝❤️be loving. 🐝🪂be free.',
+  clientModules: [require.resolve('./src/modules/footnoteTooltip.js')],
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -21,24 +26,19 @@ const config = {
 
   // Set the production url of your site here
   url: 'https://jeambos.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
-  trailingSlash: false, // Whether to add a trailing slash to URLs. Set to false for GitHub pages.
+  trailingSlash: false, 
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'jeambos', // Usually your GitHub org/user name.
-  projectName: 'jeambos.github.io', // Usually your repo name.
+  organizationName: 'jeambos', 
+  projectName: 'jeambos.github.io', 
 
-  onBrokenLinks: 'throw',
+  // 【重要】暂时改为 warn，因为书籍1234的链接还不存在，防止报错无法启动
+  onBrokenLinks: 'warn', 
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'zh-Hans', // 建议改为中文，方便后续显示
+    locales: ['zh-Hans'],
   },
 
   presets: [
@@ -48,22 +48,25 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // 2. 在 Docs 里启用数学插件
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
+          // 如果不需要“编辑此页”按钮，可以把下面这行删掉
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
+          // 3. 在 Blog 里也启用数学插件
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // 如果不需要“编辑此页”按钮，可以把下面这行删掉
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -75,30 +78,71 @@ const config = {
     ],
   ],
 
+  plugins: [
+    './plugins/recent-blog-posts.js',
+  ],
+
+  // 4. 引入 KaTeX 的样式表（必须加这个，否则公式会显示乱码）
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3yUyH/6+ywqj',
+      crossOrigin: 'anonymous',
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      // 暂时注释掉 social card
+      // image: 'img/docusaurus-social-card.jpg',
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Jeambos', // 导航栏左上角的文字
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Jeambos Logo',
           src: 'img/logo.svg',
         },
+        // 【需求1】导航栏配置：首页，博客，书籍1-4
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
+            to: '/', 
+            label: '首页', 
+            position: 'left'
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            to: '/blog', 
+            label: '博客', 
+            position: 'left'
+          },
+          // 下面的链接目前是空的，点击会404，你需要去 docs 文件夹创建对应文档
+          {
+            to: '/docs/ethical_slut/intro', 
+            label: '道德浪女', 
+            position: 'left'
+          },
+          {
+            to: '/docs/beyond_monogamy/intro', 
+            label: '超越单偶', 
+            position: 'left'
+          },
+          {
+            to: '/docs/more_than_two/intro', 
+            label: '不止于二', 
+            position: 'left'
+          },
+          {
+            to: '/docs/opening_up/intro', 
+            label: '走向开放', 
+            position: 'left'
+          },
+          // GitHub 链接保留在右侧
+          {
+            href: 'https://github.com/jeambos/jeambos.github.io',
             label: 'GitHub',
             position: 'right',
           },
@@ -106,48 +150,9 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        // 【需求3】Footer 只保留版权信息，去掉 links 数组内容
+        links: [], 
+        copyright: `Copyright © ${new Date().getFullYear()} Jeambo. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

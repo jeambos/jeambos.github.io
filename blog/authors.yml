@@ -23,3 +23,14 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+jeambo:
+  name: Jeambo
+  title: 本站管理员
+  url: https://jeambos.github.io
+  image_url: '/img/persona.gif'
+  page: 
+    permalink: '/jeambo-articles'
+  socials:
+    github: Jeambos
+    newsletter: https://jeambo.substack.com/

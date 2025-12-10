@@ -21,3 +21,174 @@
   align-items: center;
   justify-content: center;
 }
+
+/* --- 首页各板块背景色设置 --- */
+
+/* 1. 书籍板块：使用纯白或极淡的灰色，突出封面 */
+.sectionBooks {
+  background-color: #face66; 
+  /* 如果想要淡灰色，可以改成 #f9f9f9 */
+}
+
+/* --- 书籍封面悬停放大特效 --- */
+
+/* 1. 初始状态：设置过渡动画 */
+.sectionBooks img {
+  transition: transform 0.3s ease; /* 0.3秒平滑过渡 */
+  transform-origin: center center; /* 从中心放大 */
+}
+
+/* 2. 悬停状态：放大 1.05 倍 */
+.sectionBooks img:hover {
+  transform: scale(1.05); 
+  cursor: pointer;
+  /* 如果想要加一点阴影让它浮起来，可以解开下面这行 */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+}
+
+/* 2. 个人介绍板块：使用淡雅的米黄色，配合你的橙色主题 */
+.sectionAbout {
+  background-color: #f7eeda; /* 极淡的暖色 */
+}
+
+/* 3. 订阅板块：使用浅灰色，作为页脚前的过渡 */
+.sectionSubscribe {
+  background-color: #f0bfa1;
+}
+
+/* --- 订阅按钮自定义颜色 & 放大特效 --- */
+
+/* Substack 按钮 */
+.substackBtn {
+  background-color: #FF6719 !important;
+  color: #fff !important;
+  border: none !important;
+  transition: all 0.2s ease; /* 修改为 all，允许所有属性动画 */
+}
+.substackBtn:hover {
+  background-color: #e55b14 !important;
+  color: #fff !important;
+  text-decoration: none;
+  transform: scale(1.05); /* 【新增】悬停放大 */
+}
+
+/* Telegram 按钮 */
+.telegramBtn {
+  background-color: #229ED9 !important;
+  color: #fff !important;
+  border: none !important;
+  transition: all 0.2s ease; /* 修改为 all */
+}
+.telegramBtn:hover {
+  background-color: #1d88bb !important;
+  color: #fff !important;
+  text-decoration: none;
+  transform: scale(1.05); /* 【新增】悬停放大 */
+}
+
+/* --- 博客与标签综合板块 --- */
+.sectionBlog {
+  background-color: #fcfcfc;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+/* 左侧标签栏容器 */
+.tagSidebar {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  height: 100%; /* 让它和右边等高（视觉上） */
+}
+
+/* 标签列表容器 */
+.tagListSide {
+  display: flex;
+  flex-wrap: wrap; /* 【核心修改】允许自动换行 */
+  gap: 8px; /* 标签之间的间距 */
+}
+
+/* 标签按钮 */
+.tagItemSide {
+  display: inline-block;
+  
+  /* 【核心修改】让标签自动变宽填满空隙，看起来更整齐 */
+  flex: 1 0 auto; 
+  text-align: center; /* 文字居中 */
+  
+  padding: 6px 10px; /* 稍微减小一点内边距，更紧凑 */
+  border-radius: 6px;
+  background-color: #f4f6f8;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none !important;
+  font-size: 0.9em; /* 稍微调小字号 */
+  transition: all 0.2s;
+}
+
+.tagItemSide:hover {
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  transform: translateY(-2px); /* 悬停时微微上浮 */
+}
+
+/* 右侧博客列表 */
+.blogList {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 100%; /* 占满右侧栏 */
+}
+
+.blogItem {
+  display: flex;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.blogItem:last-child {
+  border-bottom: none;
+}
+
+.blogDate {
+  font-size: 0.9em;
+  color: #999;
+  min-width: 120px;
+  margin-right: 15px;
+  font-family: monospace;
+}
+
+.blogTitle {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  flex: 1;
+}
+
+.blogTitle:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-dark);
+}
+
+/* 移动端适配 */
+@media (max-width: 996px) {
+  /* 在平板/手机上，让标签恢复横向排列，不占用太多垂直空间 */
+
+}
+  /* 给右侧博客栏加点顶部间距，和上面的标签分开 */
+  .margin-top--sm-mobile {
+    margin-top: 2rem !important;
+  }
+
+
+@media (max-width: 576px) {
+  .blogItem {
+    flex-direction: column;
+  }
+  .blogDate {
+    margin-bottom: 4px;
+  }
+}
