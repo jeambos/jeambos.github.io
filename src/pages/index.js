@@ -31,25 +31,25 @@ function BookSection() {
       title: '《道德浪女》The Ethical Slut', 
       desc: '【全文】闻名于世的多边恋圣经，是自由的宣言书，更是实用的操作指南。此书根据原书第三版独立译出，非台版转换。', 
       img: '/img/book1-cover.jpg',
-      link: '/docs/ethical_slut/intro' 
+      link: '/docs/ethical' 
     },
     { 
       title: '《超越单偶制的世界》A World Beyond Monogamy', 
       desc: '【全文】非单偶制的百科全书，回答你想知道的所有问题。作者为前BBC记者，真实反映当代非单偶制状况。', 
       img: '/img/book2-cover.jpg',
-      link: '/docs/beyond_monogamy/intro'
+      link: '/docs/beyond'
     },
     { 
       title: '《不止于二（第二版）》More Than Two', 
       desc: '【翻译中】【机翻全文】无需多言的经典名著，更换合著者后进行全面修订，紧跟时代前沿。已由 Gemini 机翻全文，人工翻译正在进行中。', 
       img: '/img/book3-cover.jpg',
-      link: '/docs/more_than_two/intro'
+      link: '/docs/morethantwo/'
     },
     { 
       title: '《走向开放》Opening Up', 
       desc: '【机翻全文】来自世纪初的经典著作，重视实操经验，手把手带领新手实践非单偶制。已由 Gemini 机翻全文。', 
       img: '/img/book4-cover.jpg',
-      link: '/docs/opening_up/intro'
+      link: '/docs/opening_up'
     },
   ];
 
