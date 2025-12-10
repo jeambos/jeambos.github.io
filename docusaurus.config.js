@@ -111,6 +111,10 @@ const config = {
         respectPrefersColorScheme: true,
       },
       
+    metadata: [
+    {name: 'keywords', content: '非单偶制, 多边恋, 开放式关系, 亲密关系, 道德浪女, 关系安那其, 多角恋, CNM, 多伴侣关系, Jeambo, 多元成家, 关系多样性, '},
+    {name: 'description', content: 'Jeambo 搭建的非单偶制资源网站，提供 Jeambo 自译的书籍，分享相关的资源。'},
+  ],
 
     docs: {
       sidebar: {
