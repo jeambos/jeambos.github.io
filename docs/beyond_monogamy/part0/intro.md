@@ -14,6 +14,12 @@ slug: /beyond
 
 :::
 
+:::warning[推荐]
+
+[点此阅读本书万字导读与批评文章（Gemini 生成）](/docs/beyond_monogamy/critics/intro)
+
+:::
+
 :::tip
 
 以下内容来自 [github.com/jeambos/awbm_zh-CN](https://github.com/jeambos/awbm_zh-CN)
