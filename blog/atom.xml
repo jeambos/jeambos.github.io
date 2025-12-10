@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeambos.github.io/blog</id>
-    <title>Jeambos Blog</title>
+    <title>中文非单偶制资源站 by Jeambo Blog</title>
     <updated>2021-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeambos.github.io/blog"/>
-    <subtitle>Jeambos Blog</subtitle>
+    <subtitle>中文非单偶制资源站 by Jeambo Blog</subtitle>
     <icon>https://jeambos.github.io/img/favicon.ico?v=2</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
