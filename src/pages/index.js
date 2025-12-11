@@ -6,10 +6,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import {usePluginData} from '@docusaurus/useGlobalData';
 
-
-
-
-// --- 第一部分：问候语 (Header) ---
+// --- 第一部分：问候语 (Header) + 品牌色订阅按钮 ---
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -19,12 +16,57 @@ function HomepageHeader() {
           中文非单偶制资源站 <i>by Jeambo</i>.
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+        
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '2rem' }}>
+          
+          {/* Substack 按钮 (品牌橙色) */}
+          <Link 
+            className="button button--lg"
+            to="https://jeambo.substack.com/subscribe"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              backgroundColor: '#ed3d0cd6', // Substack Orange
+              color: '#ffffff',           // 白字
+              border: 'none'              // 去掉边框
+            }}
+          >
+             <img 
+               src="/img/substack.png" 
+               alt="Substack" 
+               style={{ width: '20px', height: '20px', marginRight: '8px' }} 
+             />
+             Substack
+          </Link>
+
+          {/* Telegram 按钮 (品牌蓝色) */}
+          <Link 
+            className="button button--lg"
+            to="https://t.me/cnm_cn"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              backgroundColor: '#0088cc', // Telegram Blue
+              color: '#ffffff',           // 白字
+              border: 'none'              // 去掉边框
+            }}
+          >
+             <img 
+               src="/img/telegram.png" 
+               alt="Telegram" 
+               style={{ width: '20px', height: '20px', marginRight: '8px' }} 
+             />
+             Telegram
+          </Link>
+
+        </div>
+
       </div>
     </header>
   );
 }
 
-// --- 第二部分：书籍介绍 (Books) ---
+// --- 第二部分：书籍介绍 (Books) + 翻译计划 ---
 function BookSection() {
   const books = [
     { 
@@ -54,12 +96,13 @@ function BookSection() {
   ];
 
   return (
-    // 【关键修改】外层 div 负责背景色 (全宽)，内层 div class="container" 负责内容居中
     <div className={clsx(styles.sectionBooks, 'padding-vert--lg')}>
       <div className="container">
         <Heading as="h2" className="text--center margin-bottom--lg">
           非单偶制图书
         </Heading>
+        
+        {/* 原有的四宫格书籍 */}
         <div className="row">
           {books.map((book, idx) => (
             <div key={idx} className="col col--6 margin-bottom--lg">
@@ -85,97 +128,46 @@ function BookSection() {
             </div>
           ))}
         </div>
-      </div>
-    </div>
-  );
-}
 
-// --- 第三部分：个人介绍 (About) ---
-function AboutSection() {
-  return (
-    // 【关键修改】使用了 styles.sectionAbout 背景色
-    <div className={clsx(styles.sectionAbout, 'padding-vert--xl')}>
-      <div className="container">
-        <div className="row">
-          <div className="col col--4 text--center">
-            <img 
-              src="/img/persona.gif" 
-              alt="Avatar" 
-              style={{ borderRadius: '50%', width: '200px', height: '200px' }} 
-            />
-          </div>
-          <div className="col col--8">
-            <Heading as="h2">关于 Jeambo</Heading>
-            <p className="margin-top--md">
-              曾积极参与 LGBT 倡导活动，现在转入幕后。
-              <br/><br/>
-              有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
-              <br/><br/>
-              从翻译到排版，从封面设计到电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
-              <br/><br/>
-              希望通过我的努力，能让更多中文读者了解单偶制之外的无限可能，探索更适合自己的情感关系。
-              <br/><br/>
-              愿每个人都能勇敢去爱，且爱得自由。
-            </p>
+        {/* === 新增：翻译计划板块 (横贯整行) === */}
+        <div className="row margin-top--md">
+          <div className="col col--12">
+            <div className="card shadow--md">
+              <div className="card__header">
+                <Heading as="h3">📅 后续翻译计划 & 进度</Heading>
+              </div>
+              <div className="card__body">
+                <p>为了填补中文世界非单偶制资源的空白，我制定了以下翻译计划。如有特定书籍想看，欢迎在 Telegram 群组中反馈。</p>
+                
+                {/* 进度列表示例 - 你可以在这里修改具体书籍 */}
+                <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                  <li style={{ marginBottom: '10px' }}>
+                    <strong>《The Other Significant Others》 (另一种重要他者)</strong>
+                    <br/>
+                    <progress value="5" max="100" style={{ width: '100%', maxWidth: '300px' }}></progress> 
+                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>5%：设想中。已生成 AI 导读 - <a href="/#">点此阅读</a></span>
+                  </li>
+                  <li style={{ marginBottom: '10px' }}>
+                    <strong>《 Polyamorists Next Door》（邻家的多边关系者）</strong>
+                    <br/>
+                    <progress value="2" max="100" style={{ width: '100%', maxWidth: '300px' }}></progress>
+                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>0%：设想中。</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   );
 }
 
-// --- 第四部分：订阅更新 (Subscription) ---
-function SubscriptionSection() {
-  return (
-    // 【关键修改】使用了 styles.sectionSubscribe 背景色
-    <div className={clsx(styles.sectionSubscribe, 'padding-vert--lg')}>
-      <div className="container text--center">
-        <Heading as="h2" className="margin-bottom--md">订阅</Heading>
-        <p className="margin-bottom--lg">不错过所有更新，请订阅：</p>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-          
-          {/* Substack 按钮 */}
-          <Link 
-            className={clsx('button button--lg', styles.substackBtn)}
-            to="https://jeambo.substack.com/subscribe"
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
-             <img 
-               src="/img/substack.png" 
-               alt="Substack" 
-               style={{ width: '24px', height: '24px', marginRight: '8px' }} 
-             />
-             Substack 邮件列表
-          </Link>
-
-          {/* Telegram 按钮 */}
-          <Link 
-            className={clsx('button button--lg', styles.telegramBtn)}
-            to="https://t.me/cnm_cn"
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
-             <img 
-               src="/img/telegram.png" 
-               alt="Telegram" 
-               style={{ width: '24px', height: '24px', marginRight: '8px' }} 
-             />
-             Telegram 频道
-          </Link>
-
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-// --- 合并后的板块：热门标签 + 最新动态 ---
+// --- 第三部分：热门标签 + 最新动态 ---
 function BlogAndTagsSection() {
-  // 1. 获取博客数据
   const {recentPosts} = usePluginData('docusaurus-plugin-recent-blog-posts') || {recentPosts: []};
   
-  // 2. 定义静态标签
   const tags = [
     { label: '新手指南', link: '/blog/tags/新手指南' },
     { label: '开放关系', link: '/blog/tags/开放关系' },
@@ -199,11 +191,11 @@ function BlogAndTagsSection() {
       <div className="container">
         <div className="row">
           
-          {/* === 左侧栏：热门标签 (占3格，约25%) === */}
-          {/* 在小屏幕上，col--3 会自动变宽占满一行 */}
+          {/* 左侧栏：标签 */}
           <div className="col col--3">
             <div className={styles.tagSidebar}>
-              <Heading as="h3" className="margin-bottom--md">
+              {/* 【修改】将 h3 改为 h2，与右侧对齐字号 */}
+              <Heading as="h2" className="margin-bottom--md">
                  🏷️ 博客文章
               </Heading>
               <div className={styles.tagListSide}>
@@ -217,7 +209,6 @@ function BlogAndTagsSection() {
                   </Link>
                 ))}
               </div>
-              {/* 这里可以加个按钮去所有标签页 */}
               <div className="margin-top--md">
                  <Link to="/blog/tags" className="button button--sm button--outline button--secondary">
                    查看所有标签
@@ -226,7 +217,7 @@ function BlogAndTagsSection() {
             </div>
           </div>
 
-          {/* === 右侧栏：最新动态 (占9格，约75%) === */}
+          {/* 右侧栏：最新动态 */}
           <div className="col col--9">
             <Heading as="h2" className="margin-bottom--md margin-top--sm-mobile">
               📝 最近更新
@@ -259,6 +250,76 @@ function BlogAndTagsSection() {
   );
 }
 
+// --- 第四部分：个人介绍 (About) - 保持不变 ---
+function AboutSection() {
+  return (
+    <div className={clsx(styles.sectionAbout, 'padding-vert--xl')}>
+      <div className="container">
+        <div className="row">
+          <div className="col col--4 text--center">
+            <img 
+              src="/img/persona.gif" 
+              alt="Avatar" 
+              style={{ borderRadius: '50%', width: '300px', height: '300px' }} 
+            />
+          </div>
+          <div className="col col--8">
+            <Heading as="h2">关于 Jeambo</Heading>
+            <p className="margin-top--md">
+              曾积极参与 LGBT 倡导活动，现在转入幕后。
+              <br/><br/>
+              有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
+              <br/><br/>
+              从翻译到排版，从封面设计到电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
+              <br/><br/>
+              希望通过我的努力，能让更多中文读者了解单偶制之外的无限可能，探索更适合自己的情感关系。
+              <br/><br/>
+              愿每个人都能勇敢去爱，且爱得自由。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- 第五部分：【新增】AI 使用声明 ---
+function AIStatementSection() {
+  return (
+    <div className={clsx('padding-vert--lg')} style={{ backgroundColor: '#f5f6f7' }}>
+      <div className="container">
+        <div className="row">
+          <div className="col col--8">
+             <Heading as="h2" className="margin-bottom--sm">关于使用 AI 的说明</Heading>
+             <p style={{ fontSize: '1rem', color: '#555' }}>
+               为了提高翻译效率，我的译本是先由 AI 机翻生成初稿，再由本人修正和重译而成。
+               <br/>
+               此部分内容视为人工作品。
+               <br/>
+               由于人工检查的局限，译文中可能存在不自然之处，请<a href="http://t.me/cnm_cn">提醒我修改</a>！
+               <br/><br/>
+               为了促进资源的丰富，本站亦有部分内容为全 AI 机翻，
+               <br/>
+               本人不为其内容质量提供担保。但是老实说，其实还挺好的！
+               <br/><br/>
+               所有纯 AI 内容均会在页面进行显式声明。
+             </p>
+          </div>
+
+          <div className="col col--4 text--center">
+            <img 
+              src="/img/ai_assist.jpg" 
+              alt="AI Assistance" 
+              style={{ borderRadius: '5%', width: '360px', height: '270px' }} 
+            />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- 主页面组件 ---
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
@@ -267,13 +328,21 @@ export default function Home() {
       title={`中文非单偶制资源站 by Jeambo`}
       description="非单偶制，多边关系，开放关系，关系安那其，关系多样性，多边恋，多角恋，多伴侣关系，Polyamory，Poly，CNM，非单偶制书籍翻译">
       
+      {/* 1. 标题 + 订阅按钮 */}
       <HomepageHeader />
       
       <main>
+        {/* 2. 图书 + 翻译计划 */}
         <BookSection />
+        
+        {/* 3. 博客标签 + 列表 (字号已统一) */}
         <BlogAndTagsSection />
+        
+        {/* 4. 个人简介 */}
         <AboutSection />
-        <SubscriptionSection />
+
+        {/* 5. AI 使用声明 */}
+        <AIStatementSection />
       </main>
     </Layout>
   );
