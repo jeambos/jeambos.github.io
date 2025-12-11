@@ -192,7 +192,7 @@ const config = {
         copyright: `
       Copyright © ${new Date().getFullYear()} <strong>Jeambo</strong>.
       <br/>
-      除非另有声明，本站所有文章均采用 
+      除非另有声明，本站所有原创内容（含人工译文）均采用 
       <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" style="border-bottom: 1px dashed;">
         CC BY-NC-ND 4.0
       </a> 
