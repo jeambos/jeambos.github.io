@@ -192,11 +192,11 @@ const config = {
         copyright: `
       Copyright © ${new Date().getFullYear()} <strong>Jeambo</strong>.
       <br/>
-      除非另有声明，本站所有原创内容（含人工译文）均采用 
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" style="border-bottom: 1px dashed;">
-        CC BY-NC-ND 4.0
+      除非另有声明，本站所有原创内容均采用 
+      <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" target="_blank" style="border-bottom: 1px dashed;">
+        CC BY-SA 4.0
       </a> 
-      协议许可。(非商业性使用，禁止演绎) 
+      协议许可。(自由共享，演绎，需署名且保持相同协议) 
       <br/>
       Built with Docusaurus.
     `, 
