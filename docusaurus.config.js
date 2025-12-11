@@ -189,7 +189,20 @@ const config = {
         style: 'dark',
         // 【需求3】Footer 只保留版权信息，去掉 links 数组内容
         links: [], 
-        copyright: `Copyright © ${new Date().getFullYear()} Jeambo. Built with Docusaurus.`,
+        copyright: `
+      Copyright © ${new Date().getFullYear()} <strong>Jeambo</strong>.
+      <br/>
+      除非另有声明，本站所有文章均采用 
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" style="border-bottom: 1px dashed;">
+        CC BY-NC-ND 4.0
+      </a> 
+      协议许可。(非商业性使用，禁止演绎) 
+      <br/>
+      Built with Docusaurus.
+    `, 
+        
+        
+        //`本站内容，除特殊注明外，均为CC协议。 ${new Date().getFullYear()} Jeambo. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
