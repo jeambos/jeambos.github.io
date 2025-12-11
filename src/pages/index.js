@@ -145,7 +145,7 @@ function BookSection() {
                     <strong>《The Other Significant Others》 (另一种重要他者)</strong>
                     <br/>
                     <progress value="5" max="100" style={{ width: '100%', maxWidth: '300px' }}></progress> 
-                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>5%：设想中。已生成 AI 导读 - <a href="/#">点此阅读</a></span>
+                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>5%：设想中。已生成 AI 导读 - <a href="blog/2025/12/11/the_other_significant_others_guide">点此阅读</a></span>
                   </li>
                   <li style={{ marginBottom: '10px' }}>
                     <strong>《 Polyamorists Next Door》（邻家的多边关系者）</strong>
@@ -260,7 +260,7 @@ function AboutSection() {
             <img 
               src="/img/persona.gif" 
               alt="Avatar" 
-              style={{ borderRadius: '50%', width: '300px', height: '300px' }} 
+              style={{ borderRadius: '50%', width: '250px', height: '250px' }} 
             />
           </div>
           <div className="col col--8">
