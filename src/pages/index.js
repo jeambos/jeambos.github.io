@@ -5,8 +5,9 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import {usePluginData} from '@docusaurus/useGlobalData';
+import TranslationPlanContent from '../components/TranslationPlan.mdx'; // 确保这里引入了你的计划组件
 
-// --- 第一部分：问候语 (Header) + 品牌色订阅按钮 ---
+// --- 第一部分：问候语 (Header) ---
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -19,27 +20,27 @@ function HomepageHeader() {
         
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '2rem' }}>
           
-          {/* Substack 按钮 (品牌橙色) */}
+          {/* Substack 按钮 */}
           <Link 
             className="button button--lg"
             to="https://jeambo.substack.com/subscribe"
             style={{ 
               display: 'flex', 
               alignItems: 'center',
-              backgroundColor: '#ed3d0cd6', // Substack Orange
-              color: '#ffffff',           // 白字
-              border: 'none'              // 去掉边框
+              backgroundColor: '#FF6719', // Substack Orange
+              color: '#ffffff',           
+              border: 'none'              
             }}
           >
              <img 
                src="/img/substack.png" 
                alt="Substack" 
-               style={{ width: '20px', height: '20px', marginRight: '8px' }} 
+               style={{ width: '20px', height: '20px', marginRight: '8px', filter: 'brightness(0) invert(1)' }} 
              />
              Substack
           </Link>
 
-          {/* Telegram 按钮 (品牌蓝色) */}
+          {/* Telegram 按钮 */}
           <Link 
             className="button button--lg"
             to="https://t.me/cnm_cn"
@@ -47,14 +48,14 @@ function HomepageHeader() {
               display: 'flex', 
               alignItems: 'center',
               backgroundColor: '#0088cc', // Telegram Blue
-              color: '#ffffff',           // 白字
-              border: 'none'              // 去掉边框
+              color: '#ffffff',           
+              border: 'none'              
             }}
           >
              <img 
                src="/img/telegram.png" 
                alt="Telegram" 
-               style={{ width: '20px', height: '20px', marginRight: '8px' }} 
+               style={{ width: '20px', height: '20px', marginRight: '8px', filter: 'brightness(0) invert(1)' }} 
              />
              Telegram
           </Link>
@@ -102,7 +103,7 @@ function BookSection() {
           非单偶制图书
         </Heading>
         
-        {/* 原有的四宫格书籍 */}
+        {/* 四宫格书籍 */}
         <div className="row">
           {books.map((book, idx) => (
             <div key={idx} className="col col--6 margin-bottom--lg">
@@ -129,31 +130,16 @@ function BookSection() {
           ))}
         </div>
 
-        {/* === 新增：翻译计划板块 (横贯整行) === */}
+        {/* 翻译计划板块 */}
         <div className="row margin-top--md">
           <div className="col col--12">
             <div className="card shadow--md">
-              <div className="card__header">
-                <Heading as="h3">📅 后续翻译计划 & 进度</Heading>
-              </div>
               <div className="card__body">
-                <p>为了填补中文世界非单偶制资源的空白，我制定了以下翻译计划。如有特定书籍想看，欢迎在 Telegram 群组中反馈。</p>
-                
-                {/* 进度列表示例 - 你可以在这里修改具体书籍 */}
-                <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                  <li style={{ marginBottom: '10px' }}>
-                    <strong>《The Other Significant Others》 (另一种重要他者)</strong>
-                    <br/>
-                    <progress value="5" max="100" style={{ width: '100%', maxWidth: '300px' }}></progress> 
-                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>5%：设想中。已生成 AI 导读 - <a href="blog/2025/12/11/the_other_significant_others_guide">点此阅读</a></span>
-                  </li>
-                  <li style={{ marginBottom: '10px' }}>
-                    <strong>《 Polyamorists Next Door》（邻家的多边关系者）</strong>
-                    <br/>
-                    <progress value="2" max="100" style={{ width: '100%', maxWidth: '300px' }}></progress>
-                    <span style={{ fontSize: '0.9em', marginLeft: '10px' }}>0%：设想中。</span>
-                  </li>
-                </ul>
+                 {/* 这里假设你之前已经创建了 MDX 组件，如果没有，这里会报错 */}
+                 {/* 如果暂时没有 MDX 组件，可以把下面这三行删掉，换回普通的 HTML */}
+                 <div className="markdown">
+                    <TranslationPlanContent />
+                 </div>
               </div>
             </div>
           </div>
@@ -164,7 +150,7 @@ function BookSection() {
   );
 }
 
-// --- 第三部分：热门标签 + 最新动态 ---
+// --- 第三部分：热门标签 + 最新动态 (卡片化) ---
 function BlogAndTagsSection() {
   const {recentPosts} = usePluginData('docusaurus-plugin-recent-blog-posts') || {recentPosts: []};
   
@@ -191,91 +177,98 @@ function BlogAndTagsSection() {
       <div className="container">
         <div className="row">
           
-          {/* 左侧栏：标签 */}
-          <div className="col col--3">
-            <div className={styles.tagSidebar}>
-              {/* 【修改】将 h3 改为 h2，与右侧对齐字号 */}
-              <Heading as="h2" className="margin-bottom--md">
-                 🏷️ 博客文章
-              </Heading>
-              <div className={styles.tagListSide}>
-                {tags.map((tag, idx) => (
-                  <Link 
-                    key={idx} 
-                    to={tag.link} 
-                    className={styles.tagItemSide}
-                  >
-                    #{tag.label}
-                  </Link>
-                ))}
+          {/* 左侧栏：标签 (放入卡片) */}
+          <div className="col col--3 margin-bottom--md">
+            <div className="card shadow--md h-100">
+              <div className="card__header">
+                <Heading as="h2">🏷️ 标签</Heading>
               </div>
-              <div className="margin-top--md">
-                 <Link to="/blog/tags" className="button button--sm button--outline button--secondary">
-                   查看所有标签
+              <div className="card__body">
+                <div className={styles.tagListSide}>
+                  {tags.map((tag, idx) => (
+                    <Link 
+                      key={idx} 
+                      to={tag.link} 
+                      className={styles.tagItemSide}
+                    >
+                      #{tag.label}
+                    </Link>
+                  ))}
+                </div>
+                <div className="margin-top--md">
+                   <Link to="/blog/tags" className="button button--sm button--outline button--secondary button--block">
+                     所有标签
+                   </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 右侧栏：最新动态 (放入卡片) */}
+          <div className="col col--9">
+            <div className="card shadow--md h-100">
+              <div className="card__header">
+                <Heading as="h2">📝 最近更新</Heading>
+              </div>
+              <div className="card__body">
+                {(recentPosts.length > 0) ? (
+                  <div className={styles.blogList}>
+                    {recentPosts.map((post, idx) => (
+                      <div key={idx} className={styles.blogItem}>
+                        <div className={styles.blogDate}>{post.formattedDate}</div>
+                        <Link to={post.link} className={styles.blogTitle}>
+                          {post.title}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p>暂无更新。</p>
+                )}
+              </div>
+              <div className="card__footer text--right">
+                 <Link to="/blog" className="button button--link">
+                    阅读更多文章 &rarr;
                  </Link>
               </div>
             </div>
           </div>
 
-          {/* 右侧栏：最新动态 */}
-          <div className="col col--9">
-            <Heading as="h2" className="margin-bottom--md margin-top--sm-mobile">
-              📝 最近更新
-            </Heading>
-            
-            {(recentPosts.length > 0) ? (
-              <div className={styles.blogList}>
-                {recentPosts.map((post, idx) => (
-                  <div key={idx} className={styles.blogItem}>
-                    <div className={styles.blogDate}>{post.formattedDate}</div>
-                    <Link to={post.link} className={styles.blogTitle}>
-                      {post.title}
-                    </Link>
-                  </div>
-                ))}
-                <div className="text--right margin-top--md">
-                  <Link to="/blog" className="button button--link">
-                    阅读更多文章 &rarr;
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <p>暂无更新。</p>
-            )}
-          </div>
-
         </div>
       </div>
     </div>
   );
 }
 
-// --- 第四部分：个人介绍 (About) - 保持不变 ---
+// --- 第四部分：个人介绍 (放入卡片) ---
 function AboutSection() {
   return (
-    <div className={clsx(styles.sectionAbout, 'padding-vert--xl')}>
+    <div className={clsx(styles.sectionAbout, 'padding-vert--lg')}>
       <div className="container">
-        <div className="row">
-          <div className="col col--4 text--center">
-            <img 
-              src="/img/persona.gif" 
-              alt="Avatar" 
-              style={{ borderRadius: '50%', width: '250px', height: '250px' }} 
-            />
-          </div>
-          <div className="col col--8">
-            <Heading as="h2">关于 Jeambo</Heading>
-            <p className="margin-top--md">
-              曾积极参与 LGBT 倡导活动，现在转入幕后。
-              <br/><br/>
-              有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
-              <br/><br/>
-              从翻译到排版，从封面设计到电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
-              <br/><br/>
-              希望通过我的努力，能让更多中文读者了解单偶制之外的无限可能，探索更适合自己的情感关系。
-              <br/><br/>
-              愿每个人都能勇敢去爱，且爱得自由。
-            </p>
+        {/* 用 Card 包裹整个区域 */}
+        <div className="card shadow--md">
+          <div className="card__body">
+            <div className="row">
+              <div className="col col--4 text--center">
+                <img 
+                  src="/img/persona.gif" 
+                  alt="Avatar" 
+                  style={{ borderRadius: '50%', width: '200px', height: '200px' }} 
+                />
+              </div>
+              <div className="col col--8">
+                <Heading as="h2">关于 Jeambo</Heading>
+                <p className="margin-top--md">
+                  曾积极参与 LGBT 倡导活动，现在转入幕后。
+                  <br/><br/>
+                  有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
+                  <br/><br/>
+                  从翻译到排版，从封面设计到电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
+                  <br/><br/>
+                  愿每个人都能勇敢去爱，且爱得自由。
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -283,37 +276,37 @@ function AboutSection() {
   );
 }
 
-// --- 第五部分：【新增】AI 使用声明 ---
+// --- 第五部分：AI 使用声明 (放入卡片，去掉硬编码背景) ---
 function AIStatementSection() {
   return (
-    <div className={clsx('padding-vert--lg')} style={{ backgroundColor: '#f5f6f7' }}>
+    <div className={clsx('padding-vert--lg')}>
       <div className="container">
-        <div className="row">
-          <div className="col col--8">
-             <Heading as="h2" className="margin-bottom--sm">关于使用 AI 的说明</Heading>
-             <p style={{ fontSize: '1rem', color: '#555' }}>
-               为了提高翻译效率，我的译本是先由 AI 机翻生成初稿，再由本人修正和重译而成。
-               <br/>
-               此部分内容视为人工作品。
-               <br/>
-               由于人工检查的局限，译文中可能存在不自然之处，请<a href="http://t.me/cnm_cn">提醒我修改</a>！
-               <br/><br/>
-               为了促进资源的丰富，本站亦有部分内容为全 AI 机翻，
-               <br/>
-               本人不为其内容质量提供担保。但是老实说，其实还挺好的！
-               <br/><br/>
-               所有纯 AI 内容均会在页面进行显式声明。
-             </p>
-          </div>
+        {/* 用 Card 包裹，自动适配暗黑模式 */}
+        <div className="card shadow--md">
+          <div className="card__body">
+            <div className="row">
+              <div className="col col--8">
+                 <Heading as="h2" className="margin-bottom--sm">🤖 本站与 AI</Heading>
+                 <p style={{ fontSize: '1rem' }}>
+                   为了提高翻译效率，本站部分书籍初稿由人工智能（LLM）辅助生成，并经过人工校对与润色。
+                   <br/>
+                   此部分内容视为人工作品。
+                   <br/><br/>
+                   同时，为了促进资源的丰富，本站亦有部分内容为全 AI 机翻，本人不为其内容质量提供担保。
+                   <br/>
+                   所有纯 AI 内容均会在页面进行显式声明。
+                 </p>
+              </div>
 
-          <div className="col col--4 text--center">
-            <img 
-              src="/img/ai_assist.jpg" 
-              alt="AI Assistance" 
-              style={{ borderRadius: '5%', width: '360px', height: '270px' }} 
-            />
+              <div className="col col--4 text--center">
+                <img 
+                  src="/img/ai_assist.jpg" 
+                  alt="AI Assistance" 
+                  style={{ borderRadius: '8px', width: '100%', maxWidth: '300px', objectFit: 'cover' }} 
+                />
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -326,22 +319,14 @@ export default function Home() {
   return (
     <Layout
       title={`中文非单偶制资源站 by Jeambo`}
-      description="非单偶制，多边关系，开放关系，关系安那其，关系多样性，多边恋，多角恋，多伴侣关系，Polyamory，Poly，CNM，非单偶制书籍翻译">
+      description="非单偶制资源站">
       
-      {/* 1. 标题 + 订阅按钮 */}
       <HomepageHeader />
       
       <main>
-        {/* 2. 图书 + 翻译计划 */}
         <BookSection />
-        
-        {/* 3. 博客标签 + 列表 (字号已统一) */}
         <BlogAndTagsSection />
-        
-        {/* 4. 个人简介 */}
         <AboutSection />
-
-        {/* 5. AI 使用声明 */}
         <AIStatementSection />
       </main>
     </Layout>
