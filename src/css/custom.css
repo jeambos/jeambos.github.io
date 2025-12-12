@@ -136,7 +136,7 @@ article .theme-doc-markdown {
   /* 这里覆盖了之前为 PC 端设置的大 Padding (比如 40px) */
   .theme-doc-markdown, 
   article .theme-doc-markdown {
-    padding: 10px 4px !important; /* 上下10px，左右仅留4px，极窄边距 */
+    padding: 10px 10px !important; /* 上下10px，左右仅留4px，极窄边距 */
     margin: 0 !important;         /* 去掉外边距 */
     border-radius: 0 !important;  /* 手机上铺满屏幕，不需要圆角 */
     box-shadow: none !important;  /* 手机上不需要阴影，看起来更像原生 App */
