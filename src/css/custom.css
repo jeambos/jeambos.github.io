@@ -168,10 +168,13 @@ article .theme-doc-markdown {
 }
 
 /* ====================================================== */
-/* 3. 字体混排魔法 (中文黑体+西文斜体)                    */
+/* 3. 字体混排魔法 (中文黑体+西文斜体) & (中文楷体+西文Times) */
 /* ====================================================== */
 
-/* 虚拟粗体 'BookBold' */
+/* --- A. 定义虚拟粗体 'BookBold' --- */
+/* 目标：西文使用 Arial 粗斜体，中文使用黑体(正) */
+
+/* A1. 西文部分 */
 @font-face {
   font-family: 'BookBold';
   src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
@@ -179,6 +182,7 @@ article .theme-doc-markdown {
   font-weight: 700;
   font-style: italic;
 }
+/* A2. 中文部分 */
 @font-face {
   font-family: 'BookBold';
   src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
@@ -187,13 +191,42 @@ article .theme-doc-markdown {
   font-style: normal;
 }
 
-/* 应用粗体 */
+/* --- B. 定义虚拟斜体 'BookItalic' --- */
+/* 目标：西文使用 Times New Roman 斜体，中文使用楷体(正) */
+
+/* B1. 西文部分 */
+@font-face {
+  font-family: 'BookItalic';
+  src: local('Times New Roman Italic'), local('TimesNewRoman-Italic'), local('Times-Italic');
+  unicode-range: U+0000-00FF;
+  font-style: italic;
+}
+/* B2. 中文部分 (楷体不应该倾斜) */
+@font-face {
+  font-family: 'BookItalic';
+  src: local('KaiTi'), local('STKaiti'), local('BiauKai'), local('AR PL UKai CN');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
+  font-style: normal; /* 关键：强制把中文扶正 */
+}
+
+
+/* --- C. 应用到 Markdown 元素 --- */
+
+/* C1. 应用粗体 (**...**) */
 .theme-doc-markdown strong,
 .theme-doc-markdown b {
-  font-style: normal;
+  font-style: normal; /* 重置样式，由 @font-face 接管 */
   font-family: 'BookBold', sans-serif;
   font-weight: 700;
-   /* color: #000;*/
+  color: #000;
+}
+
+/* C2. 应用斜体 (*...*) */
+.theme-doc-markdown em,
+.theme-doc-markdown i {
+  font-style: normal; /* 重置样式，防止浏览器强行倾斜楷体 */
+  font-family: 'BookItalic', 'KaiTi', 'STKaiti', serif;
+  /* color: #333; */ /* 可选：给楷体稍微不一样的颜色 */
 }
 
 /* ====================================================== */
