@@ -181,7 +181,7 @@ function BlogAndTagsSection() {
           <div className="col col--3 margin-bottom--md">
             <div className="card shadow--md h-100">
               <div className="card__header">
-                <Heading as="h2">🏷️ 标签</Heading>
+                <Heading as="h2">🏷️ 文章分类</Heading>
               </div>
               <div className="card__body">
                 <div className={styles.tagListSide}>
@@ -208,7 +208,7 @@ function BlogAndTagsSection() {
           <div className="col col--9">
             <div className="card shadow--md h-100">
               <div className="card__header">
-                <Heading as="h2">📝 最近更新</Heading>
+                <Heading as="h2">📝 最新博客文章</Heading>
               </div>
               <div className="card__body">
                 {(recentPosts.length > 0) ? (
@@ -262,8 +262,10 @@ function AboutSection() {
                   曾积极参与 LGBT 倡导活动，现在转入幕后。
                   <br/><br/>
                   有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
-                  <br/><br/>
+                  <br/>
                   从翻译到排版，从封面设计到电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
+                  <br/><br/>
+                  本站亦有博客栏目，分享非单偶制相关的文章与资源推荐。有些是原创不过目前大部分是转载或译文。
                   <br/><br/>
                   愿每个人都能勇敢去爱，且爱得自由。
                 </p>
@@ -288,14 +290,12 @@ function AIStatementSection() {
               <div className="col col--8">
                  <Heading as="h2" className="margin-bottom--sm">🤖 本站与 AI</Heading>
                  <p style={{ fontSize: '1rem' }}>
-                   为了提高翻译效率，本站部分书籍初稿由人工智能（LLM）辅助生成，并经过人工校对与润色。
+                   为了提高翻译效率，本站部分书籍的翻译工作，由生成式人工智能（AIAI）辅助生成初稿，经过人工修改审定后生成终稿。
                    <br/>
                    此部分内容视为人工作品。
                    <br/><br/>
-                   同时，为了促进资源的丰富，本站亦有部分内容为全 AI 生成。
-                   <br/>
-                   所有纯 AI 内容均会在页面进行显式声明。
-                   <br/>
+                   同时，为了促进资源的丰富，本站亦有部分内容为全 AI 生成。请关注页面上的声明。
+                   <br/><br/>
                    我只把我读过且觉得质量不错的 AI 内容搬上来，但本人不为其准确性和完整性提供最终担保。
                    <br/>
                    
