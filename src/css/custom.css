@@ -18,14 +18,22 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode - 橙色调适配 */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  /* 核心主色：使用明亮的落日橙，确保在深色背景下醒目 */
+  --ifm-color-primary: #ff9800;
+  
+  /* 悬停/点击态：稍微变暗 */
+  --ifm-color-primary-dark: #e68900;
+  --ifm-color-primary-darker: #d98200;
+  --ifm-color-primary-darkest: #b36b00;
+  
+  /* 辅助/高亮态：变亮 */
+  --ifm-color-primary-light: #ffa726;
+  --ifm-color-primary-lighter: #ffb74d;
+  --ifm-color-primary-lightest: #ffe0b2;
+  
+  /* 代码高亮背景保持不变 */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
@@ -55,59 +63,108 @@ article header .row.margin-top--md.margin-bottom--sm {
 }
 
 /* ====================================================== */
-/* 2. Docusaurus Docs 电子书基础阅读模式 (PC/全局)        */
+/* 2. Docusaurus Docs 电子书基础阅读模式 (适配亮/暗)      */
 /* ====================================================== */
 
-/* 正文容器样式 */
+/* --- 通用排版设置 (字体、行高、对齐) --- */
 .theme-doc-markdown {
+  /* 字体栈：宋体/衬线体 */
   font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", "Georgia", serif;
-  font-size: 20px; /* 修正：原24px在PC上可能过大，建议20px左右，配合移动端微调 */
+  font-size: 20px; 
   line-height: 1.8;
-  color: #2c3e50;
 }
 
-/* 文章容器背景（羊皮纸风格） */
-article .theme-doc-markdown {
+/* --- 🌞 亮色模式配色 (Day Mode) --- */
+html[data-theme='light'] .theme-doc-markdown {
+  color: #2c3e50; /* 深灰墨色 */
+}
+
+/* 文章容器背景 (羊皮纸) */
+html[data-theme='light'] article .theme-doc-markdown {
   background-color: #faf9f6;
-  padding: 40px;
-  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* 段落排版：传统书籍风格 (Style 2 + A6) */
+/* 标题颜色 */
+html[data-theme='light'] .theme-doc-markdown h1,
+html[data-theme='light'] .theme-doc-markdown h2,
+html[data-theme='light'] .theme-doc-markdown h3 {
+  color: #1a1a1a;
+}
+
+/* 引用块配色 */
+html[data-theme='light'] .theme-doc-markdown blockquote {
+  background-color: #f3f4f6; /* 浅灰背景 */
+  color: #555;
+  border-left: 4px solid #d1d5db;
+}
+
+
+/* --- 🌙 暗色模式配色 (Night Mode) --- */
+html[data-theme='dark'] .theme-doc-markdown {
+  color: #e3e3e3; /* 柔和的银白色，避免纯白刺眼 */
+}
+
+/* 文章容器背景 (深空灰) */
+html[data-theme='dark'] article .theme-doc-markdown {
+  background-color: #242526; /* Docusaurus 经典的深色卡片背景 */
+  /* background-color: #18191a; */ /* 如果你想要更黑一点，可以用这个 */
+  box-shadow: none; /* 暗色模式不需要阴影 */
+  border: 1px solid #303236; /* 加一个极细的边框增加层次感 */
+}
+
+/* 标题颜色 */
+html[data-theme='dark'] .theme-doc-markdown h1,
+html[data-theme='dark'] .theme-doc-markdown h2,
+html[data-theme='dark'] .theme-doc-markdown h3 {
+  color: #ffffff; /* 标题用纯白高亮 */
+}
+
+/* 引用块配色 (夜间版) */
+html[data-theme='dark'] .theme-doc-markdown blockquote {
+  background-color: #303338; /* 比背景稍亮的灰色 */
+  color: #b0b3b8;            /* 稍微暗一点的文字 */
+  border-left: 4px solid #555;
+}
+
+
+/* --- 这里的排版样式保持不变，对两种模式通用 --- */
+
+article .theme-doc-markdown {
+  padding: 40px;
+  border-radius: 8px;
+}
+
+/* 段落排版 */
 .theme-doc-markdown p {
-  text-indent: 2em;      /* 首行缩进 */
-  margin-bottom: 0.6em;  /* 紧凑段间距 */
-  text-align: justify;   /* 两端对齐 */
+  text-indent: 2em;
+  margin-bottom: 0.6em;
+  text-align: justify;
   text-justify: inter-ideograph;
 }
 
-/* 修复图片和Figure不要缩进 */
+/* 修复图片等不缩进 */
 .theme-doc-markdown figure,
 .theme-doc-markdown img {
   text-indent: 0;
 }
 
-/* 标题样式 */
+/* 标题样式基础 */
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
 .theme-doc-markdown h3 {
   font-family: var(--ifm-font-family-base); 
   font-weight: 700;
   margin-top: 2em;
-  color: #1a1a1a;
-  text-indent: 0; /* 标题不要缩进 */
+  text-indent: 0;
 }
 
-/* 引用块样式 */
+/* 引用块基础 */
 .theme-doc-markdown blockquote {
-  border-left: 4px solid #d1d5db;
-  background-color: #f3f4f6;
-  color: #555;
   font-style: italic;
   padding: 1rem;
   border-radius: 4px;
-  text-indent: 0; /* 引用块内容视情况是否缩进，通常不缩进看起来整齐 */
+  text-indent: 0;
 }
 
 /* ====================================================== */
@@ -136,7 +193,7 @@ article .theme-doc-markdown {
   font-style: normal;
   font-family: 'BookBold', sans-serif;
   font-weight: 700;
-  color: #000;
+   /* color: #000;*/
 }
 
 /* ====================================================== */
