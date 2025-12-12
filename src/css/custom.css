@@ -127,8 +127,8 @@ article .theme-doc-markdown {
   
   /* 1. 压缩 Docusaurus 默认的容器边距 */
   .container {
-    padding-left: 8px !important;  /* 稍微留一点缝隙，不要让字贴着屏幕边框 */
-    padding-right: 8px !important;
+    padding-left: 16px !important;  /* 稍微留一点缝隙，不要让字贴着屏幕边框 */
+    padding-right: 16px !important;
     max-width: 100% !important;
   }
 
@@ -148,10 +148,11 @@ article .theme-doc-markdown {
     padding-right: 0 !important;
   }
 
-  /* 4. (可选) 针对移动端微调字号 */
-  /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适 */
+  /* 4. (可选) 针对移动端微调字号 
+  /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适 
   .theme-doc-markdown {
-    font-size: 17px !important; 
-    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 */
+    font-size: 20px !important; 
+    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 
   }
+    */
 }
