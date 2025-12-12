@@ -429,3 +429,49 @@ html[data-theme='dark'] .theme-doc-markdown i {
   }
 
 }
+
+/* ====================================================== */
+/* 6. 首页博客板块暗黑模式修复 (Fix Blog/Tags Colors)     */
+/* ====================================================== */
+
+/* 针对右侧：最新更新列表 */
+html[data-theme='dark'] div[class*='blogList'] {
+  /* 1. 背景色：比卡片底色(#242526)稍亮一点，形成“层级浮起”的感觉 */
+  background-color: #2f3136 !important;
+  
+  /* 2. 边框：给个微弱的边框增加精致感 */
+  border: 1px solid #3e4045;
+}
+
+/* 针对每一条博客文章项 (可选：加个鼠标悬停高亮) */
+html[data-theme='dark'] div[class*='blogItem']:hover {
+  background-color: #393c42; /* 悬停时再亮一点 */
+  border-radius: 6px;
+}
+
+/* 针对博客标题文字 */
+html[data-theme='dark'] a[class*='blogTitle'] {
+  color: #e3e3e3 !important; /* 确保文字是亮的 */
+  font-weight: 600;
+}
+html[data-theme='dark'] a[class*='blogTitle']:hover {
+  color: var(--ifm-color-primary) !important; /* 悬停变主题橙 */
+}
+
+/* 针对左侧：标签云容器 */
+html[data-theme='dark'] div[class*='tagListSide'] {
+  /* 背景色同上，保持统一 */
+  background-color: #2f3136 !important;
+  border: 1px solid #3e4045;
+}
+
+/* 针对左侧：具体的每一个标签链接 */
+html[data-theme='dark'] a[class*='tagItemSide'] {
+  background-color: #3e4045 !important; /* 标签本身背景再深一点或亮一点 */
+  color: #f5f6f7 !important;
+  border: none !important;
+}
+html[data-theme='dark'] a[class*='tagItemSide']:hover {
+  background-color: var(--ifm-color-primary) !important;
+  color: #fff !important;
+}
