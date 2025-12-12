@@ -156,3 +156,48 @@ article .theme-doc-markdown {
   }
  
 }
+
+
+/* ====================================================== */
+/* 文档页字体修正。中文黑体(正) + 西文粗斜体(歪)                 */
+/* ====================================================== */
+
+/* 1. 定义虚拟粗体 'BookBold' - 西文部分 */
+/* 目标：西文使用 Arial/Helvetica 的【粗斜体】 */
+@font-face {
+  font-family: 'BookBold';
+  /* 优先找系统自带的 Arial 或 Helvetica 的粗斜体版本 */
+  src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
+  /* 仅对英文、数字、标点生效 */
+  unicode-range: U+0000-00FF;
+  font-weight: 700;
+  font-style: italic; /* 关键：强制让这部分显示为斜体 */
+}
+
+/* 2. 定义虚拟粗体 'BookBold' - 中文部分 */
+/* 目标：中文使用黑体，且保持端正 */
+@font-face {
+  font-family: 'BookBold';
+  /* 优先找苹果的苹方、Windows的微软雅黑、以及通用黑体 */
+  src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
+  /* 仅对汉字生效 */
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
+  font-weight: 700;
+  font-style: normal; /* 关键：中文保持正体，不要歪 */
+}
+
+/* 3. 应用到 Markdown 的粗体 (**...**) */
+.theme-doc-markdown strong,
+.theme-doc-markdown b {
+  /* 重置样式：让浏览器认为这是普通样式，然后由 @font-face 接管 */
+  font-style: normal; 
+  
+  /* 应用我们定义的虚拟字体 */
+  font-family: 'BookBold', sans-serif;
+  
+  /* 确保字重为粗体 */
+  font-weight: 700;
+  
+  /* 颜色加深 */
+  color: #000;
+}
