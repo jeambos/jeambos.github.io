@@ -238,7 +238,7 @@ article .theme-doc-markdown {
   .theme-doc-toc-mobile > button {
     width: 100%;
     border: none;
-    background: transparent;
+    /*background: transparent;*/ /* 取消透明背景 */
     padding: 12px; /* 增加点击区域，方便手指按 */
     font-weight: 600;
     color: var(--ifm-color-primary); /* 使用主题色 */
