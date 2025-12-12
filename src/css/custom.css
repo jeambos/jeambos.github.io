@@ -475,3 +475,53 @@ html[data-theme='dark'] a[class*='tagItemSide']:hover {
   background-color: var(--ifm-color-primary) !important;
   color: #fff !important;
 }
+
+/* ====================================================== */
+/* 7. 首页板块背景色适配 (Zebra Striping)                 */
+/* ====================================================== */
+
+/* --- 策略：定义一个“深邃黑”背景，用于隔行变色 --- */
+/* 亮色模式下：它是浅灰色 (#f5f6f7)，区分白底 */
+html[data-theme='light'] .section-alt-bg {
+  background-color: #f5f6f7 !important;
+}
+/* 暗色模式下：它是纯黑色 (#000000)，区分深灰底 */
+html[data-theme='dark'] .section-alt-bg {
+  background-color: #000000 !important;
+}
+
+/* --- 应用到具体板块 --- */
+
+/* 1. 博客板块 (Blog Section) */
+/* 使用属性选择器匹配 index.module.css 生成的类名 */
+div[class*='sectionBlog'] {
+  /* 强制继承上面的 .section-alt-bg 逻辑吗？
+     为了方便，直接在这里写死，或者你在 index.js 里加类名。
+     这里我们直接用 CSS 强制指定颜色：
+  */
+}
+
+/* 🌞 亮色模式下的博客背景 */
+html[data-theme='light'] div[class*='sectionBlog'] {
+  background-color: #f9f9f9; /* 极淡的灰 */
+}
+/* 🌙 暗色模式下的博客背景 */
+html[data-theme='dark'] div[class*='sectionBlog'] {
+  background-color: #000000; /* 纯黑背景，突显上面的深灰卡片 */
+}
+
+
+/* 2. 个人简介板块 (About Section) */
+/* 保持默认透明（即显示 Body 的背景色），这样就和上面的纯黑博客区形成了反差 */
+
+
+/* 3. AI 声明板块 (AI Section) */
+/* 这个板块也设为纯黑，形成节奏感：(书:灰) -> (博客:黑) -> (关于:灰) -> (AI:黑) */
+
+/* 注意：我们需要在 index.js 里给 AI 板块加个类名，或者直接用 nth-child (不推荐)。
+   最稳妥的是直接把下面的类名加到 index.js 里。
+   这里先定义好样式：
+*/
+.section-dark-mode-alt {
+  /* 这是一个工具类，我们将把它加到 JS 里 */
+}
