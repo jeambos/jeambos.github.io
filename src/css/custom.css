@@ -256,3 +256,10 @@ article .theme-doc-markdown {
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
   }
 }
+
+@media (max-width: 996px) {
+  /* 给正文底部加 60px 的内边距，防止被底部目录栏遮挡 */
+  main {
+    padding-bottom: 60px !important;
+  }
+}
