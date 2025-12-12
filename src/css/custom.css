@@ -118,3 +118,40 @@ article .theme-doc-markdown {
   border-radius: 8px;        /* 圆角 */
   box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影，像一张纸 */
 }
+
+/* ====================================================== */
+/* 移动端沉浸式阅读优化 (Mobile Full-width)                 */
+/* ====================================================== */
+
+@media screen and (max-width: 996px) {
+  
+  /* 1. 压缩 Docusaurus 默认的容器边距 */
+  .container {
+    padding-left: 8px !important;  /* 稍微留一点缝隙，不要让字贴着屏幕边框 */
+    padding-right: 8px !important;
+    max-width: 100% !important;
+  }
+
+  /* 2. 重置文档正文的内边距 */
+  /* 这里覆盖了之前为 PC 端设置的大 Padding (比如 40px) */
+  .theme-doc-markdown, 
+  article .theme-doc-markdown {
+    padding: 10px 4px !important; /* 上下10px，左右仅留4px，极窄边距 */
+    margin: 0 !important;         /* 去掉外边距 */
+    border-radius: 0 !important;  /* 手机上铺满屏幕，不需要圆角 */
+    box-shadow: none !important;  /* 手机上不需要阴影，看起来更像原生 App */
+  }
+
+  /* 3. 确保正文内容 100% 宽度 */
+  .row .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 4. (可选) 针对移动端微调字号 */
+  /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适 */
+  .theme-doc-markdown {
+    font-size: 17px !important; 
+    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 */
+  }
+}
