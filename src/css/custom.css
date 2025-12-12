@@ -262,4 +262,80 @@ article .theme-doc-markdown {
   main {
     padding-bottom: 60px !important;
   }
+
 }
+
+
+  /* ====================================================== */
+/* 脚注 (Footnote) 样式优化：变成易点击的徽章             */
+/* ====================================================== */
+
+/* 针对正文中的脚注引用标记 [1], [2] 等 */
+.theme-doc-markdown sup a {
+  /* 1. 布局与尺寸 */
+  display: inline-block;     /* 变成块级元素，方便设置宽高和内边距 */
+  min-width: 1.5em;          /* 保证最小宽度，哪怕是 [1] 也不会太瘦 */
+  text-align: center;        /* 文字居中 */
+  padding: 1px 4px;          /* 增加内部呼吸感，撑大点击区域 */
+  margin-left: 2px;          /* 和前面的文字拉开一点点距离 */
+  
+  /* 2. 形状：圆角矩形 */
+  border-radius: 6px;        /* 6px 是比较舒服的圆角，想要纯矩形改为 2px */
+  
+  /* 3. 颜色与边框 (使用 Docusaurus 变量自动适配暗黑模式) */
+  background-color: var(--ifm-color-emphasis-100); /* 浅灰色背景 */
+  border: 1px solid var(--ifm-color-emphasis-300); /* 深一点的边框 */
+  color: var(--ifm-color-emphasis-700);            /* 文字颜色 */
+  
+  /* 4. 字体微调 */
+  text-decoration: none !important; /* 去掉下划线 */
+  font-weight: 700;                 /* 加粗 */
+  font-size: 0.85em;                /* 稍微大一点点，保证看清 */
+  line-height: 1.2;
+  
+  /* 5. 动画效果 */
+  transition: all 0.2s ease;
+  
+  /* 6. 稍微把上标位置往下挪一点，不要飞太高 */
+  position: relative;
+  top: -2px; 
+}
+
+/* 鼠标悬停 / 手机点击时的状态 */
+.theme-doc-markdown sup a:hover {
+  background-color: var(--ifm-color-primary); /* 变成主题色背景 */
+  color: #fff;                                /* 文字变白 */
+  border-color: var(--ifm-color-primary);     /* 边框变主题色 */
+  transform: translateY(-2px);                /* 微微上浮，有点击反馈感 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);      /* 加一点阴影 */
+}
+
+/* 优化页面底部的脚注列表区域 */
+.footnotes {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--ifm-color-emphasis-300); /* 变成虚线分割 */
+  background: var(--ifm-background-surface-color);      /* 稍微区分背景色 */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* 优化底部的“返回”箭头 ↩ */
+.footnotes .footnote-backref {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-primary);
+  font-family: system-ui; /* 防止箭头在某些字体下显示乱码 */
+  text-decoration: none !important;
+}
+
+.footnotes .footnote-backref:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+
+
