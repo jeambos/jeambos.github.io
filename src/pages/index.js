@@ -173,8 +173,8 @@ function BlogAndTagsSection() {
   ];
 
   return (
-    <div className={clsx(styles.sectionBlog, 'padding-vert--lg')}>
-      <div className="container">
+<div className={clsx(styles.sectionBlog, 'padding-vert--lg', 'section-peach')}>
+        <div className="container">
         <div className="row">
           
           {/* 左侧栏：标签 (放入卡片) */}
@@ -281,7 +281,7 @@ function AboutSection() {
 // --- 第五部分：AI 使用声明 (放入卡片，去掉硬编码背景) ---
 function AIStatementSection() {
   return (
-<div className={clsx('padding-vert--lg', 'section-alt-bg')}>
+<div className={clsx(styles.sectionStatement, 'padding-vert--lg', 'section-peach')}>
         <div className="container">
         {/* 用 Card 包裹，自动适配暗黑模式 */}
         <div className="card shadow--md">

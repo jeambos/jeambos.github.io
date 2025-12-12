@@ -48,11 +48,11 @@
 
 /* 2. 个人介绍板块：使用淡雅的米黄色，配合你的橙色主题 */
 .sectionAbout {
-  background-color: #f7eeda; /* 极淡的暖色 */
+  background-color: #ffd6a0; /* 极淡的暖色 */
 }
 
-/* 3. 订阅板块：使用浅灰色，作为页脚前的过渡 */
-.sectionSubscribe {
+/* 3. 博客和AI说明的背景色 */
+.sectionBlog， .sectionStatement {
   background-color: #f0bfa1;
 }
 
