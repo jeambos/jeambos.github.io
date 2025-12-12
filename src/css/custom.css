@@ -10,7 +10,7 @@
   --ifm-color-primary-dark: #f29e30;
   --ifm-color-primary-darker: #ef9521;
   --ifm-color-primary-darkest: #c5750d;
-   --ifm-color-primary-light: #f8c270;
+  --ifm-color-primary-light: #f8c270;
   --ifm-color-primary-lighter: #f9cb80;
   --ifm-color-primary-lightest: #fce5b0;
   --ifm-code-font-size: 95%;
@@ -29,298 +29,155 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* --- 博客样式优化：隐藏作者信息，只保留日期 --- */
-
-/* 1. 隐藏头像 */
-.avatar__photo {
-  display: none !important;
-}
-
-/* 2. 隐藏作者名字 */
+/* ====================================================== */
+/* 1. 博客样式优化                                        */
+/* ====================================================== */
+.avatar__photo,
 .avatar__name {
   display: none !important;
 }
 
-/* 3. 【核心修复】清除文字容器的左边距，并垂直居中 */
 .avatar__intro {
-  margin-left: 0 !important; /* 这一行解决了空白问题 */
-  display: flex;             /* 确保布局灵活 */
-  flex-direction: column;    /* 垂直排列内容 */
-  justify-content: center;   /* 垂直居中 */
+  margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 4. 调整日期文字样式 */
 .avatar__subtitle {
-  margin-top: 0 !important;   /* 去掉多余的顶部间距 */
-  font-size: 0.9rem;          /* 字体稍微调小，更精致 */
-  color: var(--ifm-color-emphasis-600); /* 使用次级灰色 */
+  margin-top: 0 !important;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
 }
 
-/* --- 博客头部终极清理 --- */
-
-/* 针对那个只有作者信息（现在为空）的容器 
-   既然日期不在里面，直接隐藏它，彻底消除它占用的高度
-*/
 article header .row.margin-top--md.margin-bottom--sm {
   display: none !important;
 }
 
 /* ====================================================== */
-/* Docusaurus Docs 电子书阅读模式             */
+/* 2. Docusaurus Docs 电子书基础阅读模式 (PC/全局)        */
 /* ====================================================== */
 
-/* 1. 针对 Docs 正文的排版优化 */
+/* 正文容器样式 */
 .theme-doc-markdown {
-  /* 字体：优先使用宋体/衬线体，营造书卷气 */
   font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", "Georgia", serif;
-  
-  /* 字号：稍微调大，更适合沉浸阅读 */
-  font-size: 24px;
-  
-  /* 行高：宽松的行间距 */
+  font-size: 20px; /* 修正：原24px在PC上可能过大，建议20px左右，配合移动端微调 */
   line-height: 1.8;
-  
-  /* 颜色：使用深灰而非纯黑，护眼 */
   color: #2c3e50;
 }
 
-/* 2. 增加段落间距 */
-.theme-doc-markdown p {
-  margin-bottom: 1.5rem; /* 段落之间留出更多呼吸感 */
-  text-align: justify;   /* 两端对齐（可选，会让方块字更整齐） */
+/* 文章容器背景（羊皮纸风格） */
+article .theme-doc-markdown {
+  background-color: #faf9f6;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* 3. 优化标题样式（保持黑体，形成对比） */
+/* 段落排版：传统书籍风格 (Style 2 + A6) */
+.theme-doc-markdown p {
+  text-indent: 2em;      /* 首行缩进 */
+  margin-bottom: 0.6em;  /* 紧凑段间距 */
+  text-align: justify;   /* 两端对齐 */
+  text-justify: inter-ideograph;
+}
+
+/* 修复图片和Figure不要缩进 */
+.theme-doc-markdown figure,
+.theme-doc-markdown img {
+  text-indent: 0;
+}
+
+/* 标题样式 */
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
 .theme-doc-markdown h3 {
-  /* 标题保持无衬线体（黑体），显得现代 */
   font-family: var(--ifm-font-family-base); 
   font-weight: 700;
-  margin-top: 2em; /* 标题上方留白更多 */
+  margin-top: 2em;
   color: #1a1a1a;
+  text-indent: 0; /* 标题不要缩进 */
 }
 
-/* 4. 引用块（Blockquote）样式优化 */
+/* 引用块样式 */
 .theme-doc-markdown blockquote {
-  border-left: 4px solid #d1d5db; /* 浅灰色竖线 */
-  background-color: #f3f4f6;      /* 极浅的灰色背景 */
+  border-left: 4px solid #d1d5db;
+  background-color: #f3f4f6;
   color: #555;
   font-style: italic;
   padding: 1rem;
   border-radius: 4px;
-}
-
-/* 给文档正文加一个米色背景容器 */
-article .theme-doc-markdown {
-  background-color: #faf9f6; /* 米色/羊皮纸色 */
-  padding: 40px;             /* 内边距 */
-  border-radius: 8px;        /* 圆角 */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影，像一张纸 */
+  text-indent: 0; /* 引用块内容视情况是否缩进，通常不缩进看起来整齐 */
 }
 
 /* ====================================================== */
-/* 移动端沉浸式阅读优化 (Mobile Full-width)                 */
+/* 3. 字体混排魔法 (中文黑体+西文斜体)                    */
 /* ====================================================== */
 
-@media screen and (max-width: 996px) {
-  
-  /* 1. 压缩 Docusaurus 默认的容器边距 */
-  .container {
-    padding-left: 16px !important;  /* 稍微留一点缝隙，不要让字贴着屏幕边框 */
-    padding-right: 16px !important;
-    max-width: 100% !important;
-  }
-
-  /* 2. 重置文档正文的内边距 */
-  /* 这里覆盖了之前为 PC 端设置的大 Padding (比如 40px) */
-  .theme-doc-markdown, 
-  article .theme-doc-markdown {
-    padding: 10px 10px !important; /* 上下10px，左右仅留4px，极窄边距 */
-    margin: 0 !important;         /* 去掉外边距 */
-    border-radius: 0 !important;  /* 手机上铺满屏幕，不需要圆角 */
-    box-shadow: none !important;  /* 手机上不需要阴影，看起来更像原生 App */
-  }
-
-  /* 3. 确保正文内容 100% 宽度 */
-  .row .col {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /* 4. (可选) 针对移动端微调字号 
-  /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适    */
-  .theme-doc-markdown {
-    font-size: 22 px !important; 
-    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 */
-  }
- 
-}
-
-
-/* ====================================================== */
-/* 文档页字体修正。中文黑体(正) + 西文粗斜体(歪)                 */
-/* ====================================================== */
-
-/* 1. 定义虚拟粗体 'BookBold' - 西文部分 */
-/* 目标：西文使用 Arial/Helvetica 的【粗斜体】 */
+/* 虚拟粗体 'BookBold' */
 @font-face {
   font-family: 'BookBold';
-  /* 优先找系统自带的 Arial 或 Helvetica 的粗斜体版本 */
   src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
-  /* src: local('Times New Roman Bold Italic'), local('TimesNewRoman-BoldItalic'); */
-  /* 仅对英文、数字、标点生效 */
   unicode-range: U+0000-00FF;
   font-weight: 700;
-  font-style: italic; /* 关键：强制让这部分显示为斜体 */
+  font-style: italic;
 }
-
-/* 2. 定义虚拟粗体 'BookBold' - 中文部分 */
-/* 目标：中文使用黑体，且保持端正 */
 @font-face {
   font-family: 'BookBold';
-  /* 优先找苹果的苹方、Windows的微软雅黑、以及通用黑体 */
   src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
-  /* 仅对汉字生效 */
   unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
   font-weight: 700;
-  font-style: normal; /* 关键：中文保持正体，不要歪 */
+  font-style: normal;
 }
 
-/* 3. 应用到 Markdown 的粗体 (**...**) */
+/* 应用粗体 */
 .theme-doc-markdown strong,
 .theme-doc-markdown b {
-  /* 重置样式：让浏览器认为这是普通样式，然后由 @font-face 接管 */
-  font-style: normal; 
-  
-  /* 应用我们定义的虚拟字体 */
+  font-style: normal;
   font-family: 'BookBold', sans-serif;
-  
-  /* 确保字重为粗体 */
   font-weight: 700;
-  
-  /* 颜色加深 */
   color: #000;
 }
 
 /* ====================================================== */
-/* 移动端优化：将“本页目录”固定到屏幕底部                 */
+/* 4. 脚注 (Footnote) 优化 (圆角徽章)                     */
 /* ====================================================== */
-
-/* 仅在屏幕宽度小于 996px (移动端/平板) 时生效 */
-@media (max-width: 996px) {
-  
-  /* 1. 定位容器：固定在底部 */
-  .theme-doc-toc-mobile {
-    position: fixed !important;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 100; /* 确保浮在最上层 */
-    
-    margin-bottom: 0 !important; /* 去掉默认边距 */
-    border-radius: 0 !important; /* 去掉圆角，变成直角长条 */
-    border: none;
-    border-top: 1px solid var(--ifm-color-emphasis-200); /* 顶部加条细线分隔 */
-    
-    /* 关键背景色：使用系统变量，自动适配暗黑/亮色模式 */
-    background-color: var(--ifm-background-color); 
-    
-    /* 核心魔法：使用弹性布局的反向列，让菜单向上展开！ */
-    display: flex;
-    flex-direction: column-reverse;
-    
-    /* 加一点阴影，更有悬浮感 */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* 2. 调整按钮样式 (平时看到的那个条) */
-  .theme-doc-toc-mobile > button {
-    width: 100%;
-    border: none;
-    /*background: transparent;*/ /* 取消透明背景 */
-    padding: 12px; /* 增加点击区域，方便手指按 */
-    font-weight: 600;
-    color: var(--ifm-color-primary); /* 使用主题色 */
-    text-align: center;
-  }
-
-  /* 3. 调整展开后的列表样式 (弹出的菜单) */
-  .theme-doc-toc-mobile > div {
-    /* 限制最大高度，防止列表太长顶到天花板 */
-    max-height: 60vh; 
-    overflow-y: auto; /* 内容太长时允许内部滚动 */
-    
-    padding: 10px 20px;
-    background-color: var(--ifm-background-surface-color); /*稍微区分一下背景*/
-    border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  }
-}
-
-@media (max-width: 996px) {
-  /* 给正文底部加 60px 的内边距，防止被底部目录栏遮挡 */
-  main {
-    padding-bottom: 60px !important;
-  }
-
-}
-
-
-  /* ====================================================== */
-/* 脚注 (Footnote) 样式优化：变成易点击的徽章             */
-/* ====================================================== */
-
-/* 针对正文中的脚注引用标记 [1], [2] 等 */
 .theme-doc-markdown sup a {
-  /* 1. 布局与尺寸 */
-  display: inline-block;     /* 变成块级元素，方便设置宽高和内边距 */
-  min-width: 1.5em;          /* 保证最小宽度，哪怕是 [1] 也不会太瘦 */
-  text-align: center;        /* 文字居中 */
-  padding: 1px 4px;          /* 增加内部呼吸感，撑大点击区域 */
-  margin-left: 2px;          /* 和前面的文字拉开一点点距离 */
-  
-  /* 2. 形状：圆角矩形 */
-  border-radius: 6px;        /* 6px 是比较舒服的圆角，想要纯矩形改为 2px */
-  
-  /* 3. 颜色与边框 (使用 Docusaurus 变量自动适配暗黑模式) */
-  background-color: var(--ifm-color-emphasis-100); /* 浅灰色背景 */
-  border: 1px solid var(--ifm-color-emphasis-300); /* 深一点的边框 */
-  color: var(--ifm-color-emphasis-700);            /* 文字颜色 */
-  
-  /* 4. 字体微调 */
-  text-decoration: none !important; /* 去掉下划线 */
-  font-weight: 700;                 /* 加粗 */
-  font-size: 0.85em;                /* 稍微大一点点，保证看清 */
+  display: inline-block;
+  min-width: 1.5em;
+  text-align: center;
+  padding: 1px 4px;
+  margin-left: 2px;
+  border-radius: 6px;
+  background-color: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 0.85em;
   line-height: 1.2;
-  
-  /* 5. 动画效果 */
   transition: all 0.2s ease;
-  
-  /* 6. 稍微把上标位置往下挪一点，不要飞太高 */
   position: relative;
   top: -2px; 
 }
 
-/* 鼠标悬停 / 手机点击时的状态 */
 .theme-doc-markdown sup a:hover {
-  background-color: var(--ifm-color-primary); /* 变成主题色背景 */
-  color: #fff;                                /* 文字变白 */
-  border-color: var(--ifm-color-primary);     /* 边框变主题色 */
-  transform: translateY(-2px);                /* 微微上浮，有点击反馈感 */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);      /* 加一点阴影 */
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* 优化页面底部的脚注列表区域 */
 .footnotes {
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px dashed var(--ifm-color-emphasis-300); /* 变成虚线分割 */
-  background: var(--ifm-background-surface-color);      /* 稍微区分背景色 */
+  border-top: 1px dashed var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
   padding: 20px;
   border-radius: 8px;
 }
 
-/* 优化底部的“返回”箭头 ↩ */
 .footnotes .footnote-backref {
   display: inline-block;
   margin-left: 5px;
@@ -328,14 +185,143 @@ article .theme-doc-markdown {
   border-radius: 4px;
   background-color: var(--ifm-color-emphasis-200);
   color: var(--ifm-color-primary);
-  font-family: system-ui; /* 防止箭头在某些字体下显示乱码 */
+  font-family: system-ui;
   text-decoration: none !important;
 }
 
-.footnotes .footnote-backref:hover {
-  background-color: var(--ifm-color-primary);
-  color: white;
+/* ====================================================== */
+/* 5. 📱 移动端专属优化 (996px以下)                       */
+/* ====================================================== */
+
+@media screen and (max-width: 996px) {
+  
+  /* --- A. 沉浸式阅读 (Full-width) --- */
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    max-width: 100% !important;
+  }
+
+  /* 覆盖 PC 端的大内边距，手机上紧凑一点 */
+  .theme-doc-markdown, 
+  article .theme-doc-markdown {
+    padding: 10px 10px !important; 
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .row .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 手机端字号微调 */
+  .theme-doc-markdown {
+    font-size: 20px !important; /* 原22px在手机上可能太大，建议18-19px */
+    line-height: 1.7 !important;
+  }
+  
+  /* 防止底部内容被固定的导航栏遮挡 */
+  main {
+    padding-bottom: 80px !important; /* 留足空间 */
+  }
+
+  /* --- 1. 外壳容器 --- */
+  .theme-doc-toc-mobile {
+    position: fixed !important;
+    left: 0;
+    bottom: 0;
+    width: 100% !important;
+    z-index: 2147483647 !important; /* CSS 允许的最大 z-index 值，谁也别想挡我 */
+    
+    /* 强制布局 */
+    display: flex;
+    flex-direction: column-reverse;
+    
+    /* 边框和阴影 */
+    border-top: 1px solid var(--ifm-color-emphasis-200);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+    padding-bottom: env(safe-area-inset-bottom);
+    
+    /* 调试用：如果还是透明，把下面这行前面的 // 删掉，看看有没有红框 */
+    /* border: 5px solid red !important; */
+  }
+
+  /* --- 2. 核心：强制背景色 (分模式写死，拒绝透明) --- */
+  
+  /* 亮色模式：纯白 */
+  html[data-theme='light'] .theme-doc-toc-mobile {
+    background-color: #fffae2 !important;
+    background: fffae2 !important;
+  }
+  
+  /* 暗色模式：纯黑或深灰 (根据你的喜好调整) */
+  html[data-theme='dark'] .theme-doc-toc-mobile {
+    background-color: #1d1c1b !important; /* 如果觉得太黑，可以改成 #242526 */
+    background: #1d1c1b !important;
+  }
+
+  /* --- 3. 按钮本体：重置样式，清除干扰 --- */
+  .theme-doc-toc-mobile > button {
+    position: relative !important;
+    width: 100% !important;
+    height: 54px !important; /* 稍微加高一点，更容易点 */
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    
+    /* 同样强制背景色，防止漏网 */
+    background: inherit !important; 
+    
+    /* 隐形魔法：隐藏原文字 */
+    color: transparent !important;
+    
+    /* 锁死所有变换，防止旋转 */
+    transform: none !important;
+  }
+
+  /* --- 4. 新文字贴纸：绝对居中 --- */
+  .theme-doc-toc-mobile > button::after {
+    content: '本章目录'; /* 自定义文案 */
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Flex 完美居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: var(--ifm-color-primary);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    
+    /* 确保文字不旋转，且层级在最上 */
+    transform: none !important;
+    z-index: 10;
+  }
+
+  /* 隐藏原按钮里的图标 (箭头) */
+  .theme-doc-toc-mobile > button > svg {
+    display: none !important;
+  }
+
+  /* --- 5. 展开后的列表 --- */
+  .theme-doc-toc-mobile > div {
+    max-height: 65vh;
+    overflow-y: auto;
+    
+    /* 列表背景色也必须强制 */
+    background-color: inherit !important; 
+    
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    padding: 15px 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
 }
-
-
-
