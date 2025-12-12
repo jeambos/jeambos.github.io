@@ -152,7 +152,7 @@ article .theme-doc-markdown {
   /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适    */
   .theme-doc-markdown {
     font-size: 22 px !important; 
-    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 
+    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 */
   }
  
 }
