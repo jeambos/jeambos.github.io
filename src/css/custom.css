@@ -461,7 +461,6 @@ html[data-theme='light'] .section-peach {
 html[data-theme='dark'] .section-peach {
   background-color: #473122 !important; 
 }
-
 /* ====================================================== */
 /* 11. 引用块 (Blockquote) 全局美化                       */
 /* ====================================================== */
@@ -474,41 +473,39 @@ html[data-theme='dark'] .section-peach {
   /* 2. 布局设置 */
   position: relative; /* 为绝对定位的图标做参照 */
   margin: 1.5em 0;    /* 上下留白 */
-  padding: 15px 20px 15px 20px !important; /* 左侧留出 50px 给图标，防止文字重叠 */
+  padding: 15px 20px 15px 30px !important; /* 左侧留30px防止重叠 */
   border-radius: 8px; /* 圆角 */
   border: none !important; /* 去掉原本那个粗粗的左边框线 */
   
-  /* 3. 字体设置 
-  font-family: "KaiTi", "STKaiti", "BiauKai", serif; /* 引用内容依然推荐用楷体，更有“引文”感，但不倾斜 */
+  /* 3. 字体设置 */
+  /* 引用内容依然推荐用楷体，更有“引文”感，但不倾斜 
+  font-family: "KaiTi", "STKaiti", "BiauKai", serif; 
   font-size: 0.95em;
-  line-height: 1.6; 
-}*/
+  line-height: 1.6; */
+} /* <--- 关键！这个大括号必须存在且不能被注释掉 */
 
 
 /* --- 引号图标 (使用伪元素 ::before) --- */
 .theme-doc-markdown blockquote::before {
   content: '';
   position: absolute;
-  top: 15px; 
-  left: 12px;
-  width: 24px;
-  height: 24px;
+  top: -10px; 
+  left: -8px;
+  width: 48px;
+  height: 48px;
   
-  /* 关键修改 1：使用 url() 引用，注意 Docusaurus 会自动把 static 映射到根目录 */
-  /* 如果你的文件在 static/img/quote.png，这里就写 /img/quote.png */
+  /* 引用本地图片 */
   background-image: url('/img/quote.png');
   
   background-repeat: no-repeat;
   background-size: contain;
   
-  /* 关键修改 2：防止被背景遮挡 */
+  /* 防止被背景遮挡 */
   z-index: 10; 
   opacity: 1;
 
-  /* 🛠️ 调试专用：打开下面这行。 */
-  /* 如果你能看到一个红框但没图，说明是图片路径错误。 */
-  /* 如果连红框都看不到，说明选择器写错了或者 content 没生效。 */
-  border: 1px solid red;  
+  /* 🛠️ 调试专用：如果还是不显示，打开下面这行看有没有红框 */
+  /* border: 1px solid red; */
 }
 
 /* --- 🌞 亮色模式配色 --- */
@@ -529,8 +526,7 @@ html[data-theme='dark'] .theme-doc-markdown blockquote {
   border: 1px solid #4a4a4a !important;
 }
 
-/* 适配暗黑模式下的图标颜色 (通过滤镜反转颜色，或者换一张图) */
+/* 适配暗黑模式下的图标颜色 */
 html[data-theme='dark'] .theme-doc-markdown blockquote::before {
-  /* 这里不需要改图片，因为橙色图标在深色背景上也很好看 */
   opacity: 0.6; /* 稍微暗一点 */
 }
