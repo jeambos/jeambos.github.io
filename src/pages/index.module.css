@@ -10,9 +10,40 @@
   overflow: hidden;
 }
 
+/* --- 移动端适配 (小于 996px) --- */
 @media screen and (max-width: 996px) {
+  
   .heroBanner {
     padding: 2rem;
+  }
+
+  /* 修复：给右侧博客栏加顶部间距 */
+  .margin-top--sm-mobile {
+    margin-top: 2rem !important;
+  }
+
+  /* ================================================================= */
+  /* 重点修复：恢复由于 custom.css 全局去内边距导致的问题                 */
+  /* ================================================================= */
+
+/* 第一组：【外部间距修复】 */
+  /* 适用对象：Books, Blog */
+  /* 原理：这俩的 Col 包裹着 Card。我们需要加一点点 padding，让 Card 不要顶到屏幕边缘即可。 */
+  /* 注意：不要加太多，因为 Card 内部往往还有自己的 padding。 */
+  .sectionBooks [class*='col'],
+  .sectionBlog [class*='col'] {  /* <--- Blog 应该放在这里 */
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 第二组：【内部间距修复】 */
+  /* 适用对象：About, Statement */
+  /* 原理：这俩的 Col 在 Card 内部。我们需要较大的 padding，让文字不要顶到 Card 的边框。 */
+  .sectionAbout [class*='col'],
+  .sectionStatement [class*='col'] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-bottom: 16px !important;
   }
 }
 
@@ -52,7 +83,7 @@
 }
 
 /* 3. 博客和AI说明的背景色 */
-.sectionBlog， .sectionStatement {
+.sectionBlog, .sectionStatement {
   background-color: #fee1b6;
 }
 
@@ -177,10 +208,11 @@
 @media (max-width: 996px) {
   /* 在平板/手机上，让标签恢复横向排列，不占用太多垂直空间 */
 
-}
+
   /* 给右侧博客栏加点顶部间距，和上面的标签分开 */
   .margin-top--sm-mobile {
     margin-top: 2rem !important;
+  }
   }
 
 
