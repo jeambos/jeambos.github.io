@@ -290,7 +290,7 @@ function AIStatementSection() {
               <div className="col col--8">
                  <Heading as="h2" className="margin-bottom--sm">🤖 本站与 AI</Heading>
                  <p style={{ fontSize: '1rem' }}>
-                   为了提高翻译效率，本站部分书籍的翻译工作，由生成式人工智能（AIAI）辅助生成初稿，经过人工修改审定后生成终稿。
+                   为了提高翻译效率，本站部分书籍的翻译工作，由生成式人工智能（AI）辅助生成初稿，经过人工修改审定后生成终稿。
                    <br/>
                    此部分内容视为人工作品。
                    <br/><br/>
