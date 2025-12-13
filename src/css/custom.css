@@ -150,7 +150,7 @@ article .theme-doc-markdown {
   unicode-range: U+0000-00FF; 
   font-style: italic;
 }
-/* B. 针对中文 (楷体) */
+/* B. 针对中文 (楷体)。 */
 @font-face {
   font-family: 'BookItalic';
   src: local('KaiTi'), local('STKaiti'), local('BiauKai'); /* Windows, Mac, Linux 的楷体 */
