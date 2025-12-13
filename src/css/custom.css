@@ -138,56 +138,68 @@ article .theme-doc-markdown {
 }
 
 /* ====================================================== */
-/* 3. 字体混排魔法 (中文黑体+西文斜体)                    */
+/* 3. 字体混排魔法 (修复版：强制映射 Normal 样式)          */
 /* ====================================================== */
 
-/* --- 1. 定义一个“虚拟斜体” (BookItalic) --- */
-/* A. 针对西文 (Times New Roman, 经典的西文斜体) */
+/* --- A. 虚拟粗体 'BookBold' --- */
+/* 目标：西文用 [Arial 粗斜体]，中文用 [黑体 正身] */
+
+/* A1. 西文部分 */
+@font-face {
+  font-family: 'BookBold';
+  /* 核心修复：这里虽然引用的是 Italic 文件，但我们要把 style 定义为 normal */
+  src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
+  unicode-range: U+0000-00FF; /* ASCII 范围 */
+  font-weight: 700;
+  font-style: normal; /* <--- 改为 normal，以便匹配 */
+}
+
+/* A2. 中文部分 */
+@font-face {
+  font-family: 'BookBold';
+  src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF; /* 汉字范围 */
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --- B. 虚拟斜体 'BookItalic' --- */
+/* 目标：西文用 [Times New Roman 斜体]，中文用 [楷体 正身] */
+
+/* B1. 西文部分 */
 @font-face {
   font-family: 'BookItalic';
+  /* 核心修复：引用 Times 的斜体文件 */
   src: local('Times New Roman Italic'), local('TimesNewRoman-Italic'), local('Times-Italic');
-  /* 关键：指定这个字体只对 ASCII 字符（英文、数字、标点）生效 */
-  unicode-range: U+0000-00FF; 
-  font-style: italic;
+  unicode-range: U+0000-00FF;
+  font-style: normal; /* <--- 关键！必须改为 normal，否则浏览器不认 */
 }
-/* B. 针对中文 (楷体)。 */
+
+/* B2. 中文部分 */
 @font-face {
   font-family: 'BookItalic';
-  src: local('KaiTi'), local('STKaiti'), local('BiauKai'); /* Windows, Mac, Linux 的楷体 */
-  /* 关键：指定这个字体只对汉字范围生效 */
-  unicode-range: U+4E00-9FFF; 
-  font-style: normal; /* 让楷体保持正身，不要被浏览器强行倾斜 */
+  src: local('KaiTi'), local('STKaiti'), local('BiauKai'), local('AR PL UKai CN');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
+  font-style: normal;
 }
 
-/* --- 2. 定义一个“虚拟粗体” (BookBold) --- */
-/* A. 针对西文 (Arial/Helvetica, 经典的西文粗体) */
-@font-face {
-  font-family: 'BookBold';
-  src: local('Arial Bold'), local('Helvetica Bold');
-  unicode-range: U+0000-00FF;
-  font-weight: 700;
-}
-/* B. 针对中文 (黑体) */
-@font-face {
-  font-family: 'BookBold';
-  src: local('PingFang SC'), local('Microsoft YaHei'), local('SimHei');
-  unicode-range: U+4E00-9FFF;
-  font-weight: 700;
-}
 
-/* --- 3. 应用到 Markdown 元素 --- */
-.theme-doc-markdown em,
-.theme-doc-markdown i {
-  font-style: normal; /* 先重置浏览器默认的斜体样式 */
-  font-family: 'BookItalic', serif; /* 应用我们定义的虚拟字体 */
-}
+/* --- C. 应用样式 (保持不变) --- */
 
 .theme-doc-markdown strong,
 .theme-doc-markdown b {
+  font-style: normal;
   font-family: 'BookBold', sans-serif;
+  font-weight: 700;
 }
 
-/* D. 颜色适配 */
+.theme-doc-markdown em,
+.theme-doc-markdown i {
+  font-style: normal; /* 强制所有内容不倾斜（由字体文件本身自带倾斜效果） */
+  font-family: 'BookItalic', 'KaiTi', 'STKaiti', serif;
+}
+
+/* --- D. 颜色适配 (保持不变) --- */
 html[data-theme='light'] .theme-doc-markdown strong,
 html[data-theme='light'] .theme-doc-markdown b { color: #000000; }
 html[data-theme='light'] .theme-doc-markdown em,
@@ -197,7 +209,6 @@ html[data-theme='dark'] .theme-doc-markdown strong,
 html[data-theme='dark'] .theme-doc-markdown b { color: #ffffff; }
 html[data-theme='dark'] .theme-doc-markdown em,
 html[data-theme='dark'] .theme-doc-markdown i { color: #cccccc; }
-
 
 /* ====================================================== */
 /* 4. 脚注优化：核弹级修复 (修复缩进撑大问题)             */
