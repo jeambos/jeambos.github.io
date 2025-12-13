@@ -1,41 +1,58 @@
-import React from 'react'; /* <--- 核心修复：必须加上这一行 */
+import React from 'react';
 
 export const DreamyProgress = ({ value, max = 100 }) => {
   const [width, setWidth] = React.useState(0);
-  
-  // 动画逻辑：组件加载后，从 0 过渡到目标值
+  const containerRef = React.useRef(null); // 1. 创建一个钩子，用来钩住外层容器
+
   React.useEffect(() => {
-    // 使用 setTimeout 稍微延迟，确保浏览器渲染了 0 宽度的状态，产生动画效果
-    const timer = setTimeout(() => {
-      setWidth((value / max) * 100);
-    }, 100);
-    return () => clearTimeout(timer);
+    // 2. 创建一个“观察员”
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        // 3. 如果元素进入了可视区域
+        if (entry.isIntersecting) {
+          // 4. 设置宽度，触发动画
+          setWidth((value / max) * 100);
+          // 5. 动画触发后，就不需要再观察了（节省性能，且避免往回滚时重置）
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1, // 阈值：当进度条露出 10% 的时候就开始播放动画
+      }
+    );
+
+    // 开始观察
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // 清理函数：组件卸载时取消观察
+    return () => observer.disconnect();
   }, [value, max]);
 
   return (
-    <div style={{
+    // 6. 把钩子挂在这个 div 上 (ref={containerRef})
+    <div ref={containerRef} style={{
       width: '100%',
       maxWidth: '300px',
-      height: '16px', // 进度条高度
-      backgroundColor: '#f0f0f0', // 底色（淡灰）
-      borderRadius: '10px', // 整体圆角
+      height: '16px', 
+      backgroundColor: '#f0f0f0', 
+      borderRadius: '10px', 
       overflow: 'hidden',
-      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)', // 内部阴影，增加立体感
+      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)', 
       margin: '10px 0'
     }}>
       <div style={{
         width: `${width}%`,
         height: '100%',
-        // --- 这里设置梦幻渐变色 ---
-        // 方案A (落日橙紫): 配合你网站的橙色主题，加入一点紫色显得梦幻
-        background: 'linear-gradient(90deg, #fc6625ff 0%, #af19c2ff 100%)', 
-        
-        // 方案B (更强烈的橙红渐变，如果你想要 B 方案，把上面的注释掉，解开下面这行):
-        // background: 'linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)',
+        // --- 梦幻渐变色 ---
+        background: 'linear-gradient(90deg, #f36e09ff 0%, #a01b90ff 100%)', 
         
         borderRadius: '10px',
-        transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)', // 丝滑的缓动动画
-        boxShadow: '0 0 10px rgba(255, 154, 139, 0.5)' // 发光特效
+        // 这里的 1.5s 是动画时长，你可以根据喜好调整
+        transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)', 
+        boxShadow: '0 0 10px rgba(255, 154, 139, 0.5)' 
       }} />
     </div>
   );
