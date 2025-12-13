@@ -72,13 +72,13 @@ function BookSection() {
   const books = [
     { 
       title: '《道德浪女》The Ethical Slut', 
-      desc: '【全文】闻名于世的多边恋圣经，是自由的宣言书，更是实用的操作指南。此书根据原书第三版独立译出，非台版转换。', 
+      desc: '【全文翻译完毕】闻名于世的多边恋圣经，是自由的宣言书，更是实用的操作指南。此书根据原书第三版独立译出，非台版转换。', 
       img: '/img/book1-cover.jpg',
       link: '/docs/ethical' 
     },
     { 
       title: '《超越单偶制的世界》A World Beyond Monogamy', 
-      desc: '【全文】非单偶制的百科全书，回答你想知道的所有问题。作者为前BBC记者，真实反映当代非单偶制状况。', 
+      desc: '【全文翻译完毕】非单偶制的百科全书，回答你想知道的所有问题。作者为前BBC记者，真实反映当代非单偶制状况。', 
       img: '/img/book2-cover.jpg',
       link: '/docs/beyond'
     },
@@ -100,7 +100,7 @@ function BookSection() {
     <div className={clsx(styles.sectionBooks, 'padding-vert--lg')}>
       <div className="container">
         <Heading as="h2" className="text--center margin-bottom--lg">
-          非单偶制图书
+          电子书
         </Heading>
         
         {/* 四宫格书籍 */}

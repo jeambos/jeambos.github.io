@@ -26,7 +26,7 @@
 
 /* 1. 书籍板块：使用纯白或极淡的灰色，突出封面 */
 .sectionBooks {
-  background-color: #face66; 
+  background-color: #fac466; 
   /* 如果想要淡灰色，可以改成 #f9f9f9 */
 }
 
@@ -48,12 +48,12 @@
 
 /* 2. 个人介绍板块：使用淡雅的米黄色，配合你的橙色主题 */
 .sectionAbout {
-  background-color: #ffd6a0; /* 极淡的暖色 */
+  background-color: #ffce8f; /* 极淡的暖色 */
 }
 
 /* 3. 博客和AI说明的背景色 */
 .sectionBlog， .sectionStatement {
-  background-color: #f0bfa1;
+  background-color: #fee1b6;
 }
 
 /* --- 订阅按钮自定义颜色 & 放大特效 --- */
