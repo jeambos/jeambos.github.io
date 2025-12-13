@@ -60,6 +60,8 @@ function HomepageHeader() {
              Telegram
           </Link>
 
+
+
         </div>
 
       </div>
@@ -208,7 +210,8 @@ function BlogAndTagsSection() {
           <div className="col col--9">
             <div className="card shadow--md h-100">
               <div className="card__header">
-                <Heading as="h2">📝 最新博客文章</Heading>
+                <Heading as="h2">📝 最新博客文章
+                </Heading>
               </div>
               <div className="card__body">
                 {(recentPosts.length > 0) ? (
