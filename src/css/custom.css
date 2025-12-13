@@ -141,47 +141,50 @@ article .theme-doc-markdown {
 /* 3. 字体混排魔法 (中文黑体+西文斜体)                    */
 /* ====================================================== */
 
-/* A. 虚拟粗体 */
-@font-face {
-  font-family: 'BookBold';
-  src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
-  unicode-range: U+0000-00FF;
-  font-weight: 700;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'BookBold';
-  src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
-  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
-  font-weight: 700;
-  font-style: normal;
-}
-
-/* B. 虚拟斜体 */
+/* --- 1. 定义一个“虚拟斜体” (BookItalic) --- */
+/* A. 针对西文 (Times New Roman, 经典的西文斜体) */
 @font-face {
   font-family: 'BookItalic';
   src: local('Times New Roman Italic'), local('TimesNewRoman-Italic'), local('Times-Italic');
-  unicode-range: U+0000-00FF;
+  /* 关键：指定这个字体只对 ASCII 字符（英文、数字、标点）生效 */
+  unicode-range: U+0000-00FF; 
   font-style: italic;
 }
+/* B. 针对中文 (楷体) */
 @font-face {
   font-family: 'BookItalic';
-  src: local('KaiTi'), local('STKaiti'), local('BiauKai'), local('AR PL UKai CN');
-  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
-  font-style: normal;
+  src: local('KaiTi'), local('STKaiti'), local('BiauKai'); /* Windows, Mac, Linux 的楷体 */
+  /* 关键：指定这个字体只对汉字范围生效 */
+  unicode-range: U+4E00-9FFF; 
+  font-style: normal; /* 让楷体保持正身，不要被浏览器强行倾斜 */
 }
 
-/* C. 应用样式 */
-.theme-doc-markdown strong,
-.theme-doc-markdown b {
-  font-style: normal;
-  font-family: 'BookBold', sans-serif;
+/* --- 2. 定义一个“虚拟粗体” (BookBold) --- */
+/* A. 针对西文 (Arial/Helvetica, 经典的西文粗体) */
+@font-face {
+  font-family: 'BookBold';
+  src: local('Arial Bold'), local('Helvetica Bold');
+  unicode-range: U+0000-00FF;
   font-weight: 700;
 }
+/* B. 针对中文 (黑体) */
+@font-face {
+  font-family: 'BookBold';
+  src: local('PingFang SC'), local('Microsoft YaHei'), local('SimHei');
+  unicode-range: U+4E00-9FFF;
+  font-weight: 700;
+}
+
+/* --- 3. 应用到 Markdown 元素 --- */
 .theme-doc-markdown em,
 .theme-doc-markdown i {
-  font-style: normal;
-  font-family: 'BookItalic', 'KaiTi', 'STKaiti', serif;
+  font-style: normal; /* 先重置浏览器默认的斜体样式 */
+  font-family: 'BookItalic', serif; /* 应用我们定义的虚拟字体 */
+}
+
+.theme-doc-markdown strong,
+.theme-doc-markdown b {
+  font-family: 'BookBold', sans-serif;
 }
 
 /* D. 颜色适配 */
