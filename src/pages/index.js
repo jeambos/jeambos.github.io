@@ -210,7 +210,35 @@ function BlogAndTagsSection() {
           <div className="col col--9">
             <div className="card shadow--md h-100">
               <div className="card__header">
-                <Heading as="h2">📝 最新博客文章
+                {/* 使用 Flex 布局让标题和图标横向排列并垂直居中 */}
+                <Heading as="h2" style={{ display: 'flex', alignItems: 'center' }}>
+                  📝 最新博客文章
+                  
+                  {/* RSS 按钮 */}
+                  <Link 
+                    to="/blog/rss.xml" 
+                    title="订阅 RSS"
+                    style={{ 
+                      display: 'inline-flex', /* 保证图标容器本身也是弹性盒子 */
+                      alignItems: 'center',
+                      marginLeft: '10px',      /* 给文字和图标之间留点空隙 */
+                      color: '#ee802f',        /* RSS 标准橙色 */
+                      textDecoration: 'none',  /* 去掉下划线 */
+                      transform: 'translateY(2px)' /* 微调垂直位置，视觉更平衡 */
+                    }}
+                  >
+                    {/* RSS SVG 图标 (32x32像素) */}
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      width="32" 
+                      height="32" 
+                      fill="currentColor" /* 让 SVG 颜色继承上面的 color 设置 */
+                    >
+                      <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"></path>
+                    </svg>
+                  </Link>
+
                 </Heading>
               </div>
               <div className="card__body">
