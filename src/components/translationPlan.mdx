@@ -1,22 +1,64 @@
-{/* src/components/TranslationPlan.mdx */}
+import React from 'react'; /* <--- 核心修复：必须加上这一行 */
+
+export const DreamyProgress = ({ value, max = 100 }) => {
+  const [width, setWidth] = React.useState(0);
+  
+  // 动画逻辑：组件加载后，从 0 过渡到目标值
+  React.useEffect(() => {
+    // 使用 setTimeout 稍微延迟，确保浏览器渲染了 0 宽度的状态，产生动画效果
+    const timer = setTimeout(() => {
+      setWidth((value / max) * 100);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [value, max]);
+
+  return (
+    <div style={{
+      width: '100%',
+      maxWidth: '300px',
+      height: '16px', // 进度条高度
+      backgroundColor: '#f0f0f0', // 底色（淡灰）
+      borderRadius: '10px', // 整体圆角
+      overflow: 'hidden',
+      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)', // 内部阴影，增加立体感
+      margin: '10px 0'
+    }}>
+      <div style={{
+        width: `${width}%`,
+        height: '100%',
+        // --- 这里设置梦幻渐变色 ---
+        // 方案A (落日橙紫): 配合你网站的橙色主题，加入一点紫色显得梦幻
+        background: 'linear-gradient(90deg, #fc6625ff 0%, #af19c2ff 100%)', 
+        
+        // 方案B (更强烈的橙红渐变，如果你想要 B 方案，把上面的注释掉，解开下面这行):
+        // background: 'linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)',
+        
+        borderRadius: '10px',
+        transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)', // 丝滑的缓动动画
+        boxShadow: '0 0 10px rgba(255, 154, 139, 0.5)' // 发光特效
+      }} />
+    </div>
+  );
+};
+
+{/* 下面是正文内容 */}
 
 ### 📅 当前工作进度 & 后续翻译计划
 
-
-  我仍在翻译中！由于我另有本职工作，翻译和制作工作可能推进较慢。如有特定书籍想看，欢迎前往 [Telegram 频道](https://t.me/cnm_cn) 留言。
+我仍在翻译中！由于我另有本职工作，翻译和制作工作可能推进较慢。如有特定书籍想看，欢迎前往 [Telegram 频道](https://t.me/cnm_cn) 留言。
 
 - **翻译《More Than Two (2nd Edition)》（不止于二）**
-  <progress value="5" max="100" style={{width: '100%', maxWidth: '300px'}}></progress>
+  <DreamyProgress value={5} />
   <span style={{fontSize: '0.9em', marginLeft: '10px'}}>5%：🖊 第 `` 1 `` 章 / 共 `` 21 `` 章  💡已生成 AI 译文，请等待上传。</span> 
 
 - **制作《超越单偶制的世界》Markdown 格式并上传至本站**
-  <progress value="7" max="100" style={{width: '100%', maxWidth: '300px'}}></progress>
-  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>27%：🖊 第 `` 20 `` 章 / 共 `` 74 `` 章</span>
+  <DreamyProgress value={34} />
+  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>34%：🖊 第 `` 25 `` 章 / 共 `` 74 `` 章</span>
 
 - **《The Other Significant Others》 (另一种重要他者)**
-  <progress value="5" max="100" style={{width: '100%', maxWidth: '300px'}}></progress> 
+  <DreamyProgress value={5} />
   <span style={{fontSize: '0.9em', marginLeft: '10px'}}>5%：💤 ``设想中``  💡已生成 AI 导读 - [点此阅读](/blog/2025/12/11/the_other_significant_others_guide)</span>
 
 - **《Polyamorists Next Door》（邻家的多边关系者）**
-  <progress value="0" max="100" style={{width: '100%', maxWidth: '300px'}}></progress>
+  <DreamyProgress value={0} />
   <span style={{fontSize: '0.9em', marginLeft: '10px'}}>0%：💤 ``设想中``</span>
