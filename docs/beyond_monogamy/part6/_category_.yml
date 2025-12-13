@@ -1,0 +1,7 @@
+label: '🈳第6️⃣部分：这就是政治，不是吗？'       # 1. 这里写你想在侧边栏显示的中文名称
+position: 600               # 2. 这里写排序序号（越小越靠前）
+collapsible: true           # 3. 是否允许折叠（默认为 true）
+collapsed: true            # 4. 默认状态是折叠还是展开（true=折叠，false=展开）
+link:
+  type: doc
+  id: intro
