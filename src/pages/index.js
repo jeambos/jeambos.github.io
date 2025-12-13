@@ -5,7 +5,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import {usePluginData} from '@docusaurus/useGlobalData';
-import TranslationPlanContent from '../components/TranslationPlan.mdx'; // 确保这里引入了你的计划组件
+import TranslationPlanContent from '../components/translationPlan.mdx'; // 确保这里引入了你的计划组件
 
 // --- 第一部分：问候语 (Header) ---
 function HomepageHeader() {
