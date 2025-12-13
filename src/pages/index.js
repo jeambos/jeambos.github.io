@@ -86,7 +86,7 @@ function BookSection() {
     },
     { 
       title: '《不止于二（第二版）》More Than Two', 
-      desc: '【翻译中】【机翻全文】无需多言的经典名著，更换合著者后进行全面修订，紧跟时代前沿。已由 Gemini 机翻全文，人工翻译正在进行中。', 
+      desc: '【翻译中】【机翻全文】无需多言的经典名著，更换合著者后进行全面修订，紧跟时代前沿。已有 Gemini 机翻全文，人工翻译正在进行中。', 
       img: '/img/book3-cover.jpg',
       link: '/docs/morethantwo/'
     },
