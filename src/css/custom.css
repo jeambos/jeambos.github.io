@@ -81,11 +81,12 @@ html[data-theme='light'] .theme-doc-markdown h2,
 html[data-theme='light'] .theme-doc-markdown h3 {
   color: #1a1a1a;
 }
+/*后续统一安排引用框配色
 html[data-theme='light'] .theme-doc-markdown blockquote {
   background-color: #f3f4f6;
   color: #555;
   border-left: 4px solid #d1d5db;
-}
+} */
 
 /* --- 🌙 暗色模式配色 --- */
 html[data-theme='dark'] .theme-doc-markdown {
@@ -101,11 +102,12 @@ html[data-theme='dark'] .theme-doc-markdown h2,
 html[data-theme='dark'] .theme-doc-markdown h3 {
   color: #ffffff;
 }
+/* 后续统一安排引用框配色
 html[data-theme='dark'] .theme-doc-markdown blockquote {
   background-color: #303338;
   color: #b0b3b8;
   border-left: 4px solid #555;
-}
+}  */
 
 /* --- 通用容器与段落样式 --- */
 article .theme-doc-markdown {
@@ -130,12 +132,14 @@ article .theme-doc-markdown {
   margin-top: 2em;
   text-indent: 0;
 }
+/* 后续统一设置引用框样式
 .theme-doc-markdown blockquote {
   font-style: italic;
   padding: 1rem;
   border-radius: 4px;
   text-indent: 0;
 }
+  */
 
 /* ====================================================== */
 /* 3. 字体混排魔法 (修复版：强制映射 Normal 样式)          */
@@ -456,4 +460,77 @@ html[data-theme='light'] .section-peach {
 /* 暗色模式：深咖色 */
 html[data-theme='dark'] .section-peach {
   background-color: #473122 !important; 
+}
+
+/* ====================================================== */
+/* 11. 引用块 (Blockquote) 全局美化                       */
+/* ====================================================== */
+
+/* --- 基础结构与图标 (Core Styles) --- */
+.theme-doc-markdown blockquote {
+  /* 1. 字体样式修正：取消强制斜体 */
+  font-style: normal !important; 
+  
+  /* 2. 布局设置 */
+  position: relative; /* 为绝对定位的图标做参照 */
+  margin: 1.5em 0;    /* 上下留白 */
+  padding: 15px 20px 15px 20px !important; /* 左侧留出 50px 给图标，防止文字重叠 */
+  border-radius: 8px; /* 圆角 */
+  border: none !important; /* 去掉原本那个粗粗的左边框线 */
+  
+  /* 3. 字体设置 
+  font-family: "KaiTi", "STKaiti", "BiauKai", serif; /* 引用内容依然推荐用楷体，更有“引文”感，但不倾斜 */
+  font-size: 0.95em;
+  line-height: 1.6; 
+}*/
+
+
+/* --- 引号图标 (使用伪元素 ::before) --- */
+.theme-doc-markdown blockquote::before {
+  content: '';
+  position: absolute;
+  top: 15px; 
+  left: 12px;
+  width: 24px;
+  height: 24px;
+  
+  /* 关键修改 1：使用 url() 引用，注意 Docusaurus 会自动把 static 映射到根目录 */
+  /* 如果你的文件在 static/img/quote.png，这里就写 /img/quote.png */
+  background-image: url('/img/quote.png');
+  
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  /* 关键修改 2：防止被背景遮挡 */
+  z-index: 10; 
+  opacity: 1;
+
+  /* 🛠️ 调试专用：打开下面这行。 */
+  /* 如果你能看到一个红框但没图，说明是图片路径错误。 */
+  /* 如果连红框都看不到，说明选择器写错了或者 content 没生效。 */
+  border: 1px solid red;  
+}
+
+/* --- 🌞 亮色模式配色 --- */
+html[data-theme='light'] .theme-doc-markdown blockquote {
+  background-color: #fff8eb; /* 极淡的暖橙色背景，像便签纸 */
+  color: #5c5c5c;
+  
+  /* 给盒子加一点微弱的阴影，让它像一张卡片贴在纸上 */
+  box-shadow: 2px 2px 0px rgba(230, 149, 37, 0.2); 
+}
+
+/* --- 🌙 暗色模式配色 --- */
+html[data-theme='dark'] .theme-doc-markdown blockquote {
+  background-color: #302d28; /* 深棕灰色背景 */
+  color: #c9c9c9;
+  
+  /* 暗色模式下不需要阴影，或者用微弱的高光边框 */
+  border: 1px solid #4a4a4a !important;
+}
+
+/* 适配暗黑模式下的图标颜色 (通过滤镜反转颜色，或者换一张图) */
+html[data-theme='dark'] .theme-doc-markdown blockquote::before {
+  /* 这里不需要改图片，因为橙色图标在深色背景上也很好看 */
+  opacity: 0.6; /* 稍微暗一点 */
 }
