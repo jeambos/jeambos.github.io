@@ -54,7 +54,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)} style={{ paddingBottom: '6rem' }}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          中文非单偶制资源站
+          中文非单偶制资源站 <i>by Jeambo</i>
         </Heading>
         
         {/* 金句轮播区域 */}
@@ -85,25 +85,25 @@ function ShortcutSection() {
       color: 'primary'
     },
     {
-      title: '🤔 好奇者入口',
-      desc: '听说过开放关系但充满疑惑？了解它，从打破迷思开始。',
-      link: '/blog/tags/新手指南', // 建议链接
+      title: '🤔 这是哪里？',
+      desc: '从别处看到本站？从打破单偶制神话开始，了解全新的世界。',
+      link: '/docs/beyond_monogamy/part0/0.4.translator_note', // 建议链接
       btnText: '破除迷思',
       color: 'info'
-    },
-    {
-      title: '🌱 新手急救包',
-      desc: '刚踏入这片领域，感到不安或嫉妒？别慌，这是必经之路。',
-      link: '/docs/opening_up', // 建议链接
-      btnText: '生存指南',
-      color: 'success'
     }
+    /*{
+      title: '🌱 新手急救',
+      desc: '已经开始尝试，感到不安或嫉妒？获取自助资料。',
+      link: '/docs/opening_up', // 建议链接
+      btnText: '实务指南',
+      color: 'success'
+    }*/
   ];
 
   return (
-    <div className={clsx('padding-vert--xl', styles.bgWhite)} style={{ position: 'relative', paddingBottom: '8rem' }}>
+    <div className={clsx('padding-bottom--xl', 'padding-top--md', styles.bgWhite)} style={{ position: 'relative', paddingBottom: '8rem' }}>
       <div className="container">
-        <div className="row">
+        <div className="row" style={{ justifyContent: 'center' }}>
           {items.map((item, idx) => (
             <div key={idx} className="col col--4 margin-bottom--md">
               <div className="card shadow--tl h-100 text--center">
@@ -127,7 +127,7 @@ function ShortcutSection() {
 {/* 分割线：Wave (连接 Shortcuts 和 Books) */}
       {/* 填充色：#fac466 (Book 板块的背景色) */}
       <ShapeDivider 
-        fill="#fac466" 
+        className={styles.fillOrange} // <--- 核心修改：使用变量类
         height="80px"
         // 这是一个标准的波浪，底部闭合
         path={<path d="M0,0 C240,90 480,90 720,50 C960,10 1200,80 1200,80 L1200,120 L0,120 Z"></path>}
@@ -146,7 +146,7 @@ function BookSection() {
   ];
 
   return (
-    <div className={clsx(styles.sectionBooks, 'padding-vert--xl')} style={{ position: 'relative', paddingBottom: '10rem' }}>
+    <div className={clsx(styles.sectionBooks, 'padding-bottom--xl', 'padding-top--md')} style={{ position: 'relative', paddingBottom: '10rem' }}>
       <div className="container">
         <Heading as="h2" className="text--center margin-bottom--lg">电子书</Heading>
         <div className="row">
@@ -170,9 +170,8 @@ function BookSection() {
 
 {/* 分割线：Book (连接 Books 和 Plan) */}
       <ShapeDivider 
-        fill="#ffffff" 
+        className={styles.fillWhite}
         height="60px"
-        className="divider-flip" // 你也可以用 CSS 类，或者直接用下面的 style
         style={{ transform: 'rotate(180deg)' }} // <--- 核心修复：直接旋转180度
         path={<path d="M1200,0H0V120H281.94C572.9,116.24,602.45,3.86,602.45,3.86h0S632,116.24,923,120h277Z"></path>}
       />
@@ -280,7 +279,7 @@ function BlogAndTagsSection() {
 {/* 分割线：Triangle (连接 Blog 和 About) */}
       {/* 颜色：#ffce8f (About 的背景色) */}
       <ShapeDivider 
-        fill="#ffce8f" 
+        className={styles.fillPeach} 
         height="60px"
         path={<path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"></path>}
       />
@@ -345,7 +344,7 @@ function AIStatementSection() {
           2. 样式改为 top: 100% (位于板块正下方)，让它盖在 Footer 上。
       */}
       <ShapeDivider 
-        fill="#fee1b6" 
+        className={styles.fillPeachLight}
         height="30px"
         style={{ 
           top: '99%',     /* 稍微往上提一点点(99%)防止浏览器渲染出一条缝隙 */
@@ -379,3 +378,4 @@ export default function Home() {
     </Layout>
   );
 }
+

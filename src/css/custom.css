@@ -30,6 +30,8 @@
   --ifm-color-primary-lighter: #ffb74d;
   --ifm-color-primary-lightest: #ffe0b2;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  
+
 }
 
 /* ====================================================== */
@@ -624,4 +626,38 @@ html[data-theme='dark'] .hero--primary::before {
     /* 手机上背景图可能需要调整位置，或者换一张竖图 */
     /* background-position: center top; */
   }
+}
+
+
+/* ====================================================== */
+/* 9. 首页动态配色系统 (适配暗黑模式)                     */
+/* ====================================================== */
+
+/* 1. 定义默认(亮色)下的颜色 */
+:root {
+  /* Shortcut & Plan 板块背景：亮色是纯白 */
+  --home-bg-white: #ffffff;
+  
+  /* Books 板块背景：亮色是橙色 */
+  --home-bg-orange: #fac466;
+  
+  /* Blog 板块背景：亮色是极淡灰 */
+  --home-bg-gray: #fcfcfc;
+  
+  /* About 板块背景：亮色是淡桃色 */
+  --home-bg-peach: #ffce8f;
+  
+  /* AI 板块背景：亮色是极淡肉色 */
+  --home-bg-peach-light: #fee1b6;
+}
+
+/* 2. 定义暗黑模式下的颜色 override */
+[data-theme='dark'] {
+  /* 在暗黑模式下，所有板块背景通常都统一为 Docusaurus 的默认深底色 */
+  /* 或者使用 transparent 让它透出 body 的背景 */
+  --home-bg-white: var(--ifm-background-color);       /* 变成深色 */
+  --home-bg-orange: var(--ifm-background-color);      /* 橙色变深色 */
+  --home-bg-gray: var(--ifm-background-color);        /* 灰色变深色 */
+  --home-bg-peach: var(--ifm-background-color);       /* 桃色变深色 */
+  --home-bg-peach-light: var(--ifm-background-color); /* 浅桃变深色 */
 }

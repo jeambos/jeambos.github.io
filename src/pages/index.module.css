@@ -65,7 +65,7 @@
 
 /* 1. 书籍板块：使用纯白或极淡的灰色，突出封面 */
 .sectionBooks {
-  background-color: #fac466; 
+  background-color: var(--home-bg-orange); /* 换成变量 */
   /* 如果想要淡灰色，可以改成 #f9f9f9 */
 }
 
@@ -87,12 +87,21 @@
 
 /* 2. 个人介绍板块：使用淡雅的米黄色，配合你的橙色主题 */
 .sectionAbout {
-  background-color: #ffce8f; /* 极淡的暖色 */
+  background-color: var(--home-bg-peach); /* 换成变量 */
 }
 
 /* 3. 博客和AI说明的背景色 */
-.sectionBlog, .sectionStatement {
-  background-color: #fee1b6;
+.sectionBlog {
+  background-color: var(--home-bg-gray);
+  }
+
+  .sectionStatement {
+  background-color: var(--home-bg-peach-light);
+  }
+
+.bgWhite {
+  background-color: var(--home-bg-white); /* 👈 必须用变量！ */
+  position: relative;
 }
 
 /* --- 订阅按钮自定义颜色 & 放大特效 --- */
@@ -127,7 +136,7 @@
 
 /* --- 博客与标签综合板块 --- */
 .sectionBlog {
-  background-color: #fcfcfc;
+  background-color: var(--home-bg-gray);
   /* border-top: 1px solid #eee; */
   /* border-bottom: 1px solid #eee; */
 }
@@ -302,7 +311,7 @@
 }
 
 /* --- 背景色工具类 (用于配合分割线) --- */
-.bgWhite { background-color: #ffffff; }
+.bgWhite { background-color: var(--home-bg-white);; }
 .bgPeach { background-color: #fee1b6; } /* 你的主题肉色 */
 /* 注意：暗黑模式需要在 custom.css 里额外处理 */
 
@@ -310,4 +319,63 @@
   display: block;
   width: 100%;     /* 确保宽度占满 */
   height: 100%;    /* 高度由父容器控制 */
+}
+
+/* --- 分割线动态填色类 --- */
+/* 这些类会让 SVG 的 fill 属性跟随 CSS 变量变化 */
+
+.fillWhite {
+  fill: var(--home-bg-white);
+}
+
+.fillOrange {
+  fill: var(--home-bg-orange);
+}
+
+.fillPeach {
+  fill: var(--home-bg-peach);
+}
+
+.fillPeachLight {
+  fill: var(--home-bg-peach-light);
+}
+
+/* 如果有需要用到 Footer 颜色的 (Tilt分割线) */
+.fillFooter {
+  fill: #2e2e2e; /* 默认深色 Footer 颜色 */
+}
+/* 暗黑模式下 Footer 颜色可能略有不同，通常保持深色即可 */
+[data-theme='dark'] .fillFooter {
+  fill: #1b1b1d; /* Docusaurus 默认暗黑背景 */
+}
+
+
+
+/* --- 首页各板块背景色设置（使用变量版） --- */
+/* 1. 修复 bgWhite */
+.bgWhite {
+  background-color: var(--home-bg-white); /* 👈 必须用变量！ */
+  position: relative;
+}
+
+/* 2. 修复 Blog 板块 */
+.sectionBlog {
+  background-color: var(--home-bg-gray);  /* 👈 必须用变量！ */
+  position: relative;
+}
+
+/* 3. 修复其他板块 */
+.sectionBooks {
+  background-color: var(--home-bg-orange); /* 👈 必须用变量！ */
+  position: relative;
+}
+
+.sectionAbout {
+  background-color: var(--home-bg-peach);
+  position: relative;
+}
+
+.sectionStatement {
+  background-color: var(--home-bg-peach-light);
+  position: relative;
 }
