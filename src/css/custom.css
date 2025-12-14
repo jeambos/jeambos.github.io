@@ -662,3 +662,34 @@ html[data-theme='dark'] .hero--primary::before {
   --home-bg-peach-light: var(--ifm-background-color); /* 浅桃变深色 */
 }
 
+/* ====================================================== */
+/* 10. 右侧目录 (TOC) 样式优化                            */
+/* ====================================================== */
+
+/* 基础样式微调：让未激活的文字颜色稍微淡一点，增加层次感 */
+.table-of-contents__link {
+  color: var(--ifm-color-content-secondary); /* 使用次级灰，不抢眼 */
+  transition: all 0.2s ease-in-out;
+  border-left: 3px solid transparent; /* 预留边框位置，防止切换时抖动 */
+  padding-left: 12px; /* 给左边留点空隙 */
+}
+
+/* 悬停状态：稍微变亮 */
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* 🎯 激活状态：橙色竖线 + 文字高亮 */
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary) !important; /* 强制文字变橙色 */
+  border-left-color: var(--ifm-color-primary) !important; /* 左侧竖线变橙 */
+  background: linear-gradient(90deg, rgba(230, 149, 37, 0.08) 0%, transparent 100%); /* (可选) 淡淡的背景拖尾，像极光一样 */
+  font-weight: 600; /* 加粗一点点 */
+}
+
+/* 暗黑模式微调 */
+[data-theme='dark'] .table-of-contents__link--active {
+  /* 暗黑模式下背景光晕稍微调亮一点，增加可视度 */
+  background: linear-gradient(90deg, rgba(230, 149, 37, 0.15) 0%, transparent 100%);
+}
