@@ -78,46 +78,61 @@ function HomepageHeader() {
 function ShortcutSection() {
   const items = [
     {
-      title: '📖 直接阅读',
-      desc: '无需多言，直接开始阅读经典的《道德浪女》。',
+      title: '📖 道德浪女',
+      desc: '一键直达，阅读多边关系圣经《道德浪女》简中译本。',
       link: '/docs/ethical',
       btnText: '开始阅读',
-      color: 'primary'
+      btnClass: styles.btnGold,
+      styleClass: styles.cardDirect // <--- 关联 CSS 里的蓝色类
     },
     {
       title: '🤔 这是哪里？',
       desc: '从别处看到本站？从打破单偶制神话开始，了解全新的世界。',
       link: '/docs/beyond_monogamy/part0/0.4.translator_note', // 建议链接
       btnText: '破除迷思',
-      color: 'info'
+      btnClass: styles.btnRose,
+      styleClass: styles.cardCurious // <--- 关联 CSS 里的绿色类
     }
     /*{
       title: '🌱 新手急救',
       desc: '已经开始尝试，感到不安或嫉妒？获取自助资料。',
       link: '/docs/opening_up', // 建议链接
       btnText: '实务指南',
-      color: 'success'
+      color: 'success'Curious
     }*/
   ];
 
   return (
-    <div className={clsx('padding-bottom--xl', 'padding-top--md', styles.bgWhite)} style={{ position: 'relative', paddingBottom: '8rem' }}>
+// 依然保留 sectionShortcut 类名以防万一
+    <div className={clsx('padding-top--lg', 'padding-bottom--xl',styles.bgWhite, styles.sectionShortcut)} style={{ position: 'relative', paddingBottom: '8rem' }}>
       <div className="container">
+        {/* 让卡片居中显示 (justifyContent: 'center') */}
         <div className="row" style={{ justifyContent: 'center' }}>
           {items.map((item, idx) => (
-            <div key={idx} className="col col--4 margin-bottom--md">
-              <div className="card shadow--tl h-100 text--center">
+            // 这里改为 col--6，让两个卡片各占一半宽度，更大气
+            <div key={idx} className="col col--6 margin-bottom--md">
+              <div 
+                // 核心修改：在这里加上 item.styleClass
+                className={clsx('card shadow--md h-100 text--center', 'padding-top--md', item.styleClass)} //人工调整了padding
+                style={{ borderWidth: '1px' }} // 确保边框显示
+              >
                 <div className="card__header">
                   <Heading as="h3">{item.title}</Heading>
                 </div>
                 <div className="card__body">
                   <p>{item.desc}</p>
                 </div>
-                <div className="card__footer">
-                  <Link to={item.link} className={`button button--block button--outline button--${item.color}`}>
-                    {item.btnText}
-                  </Link>
-                </div>
+<div className="card__footer">
+  {/* 修改前： className={`button button--block button--${item.color}`}
+      修改后： 如下所示
+  */}
+  <Link 
+    to={item.link} 
+    className={clsx('button button--block','padding-vert--md', item.btnClass)} 
+  >
+    {item.btnText}
+  </Link>
+</div>
               </div>
             </div>
           ))}
@@ -148,7 +163,7 @@ function BookSection() {
   return (
     <div className={clsx(styles.sectionBooks, 'padding-bottom--xl', 'padding-top--md')} style={{ position: 'relative', paddingBottom: '10rem' }}>
       <div className="container">
-        <Heading as="h2" className="text--center margin-bottom--lg">电子书</Heading>
+        <Heading as="h2" className="text--center margin-bottom--lg">电子书阅读与下载</Heading>
         <div className="row">
           {books.map((book, idx) => (
             <div key={idx} className="col col--6 margin-bottom--lg">

@@ -14,6 +14,7 @@
 .heroBanner,
 .sectionBooks,
 .sectionAbout,
+.sectionShortcut,
 .sectionStatement {
   position: relative;
 }
@@ -39,7 +40,8 @@
   /* 原理：这俩的 Col 包裹着 Card。我们需要加一点点 padding，让 Card 不要顶到屏幕边缘即可。 */
   /* 注意：不要加太多，因为 Card 内部往往还有自己的 padding。 */
   .sectionBooks [class*='col'],
-  .sectionBlog [class*='col'] {  /* <--- Blog 应该放在这里 */
+  .sectionBlog [class*='col']   /* <--- Blog 应该放在这里 */
+  .sectionShortcut [class*='col'] {  /* <--- 👈 新增这一行！ */
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
@@ -378,4 +380,100 @@
 .sectionStatement {
   background-color: var(--home-bg-peach-light);
   position: relative;
+}
+
+/* --- 首页 Shortcut 双子星卡片配色 --- */
+
+/* 1. cardDirect (直达阅读)：晨曦金橙 */
+/* 鲜明醒目，呼应全站主色，代表“行动与活力” */
+.cardDirect {
+  /* 亮色模式：从暖黄流向金橙，像清晨的阳光 */
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border: 1px solid #ffe082; /* 金色边框 */
+  border-left: 5px solid #ffca28; /* 左侧加粗强调，增加“鲜明度” */
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 2. cardCurious (好奇者入口)：暖柔蔷薇 */
+/* 温柔内敛，拒绝冷色，代表“思考与探究” */
+.cardCurious {
+  /* 亮色模式：从极淡的粉白流向柔和的珊瑚色 */
+  background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+  border: 1px solid #ffcdd2; /* 柔粉色边框 */
+  border-left: 5px solid #ef9a9a; /* 左侧加粗强调，区分层级 */
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- 交互效果：悬停时上浮并发光 --- */
+.cardDirect:hover, 
+.cardCurious:hover {
+  transform: translateY(-5px); /* 稍微浮起 */
+  box-shadow: 0 12px 24px rgba(230, 149, 37, 0.15); /* 投下淡淡的暖色阴影 */
+  cursor: pointer;
+}
+
+/* --- 暗黑模式适配 (Dark Mode) --- */
+/* 确保夜间不刺眼，同时保留色相倾向 */
+
+html[data-theme='dark'] .cardDirect {
+  /* 深邃的琥珀色/棕色渐变 */
+  background: linear-gradient(135deg, #4e342e 0%, #3e2723 100%);
+  border: 1px solid #6d4c41;
+  border-left-color: #ffb74d; /* 保留高亮条 */
+}
+
+html[data-theme='dark'] .cardCurious {
+  /* 深邃的勃艮第红/暗玫瑰色渐变 */
+  background: linear-gradient(135deg, #4a2c36 0%, #382026 100%);
+  border: 1px solid #683a45;
+  border-left-color: #e57373; /* 保留高亮条 */
+}
+
+/* 暗黑模式下的悬停光晕调整 */
+html[data-theme='dark'] .cardDirect:hover, 
+html[data-theme='dark'] .cardCurious:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* --- 自定义按钮颜色 --- */
+
+/* 1. 蔷薇色按钮 (配合 cardCurious) */
+.btnRose {
+  background-color: #d34a71; /* 柔和的深红/珊瑚色 */
+  color: #fff !important;    /* 强制文字白色 */
+  border: 1px solid #ef5350;
+  transition: all 0.2s ease;
+}
+
+.btnRose:hover {
+  background-color: #f26aa1; /* 悬停变浅 */
+  border-color: #e53935;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* 2. 晨曦金按钮 (配合 cardDirect，如果你想替换掉 warning) */
+.btnGold {
+  background-color: #fa7313; /* 温暖的橙黄色 */
+  color: #fff !important;
+  border: 1px solid #c84d0f;
+  transition: all 0.2s ease;
+}
+
+.btnGold:hover {
+  background-color: #ff813c;
+  border-color: #fb8c00;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* --- 暗黑模式适配 --- */
+html[data-theme='dark'] .btnRose {
+  background-color: #c62828; /* 夜间用更深沉的红 */
+  border-color: #b71c1c;
+}
+
+html[data-theme='dark'] .btnGold {
+  background-color: #ef6c00; /* 夜间用深橙色 */
+  border-color: #e65100;
 }
