@@ -192,13 +192,13 @@ const config = {
       links: [
         // --- 第一列：本站信息 (Logo等通常难以在这里直接加图片，用 HTML 模拟或纯文字) ---
         {
-          title: '关注我们',
+          title: '中文非单偶制资源站',
           items: [
             {
               html: `
                 <div style="margin-bottom: 10px;">
-                  <img src="/img/logo.png" alt="Logo" width="40" style="vertical-align: middle;"/> 
-                  <span style="font-weight:bold; margin-left:8px; color: #fff;">CNM 资源站</span>
+                  <img src="/img/logo.svg" alt="Logo" width="40" style="vertical-align: middle;"/> 
+                  <span style="font-weight:bold; margin-left:8px; color: #fff;"><i>by Jeambo</i></span>
                 </div>
                 <p style="font-size: 0.8rem; color: #aaa;">愿每个人都能勇敢去爱，且爱得自由。</p>
                 <div style="display: flex; gap: 10px;">
@@ -214,19 +214,19 @@ const config = {
           title: '快速导航',
           items: [
             { label: '📚 博客文章', to: '/blog' },
-            { label: '🤔 关于CNM的迷思', to: '/blog/tags/新手指南' }, // 替换为你的实际链接
+            { label: '🤔 关于CNM的迷思', to: '/#' }, // 替换为你的实际链接
             { label: '💊 新手急救包', to: '/docs/opening_up' },
-            { label: '🧠 哲学思考', to: '/blog/tags/反思与批评' },
+            { label: '🧠 非单偶制大百科', to: '/docs/beyond_monogamy' },
           ],
         },
         // --- 第三列：相关资源 ---
         {
-          title: '友情链接',
+          title: '相关资源',
           items: [
             { label: 'Polyamory.com', href: 'https://polyamory.com/' },
             { label: '波栗打開開', href: 'https://www.poly.tw/' },
             { label: 'MoreThanTwo.com', href: 'https://www.morethantwo.com' },
-            { label: '期待你的推荐', href: 'https://t.me/cnm_cn' },
+            { label: '✍期待你的推荐', href: 'https://t.me/cnm_cn' },
           ],
         },
         // --- 第四列：原内容 ---
@@ -237,7 +237,7 @@ const config = {
     },
 
 
-    
+
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
