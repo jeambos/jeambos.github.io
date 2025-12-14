@@ -214,7 +214,7 @@ function BookSection() {
       <ShapeDivider 
         className={styles.fillWhite}
         height="60px"
-        style={{ transform: 'rotate(180deg)' }} // <--- 核心修复：直接旋转180度
+        style={{ transform: 'rotate(180deg)' }} // <--- 核心修复：直接旋转180度。
         path={<path d="M1200,0H0V120H281.94C572.9,116.24,602.45,3.86,602.45,3.86h0S632,116.24,923,120h277Z"></path>}
       />
     </div>
