@@ -6,8 +6,16 @@
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
-  position: relative;
+  /* position: relative; */ /* 在后方统一规定。如果需要在横幅内放置绝对定位元素，可以取消注释 */
   overflow: hidden;
+}
+
+/* 让各板块成为相对定位容器，便于放置绝对定位的分割线等元素 */
+.heroBanner,
+.sectionBooks,
+.sectionAbout,
+.sectionStatement {
+  position: relative;
 }
 
 /* --- 移动端适配 (小于 996px) --- */
@@ -120,8 +128,8 @@
 /* --- 博客与标签综合板块 --- */
 .sectionBlog {
   background-color: #fcfcfc;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  /* border-top: 1px solid #eee; */
+  /* border-bottom: 1px solid #eee; */
 }
 
 /* 左侧标签栏容器 */
@@ -225,3 +233,81 @@
   }
 }
 
+/* --- 金句轮播动画 --- */
+.quoteContainer {
+  min-height: 80px; /* 预留高度防止跳动 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.quoteItem {
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: absolute; /* 让它们重叠，便于切换 */
+}
+
+.quoteItemActive {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative; /* 激活时占据文档流 */
+}
+
+/* --- 通用异形分割线容器 --- */
+.shapeDivider {
+  position: absolute;
+  bottom: 0; /* 绝对贴底 */
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2; /* 提高层级，防止被 padding 内容盖住 */
+  pointer-events: none; /* 防止挡住底部的点击事件 */
+}
+
+/* 放置在板块底部的分割线 */
+.shapeDividerBottom {
+  bottom: 0;
+}
+
+/* 放置在板块顶部的分割线（如有需要） */
+.shapeDividerTop {
+  top: 0;
+  transform: rotate(180deg);
+}
+
+.shapeDivider svg {
+  display: block;
+  width: calc(100% + 1.3px); /* 稍微宽一点，防止 100% 缩放时出现白边缝隙 */
+  height: 100%;
+}
+
+/* 适配移动端：分割线稍微矮一点 */
+@media (max-width: 768px) {
+  .shapeDivider svg {
+    height: 30px;
+  }
+  .quoteItem {
+    font-size: 1rem;
+  }
+}
+
+/* --- 背景色工具类 (用于配合分割线) --- */
+.bgWhite { background-color: #ffffff; }
+.bgPeach { background-color: #fee1b6; } /* 你的主题肉色 */
+/* 注意：暗黑模式需要在 custom.css 里额外处理 */
+
+.shapeDivider svg {
+  display: block;
+  width: 100%;     /* 确保宽度占满 */
+  height: 100%;    /* 高度由父容器控制 */
+}

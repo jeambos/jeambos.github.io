@@ -185,25 +185,59 @@ const config = {
       ],
 
       },
+      
+      
       footer: {
-        style: 'dark',
-        // 【需求3】Footer 只保留版权信息，去掉 links 数组内容
-        links: [], 
-        copyright: `
-      Copyright © ${new Date().getFullYear()} <strong>Jeambo</strong>.
-      <br/>
-      除非另有声明，本站所有原创内容均采用 
-      <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hans" target="_blank" style="border-bottom: 1px dashed;">
-        CC BY-SA 4.0
-      </a> 
-      协议许可。(自由共享，演绎，需署名且保持相同协议) 
-      <br/>
-      Built with Docusaurus.
-    `, 
-        
-        
-        //`本站内容，除特殊注明外，均为CC协议。 ${new Date().getFullYear()} Jeambo. Built with Docusaurus.`,
-      },
+      style: 'dark', // 建议深色，配合 Tilt 分割线
+      links: [
+        // --- 第一列：本站信息 (Logo等通常难以在这里直接加图片，用 HTML 模拟或纯文字) ---
+        {
+          title: '关注我们',
+          items: [
+            {
+              html: `
+                <div style="margin-bottom: 10px;">
+                  <img src="/img/logo.png" alt="Logo" width="40" style="vertical-align: middle;"/> 
+                  <span style="font-weight:bold; margin-left:8px; color: #fff;">CNM 资源站</span>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa;">愿每个人都能勇敢去爱，且爱得自由。</p>
+                <div style="display: flex; gap: 10px;">
+                  <a href="https://jeambo.substack.com/" target="_blank" style="background: #FF6719; padding: 4px 8px; border-radius: 4px; color: white;">Substack</a>
+                  <a href="https://t.me/cnm_cn" target="_blank" style="background: #0088cc; padding: 4px 8px; border-radius: 4px; color: white;">Telegram</a>
+                </div>
+              `,
+            },
+          ],
+        },
+        // --- 第二列：快速导航 ---
+        {
+          title: '快速导航',
+          items: [
+            { label: '📚 博客文章', to: '/blog' },
+            { label: '🤔 关于CNM的迷思', to: '/blog/tags/新手指南' }, // 替换为你的实际链接
+            { label: '💊 新手急救包', to: '/docs/opening_up' },
+            { label: '🧠 哲学思考', to: '/blog/tags/反思与批评' },
+          ],
+        },
+        // --- 第三列：相关资源 ---
+        {
+          title: '友情链接',
+          items: [
+            { label: 'Polyamory.com', href: 'https://polyamory.com/' },
+            { label: '波栗打開開', href: 'https://www.poly.tw/' },
+            { label: 'MoreThanTwo.com', href: 'https://www.morethantwo.com' },
+            { label: '期待你的推荐', href: 'https://t.me/cnm_cn' },
+          ],
+        },
+        // --- 第四列：原内容 ---
+        // (Docusaurus 的 copyright 字段会自动放在最底部，不需要放在列里，
+        // 但如果你想作为第四列显示，可以写在这里)
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Jeambo. Built with Docusaurus. <br/> Licensed under CC BY-SA 4.0.`,
+    },
+
+
+    
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,

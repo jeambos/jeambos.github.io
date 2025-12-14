@@ -1,144 +1,194 @@
 import clsx from 'clsx';
+import React, { useState, useEffect } from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import {usePluginData} from '@docusaurus/useGlobalData';
-import TranslationPlanContent from '../components/translationPlan.mdx'; // 确保这里引入了你的计划组件
+import TranslationPlanContent from '../components/TranslationPlan.mdx';
 
-// --- 第一部分：问候语 (Header) ---
+// --- 0. 配置数据 & 工具组件 ---
+
+// 金句数据 (建议后续提取到单独的 json 文件中)
+const QUOTES = [
+  "“爱是无限的，就像火焰，点燃更多的蜡烛并不会减弱它。”",
+  "“嫉妒不是爱的证明，它只是不安全感的警报。”",
+  "“我们制定规则，不是为了限制彼此，而是为了保护这段关系的珍贵之处。”",
+  "“诚实是激进的，但在非单偶制中，它是唯一的货币。”",
+  "“如果你想要自由，你必须先给予自由。”"
+];
+
+// 异形分割线组件 (更新版)
+// 增加了 ...props 以便支持 style 和 className 的透传
+const ShapeDivider = ({ path, fill, height = "60px", className, style }) => (
+  <div 
+    className={clsx(styles.shapeDivider, className)}
+    style={{ ...style }} // <--- 关键：允许传入 transform: rotate 等样式
+  >
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 1200 120" 
+      preserveAspectRatio="none"
+      style={{ height: height, fill: fill }}
+    >
+      {path}
+    </svg>
+  </div>
+);
+
+// --- 1. Header (带金句轮播 + Arrow分割线) ---
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
+  // 金句轮播逻辑
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIndex((prev) => (prev + 1) % QUOTES.length);
+    }, 5000); // 5秒切换一次
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)} style={{ paddingBottom: '6rem' }}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          中文非单偶制资源站 <i>by Jeambo</i>.
+          中文非单偶制资源站
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
         
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '2rem' }}>
-          
-          {/* Substack 按钮 */}
-          <Link 
-            className="button button--lg"
-            to="https://jeambo.substack.com/subscribe"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              backgroundColor: '#FF6719', // Substack Orange
-              color: '#ffffff',           
-              border: 'none'              
-            }}
-          >
-             <img 
-               src="/img/substack.png" 
-               alt="Substack" 
-               style={{ width: '20px', height: '20px', marginRight: '8px', filter: 'brightness(0) invert(1)' }} 
-             />
-             Substack
-          </Link>
-
-          {/* Telegram 按钮 */}
-          <Link 
-            className="button button--lg"
-            to="https://t.me/cnm_cn"
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              backgroundColor: '#0088cc', // Telegram Blue
-              color: '#ffffff',           
-              border: 'none'              
-            }}
-          >
-             <img 
-               src="/img/telegram.png" 
-               alt="Telegram" 
-               style={{ width: '20px', height: '20px', marginRight: '8px', filter: 'brightness(0) invert(1)' }} 
-             />
-             Telegram
-          </Link>
-
-
-
+        {/* 金句轮播区域 */}
+        <div className={styles.quoteContainer}>
+          {QUOTES.map((quote, idx) => (
+            <div 
+              key={idx} 
+              className={clsx(styles.quoteItem, idx === quoteIndex && styles.quoteItemActive)}
+            >
+              {quote}
+            </div>
+          ))}
         </div>
-
       </div>
+     
     </header>
   );
 }
 
-// --- 第二部分：书籍介绍 (Books) + 翻译计划 ---
-function BookSection() {
-  const books = [
-    { 
-      title: '《道德浪女》The Ethical Slut', 
-      desc: '【全文翻译完毕】闻名于世的多边恋圣经，是自由的宣言书，更是实用的操作指南。此书根据原书第三版独立译出，非台版转换。', 
-      img: '/img/book1-cover.jpg',
-      link: '/docs/ethical' 
+// --- 2. Shortcut 快速入口 (带 Wave 分割线) ---
+function ShortcutSection() {
+  const items = [
+    {
+      title: '📖 直接阅读',
+      desc: '无需多言，直接开始阅读经典的《道德浪女》。',
+      link: '/docs/ethical',
+      btnText: '开始阅读',
+      color: 'primary'
     },
-    { 
-      title: '《超越单偶制的世界》A World Beyond Monogamy', 
-      desc: '【全文翻译完毕】非单偶制的百科全书，回答你想知道的所有问题。作者为前BBC记者，真实反映当代非单偶制状况。', 
-      img: '/img/book2-cover.jpg',
-      link: '/docs/beyond'
+    {
+      title: '🤔 好奇者入口',
+      desc: '听说过开放关系但充满疑惑？了解它，从打破迷思开始。',
+      link: '/blog/tags/新手指南', // 建议链接
+      btnText: '破除迷思',
+      color: 'info'
     },
-    { 
-      title: '《不止于二（第二版）》More Than Two', 
-      desc: '【翻译中】【机翻全文】无需多言的经典名著，更换合著者后进行全面修订，紧跟时代前沿。已有 Gemini 机翻全文，人工翻译正在进行中。', 
-      img: '/img/book3-cover.jpg',
-      link: '/docs/morethantwo/'
-    },
-    { 
-      title: '《走向开放》Opening Up', 
-      desc: '【机翻全文】来自世纪初的经典著作，重视实操经验，手把手带领新手实践非单偶制。已由 Gemini 机翻全文。', 
-      img: '/img/book4-cover.jpg',
-      link: '/docs/opening_up'
-    },
+    {
+      title: '🌱 新手急救包',
+      desc: '刚踏入这片领域，感到不安或嫉妒？别慌，这是必经之路。',
+      link: '/docs/opening_up', // 建议链接
+      btnText: '生存指南',
+      color: 'success'
+    }
   ];
 
   return (
-    <div className={clsx(styles.sectionBooks, 'padding-vert--lg')}>
+    <div className={clsx('padding-vert--xl', styles.bgWhite)} style={{ position: 'relative', paddingBottom: '8rem' }}>
       <div className="container">
-        <Heading as="h2" className="text--center margin-bottom--lg">
-          电子书
-        </Heading>
-        
-        {/* 四宫格书籍 */}
+        <div className="row">
+          {items.map((item, idx) => (
+            <div key={idx} className="col col--4 margin-bottom--md">
+              <div className="card shadow--tl h-100 text--center">
+                <div className="card__header">
+                  <Heading as="h3">{item.title}</Heading>
+                </div>
+                <div className="card__body">
+                  <p>{item.desc}</p>
+                </div>
+                <div className="card__footer">
+                  <Link to={item.link} className={`button button--block button--outline button--${item.color}`}>
+                    {item.btnText}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+{/* 分割线：Wave (连接 Shortcuts 和 Books) */}
+      {/* 填充色：#fac466 (Book 板块的背景色) */}
+      <ShapeDivider 
+        fill="#fac466" 
+        height="80px"
+        // 这是一个标准的波浪，底部闭合
+        path={<path d="M0,0 C240,90 480,90 720,50 C960,10 1200,80 1200,80 L1200,120 L0,120 Z"></path>}
+      />
+    </div>
+  );
+}
+
+// --- 3. Book Section (纯书籍，带 Inverted Book 分割线) ---
+function BookSection() {
+  const books = [
+    { title: '《道德浪女》', desc: '闻名于世的多边恋圣经，自由宣言书。', img: '/img/book1-cover.jpg', link: '/docs/ethical' },
+    { title: '《超越单偶制》', desc: '非单偶制的百科全书，回答所有问题。', img: '/img/book2-cover.jpg', link: '/docs/beyond' },
+    { title: '《不止于二》', desc: '无需多言的经典名著，紧跟时代前沿。', img: '/img/book3-cover.jpg', link: '/docs/morethantwo/' },
+    { title: '《走向开放》', desc: '重视实操经验，手把手带领新手实践。', img: '/img/book4-cover.jpg', link: '/docs/opening_up' },
+  ];
+
+  return (
+    <div className={clsx(styles.sectionBooks, 'padding-vert--xl')} style={{ position: 'relative', paddingBottom: '10rem' }}>
+      <div className="container">
+        <Heading as="h2" className="text--center margin-bottom--lg">电子书</Heading>
         <div className="row">
           {books.map((book, idx) => (
             <div key={idx} className="col col--6 margin-bottom--lg">
               <div className="card shadow--md h-100">
                 <div className="card__image" style={{ textAlign: 'center', padding: '20px' }}>
-                 <Link to={book.link}>
-                    <img 
-                      src={book.img} 
-                      alt={book.title} 
-                      style={{ maxHeight: '300px', objectFit: 'cover', borderRadius: '8px' }} 
-                    />
-                 </Link>
+                  <Link to={book.link}>
+                    <img src={book.img} alt={book.title} style={{ maxHeight: '250px', borderRadius: '8px' }} />
+                  </Link>
                 </div>
                 <div className="card__body">
-                  <Heading as="h3">
-                    <Link to={book.link} style={{ color: 'inherit', textDecoration: 'none' }}>
-                      {book.title}
-                    </Link>
-                  </Heading>
+                  <Heading as="h3"><Link to={book.link} style={{ color: 'inherit', textDecoration: 'none' }}>{book.title}</Link></Heading>
                   <p>{book.desc}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* 翻译计划板块 */}
-        <div className="row margin-top--md">
+{/* 分割线：Book (连接 Books 和 Plan) */}
+      <ShapeDivider 
+        fill="#ffffff" 
+        height="60px"
+        className="divider-flip" // 你也可以用 CSS 类，或者直接用下面的 style
+        style={{ transform: 'rotate(180deg)' }} // <--- 核心修复：直接旋转180度
+        path={<path d="M1200,0H0V120H281.94C572.9,116.24,602.45,3.86,602.45,3.86h0S632,116.24,923,120h277Z"></path>}
+      />
+    </div>
+  );
+}
+
+// --- 4. Plan Section (独立板块，普通分割线) ---
+function PlanSection() {
+  return (
+    <div className={clsx('padding-vert--lg', styles.bgWhite)}>
+      <div className="container">
+        <div className="row">
           <div className="col col--12">
             <div className="card shadow--md">
               <div className="card__body">
-                 {/* 这里假设你之前已经创建了 MDX 组件，如果没有，这里会报错 */}
-                 {/* 如果暂时没有 MDX 组件，可以把下面这三行删掉，换回普通的 HTML */}
                  <div className="markdown">
                     <TranslationPlanContent />
                  </div>
@@ -146,16 +196,16 @@ function BookSection() {
             </div>
           </div>
         </div>
-
       </div>
+      {/* 普通分割线：CSS border 实现，或者直接由下一个板块的背景色区分 */}
     </div>
   );
 }
 
-// --- 第三部分：热门标签 + 最新动态 (卡片化) ---
+// --- 5. Blog Section (带 Triangle 分割线) ---
 function BlogAndTagsSection() {
   const {recentPosts} = usePluginData('docusaurus-plugin-recent-blog-posts') || {recentPosts: []};
-  
+  // ... tags 数据省略，保持原样 ...
   const tags = [
     { label: '新手指南', link: '/blog/tags/新手指南' },
     { label: '开放关系', link: '/blog/tags/开放关系' },
@@ -175,131 +225,89 @@ function BlogAndTagsSection() {
   ];
 
   return (
-<div className={clsx(styles.sectionBlog, 'padding-vert--lg', 'section-peach')}>
-        <div className="container">
+    <div className={clsx(styles.sectionBlog, 'padding-vert--lg')} style={{ position: 'relative', paddingBottom: '6rem' }}>
+      <div className="container">
         <div className="row">
-          
-          {/* 左侧栏：标签 (放入卡片) */}
+          {/* 左侧 Tags */}
           <div className="col col--3 margin-bottom--md">
-            <div className="card shadow--md h-100">
-              <div className="card__header">
-                <Heading as="h2">🏷️ 文章分类</Heading>
-              </div>
-              <div className="card__body">
-                <div className={styles.tagListSide}>
-                  {tags.map((tag, idx) => (
-                    <Link 
-                      key={idx} 
-                      to={tag.link} 
-                      className={styles.tagItemSide}
-                    >
-                      #{tag.label}
-                    </Link>
-                  ))}
-                </div>
-                <div className="margin-top--md">
-                   <Link to="/blog/tags" className="button button--sm button--outline button--secondary button--block">
-                     所有标签
-                   </Link>
-                </div>
-              </div>
-            </div>
+             {/* ...保持原样... */}
+             <div className="card shadow--md h-100">
+               <div className="card__header"><Heading as="h2">🏷️ 文章分类</Heading></div>
+               <div className="card__body">
+                 <div className={styles.tagListSide}>
+                   {tags.map((tag, idx) => (
+                     <Link key={idx} to={tag.link} className={styles.tagItemSide}>#{tag.label}</Link>
+                   ))}
+                 </div>
+                 <div className="margin-top--md">
+                    <Link to="/blog/tags" className="button button--sm button--outline button--secondary button--block">所有标签</Link>
+                 </div>
+               </div>
+             </div>
           </div>
-
-          {/* 右侧栏：最新动态 (放入卡片) */}
+          {/* 右侧 Blog */}
           <div className="col col--9">
-            <div className="card shadow--md h-100">
-              <div className="card__header">
-                {/* 使用 Flex 布局让标题和图标横向排列并垂直居中 */}
-                <Heading as="h2" style={{ display: 'flex', alignItems: 'center' }}>
-                  📝 最新博客文章
-                  
-                  {/* RSS 按钮 */}
-                  <Link 
-                    to="/blog/rss.xml" 
-                    title="订阅 RSS"
-                    style={{ 
-                      display: 'inline-flex', /* 保证图标容器本身也是弹性盒子 */
-                      alignItems: 'center',
-                      marginLeft: '10px',      /* 给文字和图标之间留点空隙 */
-                      color: '#ee802f',        /* RSS 标准橙色 */
-                      textDecoration: 'none',  /* 去掉下划线 */
-                      transform: 'translateY(2px)' /* 微调垂直位置，视觉更平衡 */
-                    }}
-                  >
-                    {/* RSS SVG 图标 (32x32像素) */}
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      viewBox="0 0 24 24" 
-                      width="32" 
-                      height="32" 
-                      fill="currentColor" /* 让 SVG 颜色继承上面的 color 设置 */
-                    >
-                      <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"></path>
-                    </svg>
-                  </Link>
-
-                </Heading>
-              </div>
-              <div className="card__body">
-                {(recentPosts.length > 0) ? (
-                  <div className={styles.blogList}>
-                    {recentPosts.map((post, idx) => (
-                      <div key={idx} className={styles.blogItem}>
-                        <div className={styles.blogDate}>{post.formattedDate}</div>
-                        <Link to={post.link} className={styles.blogTitle}>
-                          {post.title}
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p>暂无更新。</p>
-                )}
-              </div>
-              <div className="card__footer text--right">
-                 <Link to="/blog" className="button button--link">
-                    阅读更多文章 &rarr;
-                 </Link>
-              </div>
-            </div>
+             {/* ...保持原样... */}
+             <div className="card shadow--md h-100">
+               <div className="card__header">
+                 <Heading as="h2" style={{ display: 'flex', alignItems: 'center' }}>
+                   📝 最新博客文章
+                   <Link to="/blog/rss.xml" title="订阅 RSS" style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '10px', color: '#ee802f' }}>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"></path></svg>
+                   </Link>
+                 </Heading>
+               </div>
+               <div className="card__body">
+                 {(recentPosts.length > 0) ? (
+                   <div className={styles.blogList}>
+                     {recentPosts.map((post, idx) => (
+                       <div key={idx} className={styles.blogItem}>
+                         <div className={styles.blogDate}>{post.formattedDate}</div>
+                         <Link to={post.link} className={styles.blogTitle}>{post.title}</Link>
+                       </div>
+                     ))}
+                   </div>
+                 ) : (<p>暂无更新。</p>)}
+               </div>
+               <div className="card__footer text--right">
+                  <Link to="/blog" className="button button--link">阅读更多文章 &rarr;</Link>
+               </div>
+             </div>
           </div>
-
         </div>
       </div>
+
+{/* 分割线：Triangle (连接 Blog 和 About) */}
+      {/* 颜色：#ffce8f (About 的背景色) */}
+      <ShapeDivider 
+        fill="#ffce8f" 
+        height="60px"
+        path={<path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"></path>}
+      />
     </div>
   );
 }
 
-// --- 第四部分：个人介绍 (放入卡片) ---
+// --- 6. About Section (普通分割线) ---
 function AboutSection() {
   return (
     <div className={clsx(styles.sectionAbout, 'padding-vert--lg')}>
       <div className="container">
-        {/* 用 Card 包裹整个区域 */}
         <div className="card shadow--md">
           <div className="card__body">
             <div className="row">
               <div className="col col--4 text--center">
-                <img 
-                  src="/img/persona.gif" 
-                  alt="Avatar" 
-                  style={{ borderRadius: '50%', width: '200px', height: '200px' }} 
-                />
+                <img src="/img/persona.gif" alt="Avatar" style={{ borderRadius: '50%', width: '200px', height: '200px' }} />
               </div>
               <div className="col col--8">
                 <Heading as="h2">关于 Jeambo</Heading>
                 <p className="margin-top--md">
-                  曾积极参与 LGBT 倡导活动，现在转入幕后。
-                  <br/><br/>
-                  有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。
-                  <br/><br/>
-                  从翻译到排版，再到封面设计和电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。
-                  <br/><br/>
-                  本站亦有博客栏目，分享非单偶制相关的文章与资源推荐。有些是原创不过目前大部分是转载或译文。
-                  <br/><br/>
+                  曾积极参与 LGBT 倡导活动，现在转入幕后。<br/><br/>
+                  有感于中文非单偶制资料短缺，因此近年来致力于非单偶制资源的翻译工作，主要是翻译书籍。<br/><br/>
+                  从翻译到排版，再到封面设计和电子书制作，全部由我一人完成。因此，更新进度较慢，且错误在所难免，敬请谅解。<br/><br/>
+                  本站亦有博客栏目，分享非单偶制相关的文章与资源推荐。有些是原创不过目前大部分是转载或译文。<br/><br/>
                   愿每个人都能勇敢去爱，且爱得自由。
-                </p>
+               </p>
               </div>
             </div>
           </div>
@@ -309,59 +317,65 @@ function AboutSection() {
   );
 }
 
-// --- 第五部分：AI 使用声明 (放入卡片，去掉硬编码背景) ---
+// --- 7. AI Statement (带 Tilt 分割线，连接 Footer) ---
 function AIStatementSection() {
   return (
-<div className={clsx(styles.sectionStatement, 'padding-vert--lg', 'section-peach')}>
-        <div className="container">
-        {/* 用 Card 包裹，自动适配暗黑模式 */}
+    <div className={clsx(styles.sectionStatement, 'padding-vert--lg')} style={{ position: 'relative', paddingBottom: '8rem' }}>
+      <div className="container">
         <div className="card shadow--md">
           <div className="card__body">
             <div className="row">
               <div className="col col--8">
                  <Heading as="h2" className="margin-bottom--sm">🤖 本站与 AI</Heading>
-                 <p style={{ fontSize: '1rem' }}>
-                   为了提高翻译效率，本站部分书籍的翻译 <b>初稿</b> 由生成式人工智能（AI）生成，<b>终稿</b> 由本人最终撰写而成，本人为稿件质量负最终责任。
-                   <br/><br/>
-                   同时，为了促进资源的丰富，本站亦有部分内容为全 AI 生成。请关注页面上的声明。
-                   <br/><br/>
-                   我只放我 <b>读过</b> 且觉得 <b>质量不错</b> 的 AI 内容，但本人 <b>不</b> 为其准确性和完整性负责任。
-                   <br/>
-                   
-                 </p>
+                 <p>为了提高翻译效率，本站部分书籍的翻译 <b>初稿</b> 由生成式人工智能（AI）生成，<b>终稿</b> 由本人最终撰写而成，本人为稿件质量负最终责任。<br/><br/>
+                 同时，为了促进资源的丰富，本站亦有部分内容为全 AI 生成。请关注页面上的声明。<br/><br/>
+                 我只放我 <b>读过</b> 且觉得 <b>质量不错</b> 的 AI 内容，但本人不为其准确性和完整性负责任。</p>
               </div>
-
               <div className="col col--4 text--center">
-                <img 
-                  src="/img/ai_assist.jpg" 
-                  alt="AI Assistance" 
-                  style={{ borderRadius: '8px', width: '100%', maxWidth: '300px', objectFit: 'cover' }} 
-                />
+                <img src="/img/ai_assist.jpg" alt="AI Assistance" style={{ borderRadius: '8px', width: '100%', maxWidth: '300px', objectFit: 'cover' }} />
               </div>
             </div>
           </div>
         </div>
       </div>
+
+{/* 分割线：Tilt (连接 AI 和 Footer) */}
+      {/* 修复逻辑：
+          1. fill 改为 #fee1b6 (AI板块背景色)，让它看起来是板块的延伸。
+          2. 样式改为 top: 100% (位于板块正下方)，让它盖在 Footer 上。
+      */}
+      <ShapeDivider 
+        fill="#fee1b6" 
+        height="30px"
+        style={{ 
+          top: '99%',     /* 稍微往上提一点点(99%)防止浏览器渲染出一条缝隙 */
+          bottom: 'auto', /* 覆盖掉默认的 bottom: 0 */
+          zIndex: 10      /* 确保它浮在 Footer 上面 */
+        }}
+        path={<path d="M1200 120L0 16.48 0 0 1200 0 1200 120z"></path>}
+      />
     </div>
   );
 }
 
-// --- 主页面组件 ---
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={`中文非单偶制资源站 by Jeambo`}
       description="非单偶制资源站">
-      
       <HomepageHeader />
-      
       <main>
+        <ShortcutSection />
         <BookSection />
+        <PlanSection />
         <BlogAndTagsSection />
         <AboutSection />
         <AIStatementSection />
       </main>
+      {/* 注意：Global Footer 是由 Docusaurus 配置文件控制的。
+         请参考下文修改 docusaurus.config.js
+      */}
     </Layout>
   );
 }
