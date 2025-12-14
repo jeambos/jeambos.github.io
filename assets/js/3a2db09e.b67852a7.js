@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkwww=globalThis.webpackChunkwww||[]).push([[8121],{8070:a=>{a.exports=JSON.parse('{"tags":[{"label":"\u8d44\u6e90\u63a8\u8350","permalink":"/blog/tags/\u8d44\u6e90\u63a8\u8350","count":1},{"label":"\u5de5\u4f5c\u65e5\u5fd7","permalink":"/blog/tags/\u5de5\u4f5c\u65e5\u5fd7","count":1}]}')}}]);

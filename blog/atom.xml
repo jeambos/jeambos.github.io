@@ -2,11 +2,31 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeambo.com/blog</id>
     <title>中文非单偶制资源站 by Jeambo Blog</title>
-    <updated>2025-12-11T00:00:00.000Z</updated>
+    <updated>2025-12-14T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeambo.com/blog"/>
     <subtitle>中文非单偶制资源站 by Jeambo Blog</subtitle>
     <icon>https://jeambo.com/img/favicon.ico?v=2</icon>
+    <entry>
+        <title type="html"><![CDATA[猛猛更新一波，以及之后的计划]]></title>
+        <id>https://jeambo.com/blog/2025/12/14/update_record</id>
+        <link href="https://jeambo.com/blog/2025/12/14/update_record"/>
+        <updated>2025-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[花了周末两天时间把网站大幅地优化了一下，现在看起来像一个非常正式的资源站了。]]></summary>
+        <content type="html"><![CDATA[<p>花了周末两天时间把网站大幅地优化了一下，现在看起来像一个非常正式的资源站了。</p>
+<p>感谢 Google Gemini。我虽然有一点点前端基础，但是大部分的优化工作都是他给我做的。很多时候他提供的代码，可以一次性粘贴，直接粘贴使用就可以一次性成功。</p>
+<p>最近有朋友问我，什么时候要不要帮我推广一下网站？我想了想，还是先打住了，暂时不要吧。我做事有一点完美主义，总感觉内容没有充实完毕，就不好意思公开给别人看。</p>
+<p>而且第一印象很重要，万一别人看一眼觉得怎么没什么东西，特别是没看到自己想要的东西，走了，就不再来了，那就难过了。</p>
+<p>我大概知道大家最感兴趣的是什么，应当还是道德浪女。毕竟这本书知名度高。但是我之前没有给它制作 Markdown 文本，要想传上的话还得先把格式转成 Markdown。那既然要转的话，不妨直接把修订工作也做好。于是小项目又扩充成了大工程。</p>
+<p>所以最近正在做的是把《超越单偶制的世界》这本书传上来。因为这是我译的第二本书，有了之前的翻译经验，错误比较少，可以直接粘贴过来，不太需要改错。</p>
+<p>今天已经搬运完前五部分了，明天再加把劲可以全部搬完。然后就可以搬《道德浪女》了。我争取在今年内把道德浪女也全部搬运上来吧。</p>
+<p>对了，大家应该还会想看短的文章吧？等我把书搬完，再翻译一些文章上来。然后就可以正式露面了。</p>]]></content>
+        <author>
+            <name>Jeambo</name>
+            <uri>https://jeambos.github.io</uri>
+        </author>
+        <category label="工作日志" term="工作日志"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[The Other Significant Others 导读与资源推荐]]></title>
         <id>https://jeambo.com/blog/2025/12/11/the_other_significant_others_guide</id>
