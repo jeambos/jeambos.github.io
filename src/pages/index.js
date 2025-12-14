@@ -6,7 +6,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import {usePluginData} from '@docusaurus/useGlobalData';
-import TranslationPlanContent from '../components/TranslationPlan.mdx';
+import TranslationPlanContent from '../components/translationPlan.mdx';
 
 // --- 0. 配置数据 & 工具组件 ---
 
