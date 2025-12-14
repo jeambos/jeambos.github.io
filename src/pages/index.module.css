@@ -439,7 +439,7 @@ html[data-theme='dark'] .cardCurious:hover {
 
 /* 1. 蔷薇色按钮 (配合 cardCurious) */
 .btnRose {
-  background-color: #d34a71; /* 柔和的深红/珊瑚色 */
+  background-color: #c9307f; /* 柔和的深红/珊瑚色 */
   color: #fff !important;    /* 强制文字白色 */
   border: 1px solid #ef5350;
   transition: all 0.2s ease;
