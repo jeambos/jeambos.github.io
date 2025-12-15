@@ -1,5 +1,4 @@
-// @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
+// `@type` JSDoc annotations allow editor autocompletion and tnpm pe checking
 // (when paired with `@ts-check`).
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
