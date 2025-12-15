@@ -4,262 +4,692 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* ====================================================== */
+/* 0. 全局变量与主题色定义                                */
+/* ====================================================== */
 :root {
   --ifm-color-primary: #e69525;
   --ifm-color-primary-dark: #f29e30;
   --ifm-color-primary-darker: #ef9521;
   --ifm-color-primary-darkest: #c5750d;
-   --ifm-color-primary-light: #f8c270;
+  --ifm-color-primary-light: #f8c270;
   --ifm-color-primary-lighter: #f9cb80;
   --ifm-color-primary-lightest: #fce5b0;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode - 橙色调适配 */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  /* 核心主色：使用明亮的落日橙 */
+  --ifm-color-primary: #ff9800;
+  --ifm-color-primary-dark: #e68900;
+  --ifm-color-primary-darker: #d98200;
+  --ifm-color-primary-darkest: #b36b00;
+  --ifm-color-primary-light: #ffa726;
+  --ifm-color-primary-lighter: #ffb74d;
+  --ifm-color-primary-lightest: #ffe0b2;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  
+
 }
 
-/* --- 博客样式优化：隐藏作者信息，只保留日期 --- */
-
-/* 1. 隐藏头像 */
-.avatar__photo {
-  display: none !important;
-}
-
-/* 2. 隐藏作者名字 */
+/* ====================================================== */
+/* 1. 博客样式优化 (隐藏头像等)                           */
+/* ====================================================== */
+.avatar__photo,
 .avatar__name {
   display: none !important;
 }
 
-/* 3. 【核心修复】清除文字容器的左边距，并垂直居中 */
 .avatar__intro {
-  margin-left: 0 !important; /* 这一行解决了空白问题 */
-  display: flex;             /* 确保布局灵活 */
-  flex-direction: column;    /* 垂直排列内容 */
-  justify-content: center;   /* 垂直居中 */
+  margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 4. 调整日期文字样式 */
 .avatar__subtitle {
-  margin-top: 0 !important;   /* 去掉多余的顶部间距 */
-  font-size: 0.9rem;          /* 字体稍微调小，更精致 */
-  color: var(--ifm-color-emphasis-600); /* 使用次级灰色 */
+  margin-top: 0 !important;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
 }
 
-/* --- 博客头部终极清理 --- */
-
-/* 针对那个只有作者信息（现在为空）的容器 
-   既然日期不在里面，直接隐藏它，彻底消除它占用的高度
-*/
 article header .row.margin-top--md.margin-bottom--sm {
   display: none !important;
 }
 
 /* ====================================================== */
-/* Docusaurus Docs 电子书阅读模式             */
+/* 2. Docusaurus Docs 电子书阅读模式 (适配亮/暗)          */
 /* ====================================================== */
 
-/* 1. 针对 Docs 正文的排版优化 */
+/* --- 通用排版设置 --- */
 .theme-doc-markdown {
-  /* 字体：优先使用宋体/衬线体，营造书卷气 */
   font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", "Georgia", serif;
-  
-  /* 字号：稍微调大，更适合沉浸阅读 */
-  font-size: 24px;
-  
-  /* 行高：宽松的行间距 */
+  font-size: 20px; 
   line-height: 1.8;
-  
-  /* 颜色：使用深灰而非纯黑，护眼 */
+}
+
+/* --- 🌞 亮色模式配色 --- */
+html[data-theme='light'] .theme-doc-markdown {
   color: #2c3e50;
 }
-
-/* 2. 增加段落间距 */
-.theme-doc-markdown p {
-  margin-bottom: 1.5rem; /* 段落之间留出更多呼吸感 */
-  text-align: justify;   /* 两端对齐（可选，会让方块字更整齐） */
+html[data-theme='light'] article .theme-doc-markdown {
+  background-color: #faf9f6; /* 羊皮纸背景 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+html[data-theme='light'] .theme-doc-markdown h1,
+html[data-theme='light'] .theme-doc-markdown h2,
+html[data-theme='light'] .theme-doc-markdown h3 {
+  color: #1a1a1a;
+}
+/*后续统一安排引用框配色
+html[data-theme='light'] .theme-doc-markdown blockquote {
+  background-color: #f3f4f6;
+  color: #555;
+  border-left: 4px solid #d1d5db;
+} */
 
-/* 3. 优化标题样式（保持黑体，形成对比） */
+/* --- 🌙 暗色模式配色 --- */
+html[data-theme='dark'] .theme-doc-markdown {
+  color: #e3e3e3;
+}
+html[data-theme='dark'] article .theme-doc-markdown {
+  background-color: #242526; /* 深灰背景 */
+  box-shadow: none;
+  border: 1px solid #303236;
+}
+html[data-theme='dark'] .theme-doc-markdown h1,
+html[data-theme='dark'] .theme-doc-markdown h2,
+html[data-theme='dark'] .theme-doc-markdown h3 {
+  color: #ffffff;
+}
+/* 后续统一安排引用框配色
+html[data-theme='dark'] .theme-doc-markdown blockquote {
+  background-color: #303338;
+  color: #b0b3b8;
+  border-left: 4px solid #555;
+}  */
+
+/* --- 通用容器与段落样式 --- */
+article .theme-doc-markdown {
+  padding: 40px;
+  border-radius: 8px;
+}
+.theme-doc-markdown p {
+  text-indent: 2em;      /* 首行缩进 */
+  margin-bottom: 0.6em;  /* 紧凑段间距 */
+  text-align: justify;   /* 两端对齐 */
+  text-justify: inter-ideograph;
+}
+.theme-doc-markdown figure,
+.theme-doc-markdown img {
+  text-indent: 0;
+}
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
 .theme-doc-markdown h3 {
-  /* 标题保持无衬线体（黑体），显得现代 */
   font-family: var(--ifm-font-family-base); 
   font-weight: 700;
-  margin-top: 2em; /* 标题上方留白更多 */
-  color: #1a1a1a;
+  margin-top: 2em;
+  text-indent: 0;
 }
-
-/* 4. 引用块（Blockquote）样式优化 */
+/* 后续统一设置引用框样式
 .theme-doc-markdown blockquote {
-  border-left: 4px solid #d1d5db; /* 浅灰色竖线 */
-  background-color: #f3f4f6;      /* 极浅的灰色背景 */
-  color: #555;
   font-style: italic;
   padding: 1rem;
   border-radius: 4px;
+  text-indent: 0;
+}
+  */
+
+/* ====================================================== */
+/* 3. 字体混排魔法 (修复版：强制映射 Normal 样式)          */
+/* ====================================================== */
+
+/* --- A. 虚拟粗体 'BookBold' --- */
+/* 目标：西文用 [Arial 粗斜体]，中文用 [黑体 正身] */
+
+/* A1. 西文部分 */
+@font-face {
+  font-family: 'BookBold';
+  /* 核心修复：这里虽然引用的是 Italic 文件，但我们要把 style 定义为 normal */
+  src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
+  unicode-range: U+0000-00FF; /* ASCII 范围 */
+  font-weight: 700;
+  font-style: normal; /* <--- 改为 normal，以便匹配 */
 }
 
-/* 给文档正文加一个米色背景容器 */
-article .theme-doc-markdown {
-  background-color: #faf9f6; /* 米色/羊皮纸色 */
-  padding: 40px;             /* 内边距 */
-  border-radius: 8px;        /* 圆角 */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影，像一张纸 */
+/* A2. 中文部分 */
+@font-face {
+  font-family: 'BookBold';
+  src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF; /* 汉字范围 */
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --- B. 虚拟斜体 'BookItalic' --- */
+/* 目标：西文用 [Times New Roman 斜体]，中文用 [楷体 正身] */
+
+/* B1. 西文部分 */
+@font-face {
+  font-family: 'BookItalic';
+  /* 核心修复：引用 Times 的斜体文件 */
+  src: local('Times New Roman Italic'), local('TimesNewRoman-Italic'), local('Times-Italic');
+  unicode-range: U+0000-00FF;
+  font-style: normal; /* <--- 关键！必须改为 normal，否则浏览器不认 */
+}
+
+/* B2. 中文部分 */
+@font-face {
+  font-family: 'BookItalic';
+  src: local('KaiTi'), local('STKaiti'), local('BiauKai'), local('AR PL UKai CN');
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
+  font-style: normal;
+}
+
+
+/* --- C. 应用样式 (保持不变) --- */
+
+.theme-doc-markdown strong,
+.theme-doc-markdown b {
+  font-style: normal;
+  font-family: 'BookBold', sans-serif;
+  font-weight: 700;
+}
+
+.theme-doc-markdown em,
+.theme-doc-markdown i {
+  font-style: normal; /* 强制所有内容不倾斜（由字体文件本身自带倾斜效果） */
+  font-family: 'BookItalic', 'KaiTi', 'STKaiti', serif;
+}
+
+/* --- D. 颜色适配 (保持不变) --- */
+html[data-theme='light'] .theme-doc-markdown strong,
+html[data-theme='light'] .theme-doc-markdown b { color: #000000; }
+html[data-theme='light'] .theme-doc-markdown em,
+html[data-theme='light'] .theme-doc-markdown i { color: #444444; }
+
+html[data-theme='dark'] .theme-doc-markdown strong,
+html[data-theme='dark'] .theme-doc-markdown b { color: #ffffff; }
+html[data-theme='dark'] .theme-doc-markdown em,
+html[data-theme='dark'] .theme-doc-markdown i { color: #cccccc; }
+
+/* ====================================================== */
+/* 4. 脚注优化：核弹级修复 (修复缩进撑大问题)             */
+/* ====================================================== */
+
+/* 1. 强制重置上标容器 */
+.theme-doc-markdown sup {
+  line-height: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  position: relative; 
+}
+
+/* 2. 强制重置链接样式 */
+.theme-doc-markdown sup a {
+  /* 🛑 核心修复 1：重置首行缩进，防止被 p 标签撑大 (关键！) */
+  text-indent: 0 !important;
+
+  /* 🛑 核心修复 2：强制改为行内弹性盒子 */
+  display: inline-flex !important; 
+  align-items: center;
+  justify-content: center;
+  
+  /* 尺寸强制 */
+  width: auto !important; 
+  min-width: 20px !important; /* 稍微给大一点点，容纳两位数 */
+  height: 20px !important;
+  
+  /* 消除 Docusaurus 锚点偏移带来的位置干扰 */
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  
+  /* 手动上浮 */
+  transform: translateY(-8px);
+  
+  /* 外观样式 */
+  background-color: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  border-radius: 6px; /* 稍微方一点的圆角，更像书本角标 */
+  
+  /* 字体与内边距 */
+  padding: 0 !important; /* 既然用了 flex 居中，padding 可以归零 */
+  font-size: 11px !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  line-height: 1 !important; 
+  
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* 3. 悬停效果 */
+.theme-doc-markdown sup a:hover {
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-10px) scale(1.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  opacity: 1;
+}
+
+/* 4. 隐藏可能存在的方括号 */
+.theme-doc-markdown sup::before,
+.theme-doc-markdown sup::after {
+  display: none;
+}
+
+.footnotes {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+  padding: 20px;
+  border-radius: 8px;
+}
+.footnotes .footnote-backref {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-primary);
+  font-family: system-ui;
+  text-decoration: none !important;
 }
 
 /* ====================================================== */
-/* 移动端沉浸式阅读优化 (Mobile Full-width)                 */
+/* 5. 📱 移动端专属优化 (底部导航栏 + 沉浸阅读)           */
 /* ====================================================== */
-
 @media screen and (max-width: 996px) {
   
-  /* 1. 压缩 Docusaurus 默认的容器边距 */
+  /* A. 沉浸式阅读 */
   .container {
-    padding-left: 16px !important;  /* 稍微留一点缝隙，不要让字贴着屏幕边框 */
+    padding-left: 16px !important;
     padding-right: 16px !important;
     max-width: 100% !important;
   }
-
-  /* 2. 重置文档正文的内边距 */
-  /* 这里覆盖了之前为 PC 端设置的大 Padding (比如 40px) */
   .theme-doc-markdown, 
   article .theme-doc-markdown {
-    padding: 10px 10px !important; /* 上下10px，左右仅留4px，极窄边距 */
-    margin: 0 !important;         /* 去掉外边距 */
-    border-radius: 0 !important;  /* 手机上铺满屏幕，不需要圆角 */
-    box-shadow: none !important;  /* 手机上不需要阴影，看起来更像原生 App */
+    padding: 10px 10px !important; 
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
-
-  /* 3. 确保正文内容 100% 宽度 */
   .row .col {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-
-  /* 4. (可选) 针对移动端微调字号 
-  /* 手机离眼睛更近，19px 可能太大，17px-18px 可能更合适    */
   .theme-doc-markdown {
-    font-size: 20 px !important; 
-    line-height: 1.6 !important; /* 行高也可以稍微紧凑一点点 */
+    font-size: 20px !important; 
+    line-height: 1.7 !important;
   }
- 
-}
+  main {
+    padding-bottom: 80px !important; 
+  }
 
-
-/* ====================================================== */
-/* 文档页字体修正。中文黑体(正) + 西文粗斜体(歪)                 */
-/* ====================================================== */
-
-/* 1. 定义虚拟粗体 'BookBold' - 西文部分 */
-/* 目标：西文使用 Arial/Helvetica 的【粗斜体】 */
-@font-face {
-  font-family: 'BookBold';
-  /* 优先找系统自带的 Arial 或 Helvetica 的粗斜体版本 */
-  src: local('Arial Bold Italic'), local('Arial-BoldItalic'), local('Helvetica-BoldOblique'), local('Helvetica Bold Oblique');
-  /* src: local('Times New Roman Bold Italic'), local('TimesNewRoman-BoldItalic'); */
-  /* 仅对英文、数字、标点生效 */
-  unicode-range: U+0000-00FF;
-  font-weight: 700;
-  font-style: italic; /* 关键：强制让这部分显示为斜体 */
-}
-
-/* 2. 定义虚拟粗体 'BookBold' - 中文部分 */
-/* 目标：中文使用黑体，且保持端正 */
-@font-face {
-  font-family: 'BookBold';
-  /* 优先找苹果的苹方、Windows的微软雅黑、以及通用黑体 */
-  src: local('PingFang SC'), local('Microsoft YaHei'), local('Heiti SC'), local('SimHei');
-  /* 仅对汉字生效 */
-  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF;
-  font-weight: 700;
-  font-style: normal; /* 关键：中文保持正体，不要歪 */
-}
-
-/* 3. 应用到 Markdown 的粗体 (**...**) */
-.theme-doc-markdown strong,
-.theme-doc-markdown b {
-  /* 重置样式：让浏览器认为这是普通样式，然后由 @font-face 接管 */
-  font-style: normal; 
-  
-  /* 应用我们定义的虚拟字体 */
-  font-family: 'BookBold', sans-serif;
-  
-  /* 确保字重为粗体 */
-  font-weight: 700;
-  
-  /* 颜色加深 */
-  color: #000;
-}
-
-/* ====================================================== */
-/* 移动端优化：将“本页目录”固定到屏幕底部                 */
-/* ====================================================== */
-
-/* 仅在屏幕宽度小于 996px (移动端/平板) 时生效 */
-@media (max-width: 996px) {
-  
-  /* 1. 定位容器：固定在底部 */
+  /* B. 底部导航栏：核弹级修复 */
   .theme-doc-toc-mobile {
     position: fixed !important;
     left: 0;
     bottom: 0;
-    width: 100%;
-    z-index: 100; /* 确保浮在最上层 */
-    
-    margin-bottom: 0 !important; /* 去掉默认边距 */
-    border-radius: 0 !important; /* 去掉圆角，变成直角长条 */
-    border: none;
-    border-top: 1px solid var(--ifm-color-emphasis-200); /* 顶部加条细线分隔 */
-    
-    /* 关键背景色：使用系统变量，自动适配暗黑/亮色模式 */
-    background-color: var(--ifm-background-color); 
-    
-    /* 核心魔法：使用弹性布局的反向列，让菜单向上展开！ */
+    width: 100% !important;
+    z-index: 2147483647 !important;
     display: flex;
     flex-direction: column-reverse;
-    
-    /* 加一点阴影，更有悬浮感 */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--ifm-color-emphasis-200);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* 2. 调整按钮样式 (平时看到的那个条) */
+  /* 亮色模式背景 */
+  html[data-theme='light'] .theme-doc-toc-mobile {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+  /* 暗色模式背景 */
+  html[data-theme='dark'] .theme-doc-toc-mobile {
+    background-color: #1d1c1b !important;
+    background: #1d1c1b !important;
+  }
+
+  /* 按钮本体 */
   .theme-doc-toc-mobile > button {
-    width: 100%;
-    border: none;
-    /*background: transparent;*/ /* 取消透明背景 */
-    padding: 12px; /* 增加点击区域，方便手指按 */
-    font-weight: 600;
-    color: var(--ifm-color-primary); /* 使用主题色 */
-    text-align: center;
+    position: relative !important;
+    width: 100% !important;
+    height: 54px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: inherit !important; 
+    color: transparent !important;
+    transform: none !important;
   }
 
-  /* 3. 调整展开后的列表样式 (弹出的菜单) */
+  /* 文字贴纸 */
+  .theme-doc-toc-mobile > button::after {
+    content: '本章目录'; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ifm-color-primary);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transform: none !important;
+    z-index: 10;
+  }
+  .theme-doc-toc-mobile > button > svg {
+    display: none !important;
+  }
+
+  /* 展开列表 */
   .theme-doc-toc-mobile > div {
-    /* 限制最大高度，防止列表太长顶到天花板 */
-    max-height: 60vh; 
-    overflow-y: auto; /* 内容太长时允许内部滚动 */
-    
-    padding: 10px 20px;
-    background-color: var(--ifm-background-surface-color); /*稍微区分一下背景*/
+    max-height: 65vh;
+    overflow-y: auto;
+    background-color: inherit !important; 
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    padding: 15px 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
 }
 
-@media (max-width: 996px) {
-  /* 给正文底部加 60px 的内边距，防止被底部目录栏遮挡 */
-  main {
-    padding-bottom: 60px !important;
+/* ====================================================== */
+/* 6. 首页博客板块暗黑模式修复                            */
+/* ====================================================== */
+html[data-theme='dark'] div[class*='blogList'],
+html[data-theme='dark'] div[class*='tagListSide'] {
+  background-color: #2f3136 !important;
+  border: 1px solid #3e4045;
+}
+html[data-theme='dark'] div[class*='blogItem']:hover {
+  background-color: #393c42;
+  border-radius: 6px;
+}
+html[data-theme='dark'] a[class*='blogTitle'] {
+  color: #e3e3e3 !important;
+  font-weight: 600;
+}
+html[data-theme='dark'] a[class*='blogTitle']:hover {
+  color: var(--ifm-color-primary) !important;
+}
+html[data-theme='dark'] a[class*='tagItemSide'] {
+  background-color: #3e4045 !important;
+  color: #f5f6f7 !important;
+  border: none !important;
+}
+html[data-theme='dark'] a[class*='tagItemSide']:hover {
+  background-color: var(--ifm-color-primary) !important;
+  color: #fff !important;
+}
+
+/* ====================================================== */
+/* 7. 首页板块背景色适配 (Zebra Striping)                 */
+/* ====================================================== */
+/* 修复暗黑模式 Header 过于刺眼 */
+html[data-theme='dark'] .hero--primary {
+  background-color: #8a5300 !important;
+}
+html[data-theme='dark'] .hero__title,
+html[data-theme='dark'] .hero__subtitle {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* 修复首页其他板块背景 */
+html[data-theme='dark'] div[class*='sectionBooks'],
+html[data-theme='dark'] div[class*='sectionAbout'] {
+  background-color: transparent !important;
+}
+
+/* ====================================================== */
+/* 8. 自定义特殊背景色 (肉粉色适配)                       */
+/* ====================================================== */
+/* 亮色模式：肉粉色 */
+html[data-theme='light'] .section-peach {
+  background-color: #ffebbf !important; 
+}
+/* 暗色模式：深咖色 */
+html[data-theme='dark'] .section-peach {
+  background-color: #473122 !important; 
+}
+/* ====================================================== */
+/* 11. 引用块 (Blockquote) 全局美化                       */
+/* ====================================================== */
+
+/* --- 基础结构与图标 (Core Styles) --- */
+.theme-doc-markdown blockquote {
+  /* 1. 字体样式修正：取消强制斜体 */
+  font-style: normal !important; 
+  
+  /* 2. 布局设置 */
+  position: relative; /* 为绝对定位的图标做参照 */
+  margin: 1.5em 0;    /* 上下留白 */
+  padding: 15px 20px 15px 30px !important; /* 左侧留30px防止重叠 */
+  border-radius: 8px; /* 圆角 */
+  border: none !important; /* 去掉原本那个粗粗的左边框线 */
+  
+  /* 3. 字体设置 */
+  /* 引用内容依然推荐用楷体，更有“引文”感，但不倾斜 
+  font-family: "KaiTi", "STKaiti", "BiauKai", serif; 
+  font-size: 0.95em;
+  line-height: 1.6; */
+} /* <--- 关键！这个大括号必须存在且不能被注释掉 */
+
+
+/* --- 引号图标 (使用伪元素 ::before) --- */
+.theme-doc-markdown blockquote::before {
+  content: '';
+  position: absolute;
+  top: -10px; 
+  left: -8px;
+  width: 48px;
+  height: 48px;
+  
+  /* 引用本地图片 */
+  background-image: url('/img/quote.png');
+  
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  /* 防止被背景遮挡 */
+  z-index: 10; 
+  opacity: 1;
+
+  /* 🛠️ 调试专用：如果还是不显示，打开下面这行看有没有红框 */
+  /* border: 1px solid red; */
+}
+
+/* --- 🌞 亮色模式配色 --- */
+html[data-theme='light'] .theme-doc-markdown blockquote {
+  background-color: #fff8eb; /* 极淡的暖橙色背景，像便签纸 */
+  color: #5c5c5c;
+  
+  /* 给盒子加一点微弱的阴影，让它像一张卡片贴在纸上 */
+  box-shadow: 2px 2px 0px rgba(230, 149, 37, 0.2); 
+}
+
+/* --- 🌙 暗色模式配色 --- */
+html[data-theme='dark'] .theme-doc-markdown blockquote {
+  background-color: #302d28; /* 深棕灰色背景 */
+  color: #c9c9c9;
+  
+  /* 暗色模式下不需要阴影，或者用微弱的高光边框 */
+  border: 1px solid #4a4a4a !important;
+}
+
+/* 适配暗黑模式下的图标颜色 */
+html[data-theme='dark'] .theme-doc-markdown blockquote::before {
+  opacity: 0.6; /* 稍微暗一点 */
+}
+
+/* ====================================================== */
+/* 12. 首页 Header 艺术背景图与阅读性优化                 */
+/* ====================================================== */
+
+/* 1. 设置背景图基础 */
+.hero--primary {
+  /* ⚠️请修改这里：替换为您实际的图片路径 */
+  background-image: url('/img/header-bg.jpg'); /* 假设您把图片放在了 static/img/ 下 */
+  
+/* 1. 保持图片原始尺寸，绝不缩放 */
+  /* 浏览器会按图片的物理像素显示，如果图片只有 100px 宽，它就显示 100px */
+  background-size: auto !important;   
+  
+  /* 2. 开启平铺模式 */
+  /* repeat = x轴和y轴都重复，即“上下左右平铺” */
+  background-repeat: repeat !important;
+  
+  /* 3. 起始对齐位置 */
+  /* 通常设为 top left (左上角) 或 center top (居中顶部) */
+  background-position: center center!important;
+  
+  position: relative; /* 为遮罩层和内容层提供定位基准 */
+  z-index: 0;         /* 建立层叠上下文 */
+  
+  /* 强制文字颜色为白色，确保对比度 */
+  color: #ffffff !important;
+  --ifm-hero-text-color: #ffffff;
+}
+
+/* 确保 Header 里的标题和副标题也是白色 */
+.hero--primary .hero__title,
+.hero--primary .hero__subtitle {
+   color: inherit !important;
+   /* 可选：加一点点文字阴影，让文字在复杂背景上更立体，提高可读性 */
+   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* 2. 创建半透明遮罩层 (Overlay) - 核心技术 */
+/* 利用伪元素在图片和文字之间创建一个层 */
+.hero--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 放在文字下面，背景图上面 */
+  
+  /* 使用渐变遮罩会让效果更自然，上方深一点，下方浅一点 */
+  /* 默认过渡效果 */
+  transition: background 0.3s ease;
+}
+
+/* 3. 确保内容在遮罩层之上 */
+.hero--primary .container {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* --- 🌞 亮色模式下的遮罩 (Day Mode Overlay) --- */
+html[data-theme='light'] .hero--primary::before {
+  /* 使用主题橙色进行半透明叠加 */
+  /* rgba 中的最后一位小数 (0.8) 是透明度，越接近 1 越不透明 */
+  /* 这里设置了一个从上到下的渐变，上方略深，保证标题清晰 */
+  background: linear-gradient(
+    to bottom, 
+    rgba(230, 149, 37, 0.85), /* 上方：85% 不透明的橙色 */
+    rgba(230, 149, 37, 0.7)   /* 下方：70% 不透明的橙色 */
+  );
+  
+  /* 如果你觉得颜色太艳，想用纯深色压暗也可以，尝试下面这行代替上面的渐变： */
+  /* background: rgba(0, 0, 0, 0.5); */
+}
+
+
+/* --- 🌙 暗色模式下的遮罩 (Night Mode Overlay) --- */
+html[data-theme='dark'] .hero--primary::before {
+  /* 使用深焦糖色/黑色进行叠加，透明度要更高（更黑） */
+  /* 这样能确保夜晚不刺眼，且图片融入暗黑背景 */
+  background: linear-gradient(
+    to bottom, 
+    rgba(138, 83, 0, 0.9), /* 上方：90% 不透明的深焦糖色 */
+    rgba(102, 60, 0, 0.95) /* 下方：95% 不透明的更深色 */
+  );
+}
+
+/* 4. 针对移动端的微调 (可选) */
+@media screen and (max-width: 996px) {
+  .hero--primary {
+    /* 手机上背景图可能需要调整位置，或者换一张竖图 */
+    /* background-position: center top; */
   }
+}
+
+
+/* ====================================================== */
+/* 9. 首页动态配色系统 (适配暗黑模式)                     */
+/* ====================================================== */
+
+/* 1. 定义默认(亮色)下的颜色 */
+:root {
+  /* Shortcut & Plan 板块背景：亮色是纯白 */
+  --home-bg-white: #ffffff;
+  
+  /* Books 板块背景：亮色是橙色 */
+  --home-bg-orange: #fac466;
+  
+  /* Blog 板块背景：亮色是极淡灰 */
+  --home-bg-gray: #fcfcfc;
+  
+  /* About 板块背景：亮色是淡桃色 */
+  --home-bg-peach: #ffce8f;
+  
+  /* AI 板块背景：亮色是极淡肉色 */
+  --home-bg-peach-light: #fee1b6;
+}
+
+/* 2. 定义暗黑模式下的颜色 override */
+[data-theme='dark'] {
+  /* 在暗黑模式下，所有板块背景通常都统一为 Docusaurus 的默认深底色 */
+  /* 或者使用 transparent 让它透出 body 的背景 */
+  --home-bg-white: var(--ifm-background-color);       /* 变成深色 */
+  --home-bg-orange: var(--ifm-background-color);      /* 橙色变深色 */
+  --home-bg-gray: var(--ifm-background-color);        /* 灰色变深色 */
+  --home-bg-peach: var(--ifm-background-color);       /* 桃色变深色 */
+  --home-bg-peach-light: var(--ifm-background-color); /* 浅桃变深色 */
+}
+
+/* ====================================================== */
+/* 10. 右侧目录 (TOC) 样式优化                            */
+/* ====================================================== */
+
+/* 基础样式微调：让未激活的文字颜色稍微淡一点，增加层次感 */
+.table-of-contents__link {
+  color: var(--ifm-color-content-secondary); /* 使用次级灰，不抢眼 */
+  transition: all 0.2s ease-in-out;
+  border-left: 3px solid transparent; /* 预留边框位置，防止切换时抖动 */
+  padding-left: 12px; /* 给左边留点空隙 */
+}
+
+/* 悬停状态：稍微变亮 */
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* 🎯 激活状态：橙色竖线 + 文字高亮 */
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary) !important; /* 强制文字变橙色 */
+  border-left-color: var(--ifm-color-primary) !important; /* 左侧竖线变橙 */
+  background: linear-gradient(90deg, rgba(230, 149, 37, 0.08) 0%, transparent 100%); /* (可选) 淡淡的背景拖尾，像极光一样 */
+  font-weight: 600; /* 加粗一点点 */
+}
+
+/* 暗黑模式微调 */
+[data-theme='dark'] .table-of-contents__link--active {
+  /* 暗黑模式下背景光晕稍微调亮一点，增加可视度 */
+  background: linear-gradient(90deg, rgba(230, 149, 37, 0.15) 0%, transparent 100%);
 }

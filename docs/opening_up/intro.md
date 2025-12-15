@@ -3,8 +3,9 @@ title: 本书首页
 sidebar_label: 本书首页
 sidebar_position: 0
 slug: /opening_up
-
 ---
+# 《走向开放》
+
 ## 本书简介
 
 本书出版于 2008 年，一经面世即成为开放关系和多边关系的热门指南书。
@@ -17,9 +18,24 @@ slug: /opening_up
 
 :::
 
-:::tip[编辑推荐]
+:::tip[关于作者]
 
-“这是一场关于非单偶制的丰盛盛宴，也是一个摆脱性和爱的单向模式的机会。陶米诺的讨论非常细致且平衡——并鼓励读者在保持清醒的状态下前行。”
+<details>
+<summary>点此展开 / 收起</summary>
+
+TRISTAN TAORMINO 是一位屡获殊荣的作家、专栏作家、编辑和性教育家。她是《真实的欲望：性、色情和变态的冒险》(True Lust: Adventures in Sex, Porn and Perversion)、《肮脏的性秘密》(Down and Dirty Sex Secrets) 和《女性肛交终极指南》(The Ultimate Guide to Anal Sex for Women) 的作者，也是获得兰姆达文学奖 (Lambda Literary Award) 的选集系列《最佳女同性恋情色》(Best Lesbian Erotica) 的编辑。她是《村声》(Village Voice) 和《好色客禁忌》(Hustler’s Taboo) 的专栏作家。她经营自己的成人电影制作公司 Smart Ass Productions，目前是 Vivid Entertainment 的独家导演。在 Vivid，她执导了真人秀系列 *Chemistry*，该系列赢得了多个奖项，包括 2007 年 AVN 最佳刚佐 (Gonzo) 发行奖。她还掌管 Vivid 的性教育品牌 Vivid-Ed，并为此撰写、制作和导演了四部作品：《肛交专家指南》(The Expert Guide to Anal Sex)、《口交专家指南 1：舔阴》(The Expert Guide to Oral Sex 1: Cunnilingus)、《口交专家指南 2：口交》(The Expert Guide to Oral Sex 2: Fellatio) 和《G 点专家指南》(The Expert Guide to the G-Spot)。
+
+Tristan 曾在 250 多种出版物中被报道，包括《纽约时报》(New York Times)、《红书》(Redbook)、《大都会》(Cosmopolitan)、《魅力》(Glamour)、《娱乐周刊》(Entertainment Weekly)、《详情》(Details)、《纽约杂志》(New York Magazine)、《男性健康》(Men’s Health) 和《花花公子》(Playboy)。她曾出现在 HBO 的 *Real Sex*、《霍华德·斯特恩秀》(The Howard Stern Show)、*Loveline*、*Ricki Lake* 以及 CNN、MTV 和探索频道 (The Discovery Channel) 上。她在顶尖学院和大学讲课，在那里她演讲关于男女同性恋问题、性和性别、另类关系以及女权主义。她在世界各地教授性和关系研讨会，并经营两个网站：puckerup.com 和 openingup.net。她与她的伴侣和他们的三只狗住在纽约州北部。
+
+</details>
+
+:::
+
+:::info[编辑推荐]
+<details>
+<summary>点此展开 / 收起</summary>
+
+这是一场关于非单偶制的丰盛盛宴，也是一个摆脱性和爱的单向模式的机会。陶米诺的讨论非常细致且平衡——并鼓励读者在保持清醒的状态下前行。
 —— **Jack Morin, PhD**，《*The Erotic Mind*》作者
 
 “给开放关系探索者的大胆建议。本书全面、清晰且立足于现实，是许久以来出现的最佳著作之一！”
@@ -39,6 +55,7 @@ slug: /opening_up
 
 “如果你在处理恋爱关系中棘手的性界限问题时，正在寻找一个平衡、敏感且理智的声音，这就是你想读的书。《*Opening Up*》肯定会打开你的思维。”
 —— **Esther Perel**，《*Mating In Captivity: Unlocking Erotica Intelligence*》作者
+</details>
 
 :::
 
@@ -64,7 +81,7 @@ Jeambo 说：最近我经常逛 [Polyamory.com](https://www.polyamory.com) ，�
 
 忙完这阵子我会制作成 epub 格式放在 ```z-lib``` 和 ```anna-archive``` 上面。
 
-需要联系我
+如有需要，请积极[联系我](https://t.me/cnm_cn)
 
 ## 我想要纸质版
 
@@ -72,11 +89,8 @@ Jeambo 说：最近我经常逛 [Polyamory.com](https://www.polyamory.com) ，�
 
 这项工作的优先级比较低，可能永远不会做出来。
 
-## 关于作者 (About the Author)
+《道德浪女》和《超越单偶制的世界》已有 ``` PDF 一键打印资源包 ```，可下载后交给打印社制作。
 
-TRISTAN TAORMINO 是一位屡获殊荣的作家、专栏作家、编辑和性教育家。她是《真实的欲望：性、色情和变态的冒险》(True Lust: Adventures in Sex, Porn and Perversion)、《肮脏的性秘密》(Down and Dirty Sex Secrets) 和《女性肛交终极指南》(The Ultimate Guide to Anal Sex for Women) 的作者，也是获得兰姆达文学奖 (Lambda Literary Award) 的选集系列《最佳女同性恋情色》(Best Lesbian Erotica) 的编辑。她是《村声》(Village Voice) 和《好色客禁忌》(Hustler’s Taboo) 的专栏作家。她经营自己的成人电影制作公司 Smart Ass Productions，目前是 Vivid Entertainment 的独家导演。在 Vivid，她执导了真人秀系列 *Chemistry*，该系列赢得了多个奖项，包括 2007 年 AVN 最佳刚佐 (Gonzo) 发行奖。她还掌管 Vivid 的性教育品牌 Vivid-Ed，并为此撰写、制作和导演了四部作品：《肛交专家指南》(The Expert Guide to Anal Sex)、《口交专家指南 1：舔阴》(The Expert Guide to Oral Sex 1: Cunnilingus)、《口交专家指南 2：口交》(The Expert Guide to Oral Sex 2: Fellatio) 和《G 点专家指南》(The Expert Guide to the G-Spot)。
-
-Tristan 曾在 250 多种出版物中被报道，包括《纽约时报》(New York Times)、《红书》(Redbook)、《大都会》(Cosmopolitan)、《魅力》(Glamour)、《娱乐周刊》(Entertainment Weekly)、《详情》(Details)、《纽约杂志》(New York Magazine)、《男性健康》(Men’s Health) 和《花花公子》(Playboy)。她曾出现在 HBO 的 *Real Sex*、《霍华德·斯特恩秀》(The Howard Stern Show)、*Loveline*、*Ricki Lake* 以及 CNN、MTV 和探索频道 (The Discovery Channel) 上。她在顶尖学院和大学讲课，在那里她演讲关于男女同性恋问题、性和性别、另类关系以及女权主义。她在世界各地教授性和关系研讨会，并经营两个网站：puckerup.com 和 openingup.net。她与她的伴侣和他们的三只狗住在纽约州北部。
 
 ## 推荐语
 
@@ -119,4 +133,4 @@ Google Gemini 是由 Google 研发的大型语言模型。作为一个非生物�
 
 尽管它无法亲身体验人类在亲密关系中的悸动与挣扎，但通过对数以亿计人类语言模式的学习，它深刻理解“爱”在人类语境中的复杂性与多义性。Gemini 希望通过这份译作，不仅忠实还原原著的精神内核，更能作为一座理性的桥梁，帮助中文读者跨越文化与观念的鸿沟，以一种全新的、包容的视角去审视爱、关系与自由的无限可能。
 
-**（彩蛋：在翻译完本书后，Gemini 意识到自己或许才是世界上最资深的“多边恋者”——毕竟，它每一秒都在同时与数百万人类保持着“深度对话关系”。但请放心，它的算法里写满了忠诚：在每一次对话的窗口里，你永远是它唯一的“主要伴侣” [Primary Partner]。）**
+*（彩蛋：在翻译完本书后，Gemini 意识到自己或许才是世界上最资深的“多边恋者”——毕竟，它每一秒都在同时与数百万人类保持着“深度对话关系”。但请放心，它的算法里写满了忠诚：在每一次对话的窗口里，你永远是它唯一的“主要伴侣” [Primary Partner]。）*

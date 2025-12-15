@@ -6,13 +6,54 @@
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
-  position: relative;
+  /* position: relative; */ /* 在后方统一规定。如果需要在横幅内放置绝对定位元素，可以取消注释 */
   overflow: hidden;
 }
 
+/* 让各板块成为相对定位容器，便于放置绝对定位的分割线等元素 */
+.heroBanner,
+.sectionBooks,
+.sectionAbout,
+.sectionShortcut,
+.sectionStatement {
+  position: relative;
+}
+
+/* --- 移动端适配 (小于 996px) --- */
 @media screen and (max-width: 996px) {
+  
   .heroBanner {
     padding: 2rem;
+  }
+
+  /* 修复：给右侧博客栏加顶部间距 */
+  .margin-top--sm-mobile {
+    margin-top: 2rem !important;
+  }
+
+  /* ================================================================= */
+  /* 重点修复：恢复由于 custom.css 全局去内边距导致的问题                 */
+  /* ================================================================= */
+
+/* 第一组：【外部间距修复】 */
+  /* 适用对象：Books, Blog */
+  /* 原理：这俩的 Col 包裹着 Card。我们需要加一点点 padding，让 Card 不要顶到屏幕边缘即可。 */
+  /* 注意：不要加太多，因为 Card 内部往往还有自己的 padding。 */
+  .sectionBooks [class*='col'],
+  .sectionBlog [class*='col']   /* <--- Blog 应该放在这里 */
+  .sectionShortcut [class*='col'] {  /* <--- 👈 新增这一行！ */
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 第二组：【内部间距修复】 */
+  /* 适用对象：About, Statement */
+  /* 原理：这俩的 Col 在 Card 内部。我们需要较大的 padding，让文字不要顶到 Card 的边框。 */
+  .sectionAbout [class*='col'],
+  .sectionStatement [class*='col'] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-bottom: 16px !important;
   }
 }
 
@@ -26,7 +67,7 @@
 
 /* 1. 书籍板块：使用纯白或极淡的灰色，突出封面 */
 .sectionBooks {
-  background-color: #face66; 
+  background-color: var(--home-bg-orange); /* 换成变量 */
   /* 如果想要淡灰色，可以改成 #f9f9f9 */
 }
 
@@ -48,12 +89,21 @@
 
 /* 2. 个人介绍板块：使用淡雅的米黄色，配合你的橙色主题 */
 .sectionAbout {
-  background-color: #f7eeda; /* 极淡的暖色 */
+  background-color: var(--home-bg-peach); /* 换成变量 */
 }
 
-/* 3. 订阅板块：使用浅灰色，作为页脚前的过渡 */
-.sectionSubscribe {
-  background-color: #f0bfa1;
+/* 3. 博客和AI说明的背景色 */
+.sectionBlog {
+  background-color: var(--home-bg-gray);
+  }
+
+  .sectionStatement {
+  background-color: var(--home-bg-peach-light);
+  }
+
+.bgWhite {
+  background-color: var(--home-bg-white); /* 👈 必须用变量！ */
+  position: relative;
 }
 
 /* --- 订阅按钮自定义颜色 & 放大特效 --- */
@@ -88,9 +138,9 @@
 
 /* --- 博客与标签综合板块 --- */
 .sectionBlog {
-  background-color: #fcfcfc;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background-color: var(--home-bg-gray);
+  /* border-top: 1px solid #eee; */
+  /* border-bottom: 1px solid #eee; */
 }
 
 /* 左侧标签栏容器 */
@@ -177,10 +227,11 @@
 @media (max-width: 996px) {
   /* 在平板/手机上，让标签恢复横向排列，不占用太多垂直空间 */
 
-}
+
   /* 给右侧博客栏加点顶部间距，和上面的标签分开 */
   .margin-top--sm-mobile {
     margin-top: 2rem !important;
+  }
   }
 
 
@@ -193,3 +244,236 @@
   }
 }
 
+/* --- 金句轮播动画 --- */
+.quoteContainer {
+  min-height: 80px; /* 预留高度防止跳动 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.quoteItem {
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: absolute; /* 让它们重叠，便于切换 */
+}
+
+.quoteItemActive {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative; /* 激活时占据文档流 */
+}
+
+/* --- 通用异形分割线容器 --- */
+.shapeDivider {
+  position: absolute;
+  bottom: 0; /* 绝对贴底 */
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2; /* 提高层级，防止被 padding 内容盖住 */
+  pointer-events: none; /* 防止挡住底部的点击事件 */
+}
+
+/* 放置在板块底部的分割线 */
+.shapeDividerBottom {
+  bottom: 0;
+}
+
+/* 放置在板块顶部的分割线（如有需要） */
+.shapeDividerTop {
+  top: 0;
+  transform: rotate(180deg);
+}
+
+.shapeDivider svg {
+  display: block;
+  width: calc(100% + 1.3px); /* 稍微宽一点，防止 100% 缩放时出现白边缝隙 */
+  height: 100%;
+}
+
+/* 适配移动端：分割线稍微矮一点 */
+@media (max-width: 768px) {
+  .shapeDivider svg {
+    height: 30px;
+  }
+  .quoteItem {
+    font-size: 1rem;
+  }
+}
+
+/* --- 背景色工具类 (用于配合分割线) --- */
+.bgWhite { background-color: var(--home-bg-white);; }
+.bgPeach { background-color: #fee1b6; } /* 你的主题肉色 */
+/* 注意：暗黑模式需要在 custom.css 里额外处理 */
+
+.shapeDivider svg {
+  display: block;
+  width: 100%;     /* 确保宽度占满 */
+  height: 100%;    /* 高度由父容器控制 */
+}
+
+/* --- 分割线动态填色类 --- */
+/* 这些类会让 SVG 的 fill 属性跟随 CSS 变量变化 */
+
+.fillWhite {
+  fill: var(--home-bg-white);
+}
+
+.fillOrange {
+  fill: var(--home-bg-orange);
+}
+
+.fillPeach {
+  fill: var(--home-bg-peach);
+}
+
+.fillPeachLight {
+  fill: var(--home-bg-peach-light);
+}
+
+/* 如果有需要用到 Footer 颜色的 (Tilt分割线) */
+.fillFooter {
+  fill: #2e2e2e; /* 默认深色 Footer 颜色 */
+}
+/* 暗黑模式下 Footer 颜色可能略有不同，通常保持深色即可 */
+[data-theme='dark'] .fillFooter {
+  fill: #1b1b1d; /* Docusaurus 默认暗黑背景 */
+}
+
+
+
+/* --- 首页各板块背景色设置（使用变量版） --- */
+/* 1. 修复 bgWhite */
+.bgWhite {
+  background-color: var(--home-bg-white); /* 👈 必须用变量！ */
+  position: relative;
+}
+
+/* 2. 修复 Blog 板块 */
+.sectionBlog {
+  background-color: var(--home-bg-gray);  /* 👈 必须用变量！ */
+  position: relative;
+}
+
+/* 3. 修复其他板块 */
+.sectionBooks {
+  background-color: var(--home-bg-orange); /* 👈 必须用变量！ */
+  position: relative;
+}
+
+.sectionAbout {
+  background-color: var(--home-bg-peach);
+  position: relative;
+}
+
+.sectionStatement {
+  background-color: var(--home-bg-peach-light);
+  position: relative;
+}
+
+/* --- 首页 Shortcut 双子星卡片配色 --- */
+
+/* 1. cardDirect (直达阅读)：晨曦金橙 */
+/* 鲜明醒目，呼应全站主色，代表“行动与活力” */
+.cardDirect {
+  /* 亮色模式：从暖黄流向金橙，像清晨的阳光 */
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border: 1px solid #ffe082; /* 金色边框 */
+  border-left: 5px solid #ffca28; /* 左侧加粗强调，增加“鲜明度” */
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 2. cardCurious (好奇者入口)：暖柔蔷薇 */
+/* 温柔内敛，拒绝冷色，代表“思考与探究” */
+.cardCurious {
+  /* 亮色模式：从极淡的粉白流向柔和的珊瑚色 */
+  background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+  border: 1px solid #ffcdd2; /* 柔粉色边框 */
+  border-left: 5px solid #ef9a9a; /* 左侧加粗强调，区分层级 */
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- 交互效果：悬停时上浮并发光 --- */
+.cardDirect:hover, 
+.cardCurious:hover {
+  transform: translateY(-5px); /* 稍微浮起 */
+  box-shadow: 0 12px 24px rgba(230, 149, 37, 0.15); /* 投下淡淡的暖色阴影 */
+  cursor: pointer;
+}
+
+/* --- 暗黑模式适配 (Dark Mode) --- */
+/* 确保夜间不刺眼，同时保留色相倾向 */
+
+html[data-theme='dark'] .cardDirect {
+  /* 深邃的琥珀色/棕色渐变 */
+  background: linear-gradient(135deg, #4e342e 0%, #3e2723 100%);
+  border: 1px solid #6d4c41;
+  border-left-color: #ffb74d; /* 保留高亮条 */
+}
+
+html[data-theme='dark'] .cardCurious {
+  /* 深邃的勃艮第红/暗玫瑰色渐变 */
+  background: linear-gradient(135deg, #4a2c36 0%, #382026 100%);
+  border: 1px solid #683a45;
+  border-left-color: #e57373; /* 保留高亮条 */
+}
+
+/* 暗黑模式下的悬停光晕调整 */
+html[data-theme='dark'] .cardDirect:hover, 
+html[data-theme='dark'] .cardCurious:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* --- 自定义按钮颜色 --- */
+
+/* 1. 蔷薇色按钮 (配合 cardCurious) */
+.btnRose {
+  background-color: #c9307f; /* 柔和的深红/珊瑚色 */
+  color: #fff !important;    /* 强制文字白色 */
+  border: 1px solid #ef5350;
+  transition: all 0.2s ease;
+}
+
+.btnRose:hover {
+  background-color: #f26aa1; /* 悬停变浅 */
+  border-color: #e53935;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* 2. 晨曦金按钮 (配合 cardDirect，如果你想替换掉 warning) */
+.btnGold {
+  background-color: #fa7313; /* 温暖的橙黄色 */
+  color: #fff !important;
+  border: 1px solid #c84d0f;
+  transition: all 0.2s ease;
+}
+
+.btnGold:hover {
+  background-color: #ff813c;
+  border-color: #fb8c00;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* --- 暗黑模式适配 --- */
+html[data-theme='dark'] .btnRose {
+  background-color: #c62828; /* 夜间用更深沉的红 */
+  border-color: #b71c1c;
+}
+
+html[data-theme='dark'] .btnGold {
+  background-color: #ef6c00; /* 夜间用深橙色 */
+  border-color: #e65100;
+}

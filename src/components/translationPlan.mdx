@@ -1,0 +1,81 @@
+import React from 'react';
+
+export const DreamyProgress = ({ value, max = 100 }) => {
+  const [width, setWidth] = React.useState(0);
+  const containerRef = React.useRef(null); // 1. 创建一个钩子，用来钩住外层容器
+
+  React.useEffect(() => {
+    // 2. 创建一个“观察员”
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        // 3. 如果元素进入了可视区域
+        if (entry.isIntersecting) {
+          // 4. 设置宽度，触发动画
+          setWidth((value / max) * 100);
+          // 5. 动画触发后，就不需要再观察了（节省性能，且避免往回滚时重置）
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1, // 阈值：当进度条露出 10% 的时候就开始播放动画
+      }
+    );
+
+    // 开始观察
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // 清理函数：组件卸载时取消观察
+    return () => observer.disconnect();
+  }, [value, max]);
+
+  return (
+    // 6. 把钩子挂在这个 div 上 (ref={containerRef})
+    <div ref={containerRef} style={{
+      width: '100%',
+      maxWidth: '300px',
+      height: '16px', 
+      backgroundColor: '#f0f0f0', 
+      borderRadius: '10px', 
+      overflow: 'hidden',
+      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)', 
+      margin: '10px 0'
+    }}>
+      <div style={{
+        width: `${width}%`,
+        height: '100%',
+        // --- 梦幻渐变色 ---
+        background: 'linear-gradient(90deg, #f36e09ff 0%, #a01b90ff 100%)', 
+        
+        borderRadius: '10px',
+        // 这里的 1.5s 是动画时长，你可以根据喜好调整
+        transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)', 
+        boxShadow: '0 0 10px rgba(255, 154, 139, 0.5)' 
+      }} />
+    </div>
+  );
+};
+
+{/* 下面是正文内容 */}
+
+### 📅 当前工作进度 & 后续翻译计划
+
+我仍在翻译中！由于我另有本职工作，翻译和制作工作可能推进较慢。如有特定书籍想看，欢迎前往 [Telegram 频道](https://t.me/cnm_cn) 留言。
+
+- **翻译《More Than Two (2nd Edition)》（不止于二）**
+  <DreamyProgress value={5} />
+  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>5%：🖊 第 `` 1 `` 章 / 共 `` 21 `` 章  💡已生成 AI 译文，请等待上传。</span> 
+
+- **制作《超越单偶制的世界》Markdown 格式并上传至本站**
+  <DreamyProgress value={78} />
+  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>78%：🖊 第 `` 58 `` 章 / 共 `` 74 `` 章</span>
+
+- **《The Other Significant Others》 (另一种重要他者)**
+  <DreamyProgress value={5} />
+  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>5%：💤 ``设想中``  💡已生成 AI 导读 - [点此阅读](/blog/2025/12/11/the_other_significant_others_guide)</span>
+
+- **《Polyamorists Next Door》（邻家的多边关系者）**
+  <DreamyProgress value={0} />
+  <span style={{fontSize: '0.9em', marginLeft: '10px'}}>0%：💤 ``设想中``</span>
