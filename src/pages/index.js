@@ -12,7 +12,7 @@ import TranslationPlanContent from '../components/translationPlan.mdx';
 
 // 金句数据 (建议后续提取到单独的 json 文件中)
 const QUOTES = [
- "「非单偶制的哲学是反对私有制的。」",
+ "「欢迎光临本站」",
  "「期望一个人满足自己所有需求，这是不公平的」",
  "「嫉妒是不安全感的警报，而非爱的证明」",
  "「恋爱关系并不天然地比其他关系更优先」",
@@ -72,7 +72,7 @@ useEffect(() => {
 
         return newIndex;
       });
-    }, 5000); // 5秒切换一次
+    }, 3456); // 3.456秒切换一次
 
     return () => clearInterval(interval);
   }, []);
