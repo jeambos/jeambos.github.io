@@ -350,6 +350,17 @@ html[data-theme='dark'] .theme-doc-markdown i { color: #cccccc; }
     padding-right: 0 !important;
   }
 
+  /* ✅ 新增：给博客列表页恢复边距，防止贴边 */
+  .blog-list-page .row .col {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  /* 可选：如果你觉得博客列表卡片之间的垂直间距在手机上太大了，也可以微调 */
+  .blog-list-page .margin-bottom--xl {
+    margin-bottom: 2rem !important;
+  }
+
   /* 让博客在移动端也去除卡片阴影，变成沉浸式 */
   .theme-doc-markdown, 
   article .theme-doc-markdown,
