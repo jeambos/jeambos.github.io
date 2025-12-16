@@ -103,6 +103,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+
+      tableOfContents: {
+        minHeadingLevel: 2, // 默认为 2。改成 1 也许能显示 H1，但 Docusaurus 通常把 H1 视作文章标题而忽略。
+        maxHeadingLevel: 4, // 建议把这个改成 4，这样 H4 也能显示出来，导航更细致
+      },
+
+
       // 暂时注释掉 social card
       // image: 'img/docusaurus-social-card.jpg',
       colorMode: {
@@ -240,7 +247,11 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-    }),
-};
+    }
+
+  ),
+
+
+  };
 
 export default config;
