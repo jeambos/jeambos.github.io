@@ -64,23 +64,29 @@ article header .row.margin-top--md.margin-bottom--sm {
 /* ====================================================== */
 
 /* --- 通用排版设置 --- */
-.theme-doc-markdown {
+.theme-doc-markdown,
+.blog-post-page .markdown {
   font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", "Georgia", serif;
   font-size: 20px; 
   line-height: 1.8;
 }
 
 /* --- 🌞 亮色模式配色 --- */
-html[data-theme='light'] .theme-doc-markdown {
+html[data-theme='light'] .theme-doc-markdown,
+.blog-post-page .markdown {
   color: #2c3e50;
 }
-html[data-theme='light'] article .theme-doc-markdown {
+html[data-theme='light'] article .theme-doc-markdown,
+.blog-post-page .markdown {
   background-color: #faf9f6; /* 羊皮纸背景 */
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 html[data-theme='light'] .theme-doc-markdown h1,
 html[data-theme='light'] .theme-doc-markdown h2,
-html[data-theme='light'] .theme-doc-markdown h3 {
+html[data-theme='light'] .theme-doc-markdown h3,
+html[data-theme='light'] .blog-post-page .markdown h1, /* 新增 */
+html[data-theme='light'] .blog-post-page .markdown h2, /* 新增 */
+html[data-theme='light'] .blog-post-page .markdown h3  /* 新增 */ {
   color: #1a1a1a;
 }
 /*后续统一安排引用框配色
@@ -91,17 +97,22 @@ html[data-theme='light'] .theme-doc-markdown blockquote {
 } */
 
 /* --- 🌙 暗色模式配色 --- */
-html[data-theme='dark'] .theme-doc-markdown {
+html[data-theme='dark'] .theme-doc-markdown,
+.blog-post-page .markdown  {
   color: #e3e3e3;
 }
-html[data-theme='dark'] article .theme-doc-markdown {
+html[data-theme='dark'] article .theme-doc-markdown,
+.blog-post-page .markdown  {
   background-color: #242526; /* 深灰背景 */
   box-shadow: none;
   border: 1px solid #303236;
 }
 html[data-theme='dark'] .theme-doc-markdown h1,
 html[data-theme='dark'] .theme-doc-markdown h2,
-html[data-theme='dark'] .theme-doc-markdown h3 {
+html[data-theme='dark'] .theme-doc-markdown h3,
+html[data-theme='dark'] .blog-post-page .markdown h1, /* 新增 */
+html[data-theme='dark'] .blog-post-page .markdown h2, /* 新增 */
+html[data-theme='dark'] .blog-post-page .markdown h3  /* 新增 */ {
   color: #ffffff;
 }
 /* 后续统一安排引用框配色
@@ -112,28 +123,43 @@ html[data-theme='dark'] .theme-doc-markdown blockquote {
 }  */
 
 /* --- 通用容器与段落样式 --- */
-article .theme-doc-markdown {
+
+article .theme-doc-markdown,
+.blog-post-page article .markdown {
   padding: 40px;
   border-radius: 8px;
 }
-.theme-doc-markdown p {
-  text-indent: 2em;      /* 首行缩进 */
-  margin-bottom: 0.6em;  /* 紧凑段间距 */
-  text-align: justify;   /* 两端对齐 */
+
+/* 段落缩进与对齐 */
+.theme-doc-markdown p,
+.blog-post-page .markdown p {
+  text-indent: 2em;      
+  margin-bottom: 0.6em;  
+  text-align: justify;
   text-justify: inter-ideograph;
 }
+
+/* 排除图片和Figure的缩进 */
 .theme-doc-markdown figure,
-.theme-doc-markdown img {
+.theme-doc-markdown img,
+.blog-post-page .markdown figure,
+.blog-post-page .markdown img {
   text-indent: 0;
 }
+
+/* 标题去缩进 */
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
-.theme-doc-markdown h3 {
+.theme-doc-markdown h3,
+.blog-post-page .markdown h1,
+.blog-post-page .markdown h2,
+.blog-post-page .markdown h3 {
   font-family: var(--ifm-font-family-base); 
   font-weight: 700;
   margin-top: 2em;
   text-indent: 0;
 }
+
 /* 后续统一设置引用框样式
 .theme-doc-markdown blockquote {
   font-style: italic;
@@ -314,21 +340,31 @@ html[data-theme='dark'] .theme-doc-markdown i { color: #cccccc; }
     padding-right: 16px !important;
     max-width: 100% !important;
   }
-  .theme-doc-markdown, 
-  article .theme-doc-markdown {
-    padding: 10px 10px !important; 
-    margin: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
+
   .row .col {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-  .theme-doc-markdown {
+
+  /* 让博客在移动端也去除卡片阴影，变成沉浸式 */
+  .theme-doc-markdown, 
+  article .theme-doc-markdown,
+  .blog-post-page .markdown,       /* 新增 */
+  .blog-post-page article .markdown /* 新增 */
+  {
+    padding: 10px 10px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  /* 字体大小同步 */
+  .theme-doc-markdown,
+  .blog-post-page .markdown {
     font-size: 20px !important; 
     line-height: 1.7 !important;
   }
+  
   main {
     padding-bottom: 80px !important; 
   }
